@@ -13,9 +13,18 @@
 Route::get('/404',function(){
     abort(404);
 });
+
 Route::get('/', function () {
     return view('welcome');
 }); 
+
 Route::get('admin/indexs','admin\USerController@indexs');
+
+
+//积分商品管理
+Route::resource('admin/integral','admin\IntegralController');
+
+//通过ajax修改积分商品名称
+Route::post('admin/title','admin\IntegralController@title');
 
 
