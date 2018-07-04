@@ -13,9 +13,11 @@
 Route::get('/404',function(){
     abort(404);
 });
+
 Route::get('/', function () {
     return view('welcome');
 }); 
+
 Route::get('admin/indexs','admin\USerController@indexs');
 Route::get('admin/index','admin\USerController@index');
 
@@ -24,4 +26,11 @@ Route::resource('admin/cate','admin\CateController');
 Route::post('admin/cate/update','admin\CateController@update');
 // 商品管理
 Route::resource('admin/goods','admin\GoodsController');
+
+//积分商品管理
+Route::resource('admin/integral','admin\IntegralController');
+
+//通过ajax修改积分商品名称
+Route::post('admin/title','admin\IntegralController@title');
+
 

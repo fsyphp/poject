@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>后台管理</title>
 
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
@@ -14,9 +15,6 @@
     <!--[if lt IE 8]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
-    <script src="/admin/js/jquery-3.2.1.min.js"></script>
-
-    <link rel="shortcut icon" href="/admin/favicon.ico">
     <link href="/admin/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="/admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">   
     <link href="/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -27,7 +25,24 @@
 
     <!-- Gritter -->
     <link href="/admin/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"> 
-    <link href="/admin/css/animate.min.css" rel="stylesheet"> 
+    <link href="/admin/css/animate.min.css" rel="stylesheet">
+    <script src="/admin/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/layer.js"></script>
+    <style>
+        .shi{
+            height:10px;
+        }
+        .ershi{
+            height:20px;
+        }
+        .sanshi{
+            height:30px;
+        }
+        .wushi{
+            height:50px;
+        }
+        .pagination>.active>span{background:#337AB7;color:#fff;}
+    </style>
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -157,11 +172,9 @@
                     <li>
                         <a href="mailbox.html"><i class="fa fa-shopping-cart"></i> <span class="nav-label">积分兑换管理 </span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="mailbox.html">收件箱</a>
+                            <li><a class="J_menuItem" href="/admin/integral">浏览商品</a>
                             </li>
-                            <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
-                            </li>
-                            <li><a class="J_menuItem" href="mail_compose.html">写信</a>
+                            <li><a class="J_menuItem" href="/admin/integral/create">添加商品</a>
                             </li>
                         </ul>
                     </li>
@@ -254,6 +267,7 @@
                     <li class="alert alert-danger">{{session('error')}}</li>
                 </div>
             @endif
+
             <script>
                 setTimeout(function(){
                     $('#dvs').hide();
@@ -389,19 +403,15 @@
       
        
         
-    </div> 
-    <script src="/admin/js/jquery.min.js?v=2.1.4"></script>
+    </div>
+    <!-- <script src="/admin/js/jquery.min.js?v=2.1.4"></script> -->
     <script src="/admin/js/bootstrap.min.js?v=3.3.5"></script>
     <script src="/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="/admin/js/plugins/sweetalert/sweetalert.min.js"></script>
     <!-- <script src="/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script> -->
 
-    <script src="/admin/js/plugins/layer/layer.min.js"></script>
+    <!-- <script src="/admin/js/plugins/layer/layer.min.js"></script> -->
     <script src="/admin/js/hplus.min.js?v=4.0.0"></script>
-  
-   
-   
-
 </body>
 
 </html>
