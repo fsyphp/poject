@@ -1,7 +1,5 @@
 @extends('admin.layout.header')
 @section('layout')
-@extends('admin.layout.header')
-@section('layout')
  
     <div class="wrapper wrapper-content animated fadeInRight">
          
@@ -125,5 +123,4 @@
     </body>
 
 </html>
-@endsection
 @endsection

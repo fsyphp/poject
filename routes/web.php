@@ -17,5 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 }); 
 Route::get('admin/indexs','admin\USerController@indexs');
+Route::get('admin/index','admin\USerController@index');
 
+// 分类管理
+Route::resource('admin/cate','admin\CateController');
+Route::post('admin/cate/update','admin\CateController@update');
+// 商品管理
+Route::resource('admin/goods','admin\GoodsController');
 

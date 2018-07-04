@@ -20,11 +20,15 @@
     "autoload": {
         "classmap": [
             "database/seeds",
-            "database/factories"
+            "database/factories",
+            "app/class/CateClass.php"
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files":[
+            "app/function/cate.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
