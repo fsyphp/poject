@@ -141,9 +141,9 @@
                     <li>
                         <a href="mailbox.html"><i class="fa fa-hand-lizard-o"></i> <span class="nav-label">抽奖管理 </span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="/lottery/index">抽奖商品浏览</a>
+                            <li><a class="J_menuItem" href="/admin/lottery">抽奖商品浏览</a>
                             </li>
-                            <li><a class="J_menuItem" href="/lottery/add">抽奖商品添加</a>
+                            <li><a class="J_menuItem" href="/admin/lottery/create">抽奖商品添加</a>
                             </li> 
                         </ul>
                     </li>

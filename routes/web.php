@@ -33,4 +33,10 @@ Route::resource('admin/integral','admin\IntegralController');
 //通过ajax修改积分商品名称
 Route::post('admin/title','admin\IntegralController@title');
 
+//抽奖商品
+Route::resource('admin/lottery','admin\LotteryController');
+
+//通过 ajax 改变奖品状态
+Route::post('admin/static','admin\LotteryController@static');
+
 
