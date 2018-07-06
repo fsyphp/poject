@@ -25,7 +25,7 @@
 
     <!-- Gritter -->
     <link href="/admin/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"> 
-<<<<<<< HEAD
+
     <link href="/admin/css/animate.min.css" rel="stylesheet">
     <script src="/admin/js/jquery-3.2.1.min.js"></script>
     <script src="/js/layer.js"></script>
@@ -44,7 +44,7 @@
         }
         .pagination>.active>span{background:#337AB7;color:#fff;}
     </style>
-=======
+
     <link href="/admin/css/animate.min.css" rel="stylesheet"> 
 
     <!-- ueditor -->
