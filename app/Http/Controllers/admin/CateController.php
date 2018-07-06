@@ -21,7 +21,6 @@ class CateController extends Controller
             $rs=substr_count($v->path,',')-1; 
             $v->title=str_repeat('&nbsp;',$rs*6).'ℳ--'.$v->title; 
         }
-    // dd($data);
        return view('admin.Category.index',['data'=>$data,'request'=>$request]);
     }
 
@@ -32,13 +31,7 @@ class CateController extends Controller
      */
     public function create()
     {
-        // $data=Cate::getCate();
-        $data=Cate::select(DB::raw('*,concat(path,id) as paths'))->orderBy('paths')->get();
-        foreach($data as $k=>$v){
-           $rs=substr_count($v->path,',')-1; 
-           $v->title=str_repeat('&nbsp;',$rs*6).'ℳ--'.$v->title;
-        }
-        // die;
+        $data=Cate::cates();
         return view('admin.Category.create',['data'=>$data]);
     }
 

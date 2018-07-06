@@ -22,6 +22,11 @@ Route::get('admin/index','admin\USerController@index');
 // 分类管理
 Route::resource('admin/cate','admin\CateController');
 Route::post('admin/cate/update','admin\CateController@update');
+// 上架
+Route::any('admin/goods/sj','admin\GoodsController@sj');
+// 下架
+Route::any('admin/goods/xj','admin\GoodsController@xj');
 // 商品管理
 Route::resource('admin/goods','admin\GoodsController');
+
 

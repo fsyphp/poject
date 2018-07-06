@@ -1,7 +1,7 @@
 @extends('admin.layout.header');
 @section('layout')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="col-sm-12">
+<div class="col-sm-12" id="divs">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>基本 <small>分类，查找</small></h5>
@@ -23,7 +23,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="ibox-content"  id="divs">
+                    <div class="ibox-content"  >
                     <form action="/admin/cate" method="get"  class="form-horizontal m-t" id="signupForm">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="DataTables_Table_0_length"><label>每页 
                             <select name="num" aria-controls="DataTables_Table_0" class="form-control input-sm">
@@ -118,9 +118,9 @@
                                     async:true
                                 });
                             }  
-                            setInterval(function(){
-                                $('#info').hide();
-                            },2000);  
+                            setTimeout(function(){
+                                $('#info').remove();
+                            },3000);  
                     })
             </script>
        
