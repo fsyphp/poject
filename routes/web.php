@@ -44,5 +44,4 @@ Route::resource('admin/lottery','admin\LotteryController');
 //通过 ajax 改变奖品状态
 Route::post('admin/static','admin\LotteryController@static');
 
- 
 
