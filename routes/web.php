@@ -45,3 +45,9 @@ Route::resource('admin/lottery','admin\LotteryController');
 Route::post('admin/static','admin\LotteryController@static');
 
 
+//前台用户注册
+Route::get('home/register','home\LoginController@register');
+Route::post('home/insert','home\LoginController@insert');
+Route::post('home/user','home\LoginController@user');
+Route::get('home/email','home\LoginController@email');
+Route::get('home/code','home\LoginController@code');

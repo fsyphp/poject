@@ -28,6 +28,6 @@ class Goods extends Model
     }
 
     static public function cates($id){
-        return Cate::where('id',$id)->first()->title;
+        return Cate::where('id',$id)->first()['title'];
     }
 }
