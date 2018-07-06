@@ -188,6 +188,15 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="mailbox.html"><i class="fa fa-ambulance"></i> <span class="nav-label">轮播管理 </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="/admin/banner/index">轮播浏览</a>
+                            </li>
+                            <li><a class="J_menuItem" href="/admin/banner/create">轮播添加</a>
+                            </li> 
+                        </ul>
+                    </li>
+                    <li>
                         <a href="mailbox.html"><i class="fa fa-ambulance"></i> <span class="nav-label">售后服务 </span></a>
                         <ul class="nav nav-second-level">
                             <li><a class="J_menuItem" href="mailbox.html">收件箱</a>
