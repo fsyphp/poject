@@ -24,8 +24,7 @@
     <link href="/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
 
     <!-- Gritter -->
-    <link href="/admin/js/plugins/gritter/jquery.gritter.css" rel="stylesheet"> 
-
+    <link href="/admin/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">  
     <link href="/admin/css/animate.min.css" rel="stylesheet">
     <script src="/admin/js/jquery-3.2.1.min.js"></script>
     <script src="/js/layer.js"></script>
@@ -43,8 +42,7 @@
             height:50px;
         }
         .pagination>.active>span{background:#337AB7;color:#fff;}
-    </style>
-
+    </style> 
     <link href="/admin/css/animate.min.css" rel="stylesheet"> 
 
     <!-- ueditor -->
@@ -53,7 +51,7 @@
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
-
+ 
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -143,9 +141,9 @@
                     <li>
                         <a href="mailbox.html"><i class="fa fa-university"></i> <span class="nav-label">实体店管理 </span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="/">实体店浏览</a>
+                            <li><a class="J_menuItem" href="/admin/shop">实体店浏览</a>
                             </li>
-                            <li><a class="J_menuItem" href="/">实体店添加</a>
+                            <li><a class="J_menuItem" href="/admin/shop">实体店添加</a>
                             </li>
                         </ul>
                     </li>
@@ -197,15 +195,6 @@
                             <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
                             </li>
                             <li><a class="J_menuItem" href="mail_compose.html">写信</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="mailbox.html"><i class="fa fa-ambulance"></i> <span class="nav-label"> 轮播图 </span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="/admin/banner/index">浏览列表</a>
-                            </li>
-                            <li><a class="J_menuItem" href="/admin/banner/create">添加图片</a>
                             </li>
                         </ul>
                     </li>
