@@ -2,6 +2,8 @@
 @section('layout')
 
 
+
+
 	<form action="/admin/banner/store" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
 		{{csrf_field()}}
 	    <div class="form-group">

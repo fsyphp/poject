@@ -2,6 +2,8 @@
 @section('layout')
 
 
+
+
 	<form action="/admin/banner/update/{{$res->id}}" class="form-horizontal" role="form" method="post" enctype='multipart/form-data'>
 	    <div class="form-group">
 	        <label for="name" class="col-sm-2 control-label">图片名称</label>

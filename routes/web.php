@@ -13,7 +13,7 @@
 Route::get('/404',function(){
     abort(404);
 });
-
+  
 Route::get('/', function () {
     return view('welcome');
 }); 

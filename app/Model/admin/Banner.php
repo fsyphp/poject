@@ -26,3 +26,7 @@ class Banner extends Model
      */
     protected $fillable = ['name','profile','url'];
 }
+
+
+
+
