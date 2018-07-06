@@ -95,8 +95,8 @@
                 
             })
             setInterval(function(){
-                $('#info').hide();
-            },3000);
+                $('#info').remove();
+            },2000);
      </script>
   
 @endsection
