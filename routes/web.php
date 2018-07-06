@@ -34,3 +34,19 @@ Route::resource('admin/integral','admin\IntegralController');
 Route::post('admin/title','admin\IntegralController@title');
 
 
+//轮播
+Route::get('admin/banner/index','admin\BannerController@index');
+Route::get('admin/banner/create','admin\BannerController@create');
+Route::post('admin/banner/store','admin\BannerController@store');
+Route::get('admin/banner/edit/{id}','admin\BannerController@edit');
+Route::post('admin/banner/update/{id}','admin\BannerController@update');
+Route::get('admin/banner/destroy/{id}','admin\BannerController@destroy');
+
+
+
+
+
+
+
+
+

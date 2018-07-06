@@ -189,6 +189,15 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="mailbox.html"><i class="fa fa-ambulance"></i> <span class="nav-label"> 轮播图 </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="/admin/banner/index">浏览列表</a>
+                            </li>
+                            <li><a class="J_menuItem" href="/admin/banner/create">添加图片</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
