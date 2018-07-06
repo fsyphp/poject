@@ -13,7 +13,7 @@
 Route::get('/404',function(){
     abort(404);
 });
-
+  
 Route::get('/', function () {
     return view('welcome');
 }); 
@@ -43,5 +43,21 @@ Route::resource('admin/lottery','admin\LotteryController');
 
 //通过 ajax 改变奖品状态
 Route::post('admin/static','admin\LotteryController@static');
+
+
+//轮播
+Route::get('admin/banner/index','admin\BannerController@index');
+Route::get('admin/banner/create','admin\BannerController@create');
+Route::post('admin/banner/store','admin\BannerController@store');
+Route::get('admin/banner/edit/{id}','admin\BannerController@edit');
+Route::post('admin/banner/update/{id}','admin\BannerController@update');
+Route::get('admin/banner/destroy/{id}','admin\BannerController@destroy');
+
+
+
+
+
+
+
 
 
