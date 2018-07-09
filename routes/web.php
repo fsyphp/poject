@@ -13,10 +13,10 @@
 Route::get('/404',function(){
     abort(404);
 });
-  
-Route::get('/', function () {
-    return view('welcome');
-}); 
+//   首页
+Route::get('/','home\HomeController@index'); 
+//详情页
+Route::any('home/detail/{id}','home\DetailController@detail'); 
 
 Route::get('admin/indexs','admin\USerController@indexs');
 Route::get('admin/index','admin\USerController@index');
@@ -44,6 +44,8 @@ Route::resource('admin/lottery','admin\LotteryController');
 //通过 ajax 改变奖品状态
 Route::post('admin/static','admin\LotteryController@static');
 
+// 实体店
+Route::resource('admin/shop','admin\ShopController');
 
 Route::group([],function(){
 	Route::get('admin/banner/index','admin\BannerController@index');

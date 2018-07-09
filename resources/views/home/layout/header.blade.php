@@ -8,7 +8,7 @@
 <script src="/home/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 <script src="/home/js/common_js.js" type="text/javascript"></script>
 <script src="/home/js/footer.js" type="text/javascript"></script>
-<title>yield('title')</title>
+<title>@yield('title')</title>
 <style>
     .ershi{
         height:20px;
@@ -34,7 +34,7 @@
     </div>
   </div>
   <div id="header"  class="header page_style">
-  <div class="logo"><a href="index.html"><img src="images/logo.png" /></a></div>
+  <div class="logo"><a href="index.html"><img src="/home/images/logo.png" /></a></div>
   <!--结束图层-->
   <div class="Search">
         <div class="search_list">
@@ -43,10 +43,12 @@
                 <li><a href="#">信息</a></li>
             </ul>
         </div>
-        <div class="clear search_cur">
-           <input name="searchName" id="searchName" class="search_box" onkeydown="keyDownSearch()" type="text">
-           <input name="" type="submit" value="搜 索"  class="Search_btn"/>
-        </div>
+        <form action="">
+            <div class="clear search_cur">
+            <input name="searchName" id="searchName" class="search_box" onkeydown="keyDownSearch()" type="text">
+            <input name="" type="submit" value="搜 索"  class="Search_btn"/>
+            </div>
+        </form>
         <div class="clear hotword">热门搜索词：香醋&nbsp;&nbsp;&nbsp;茶叶&nbsp;&nbsp;&nbsp;草莓&nbsp;&nbsp;&nbsp;葡萄&nbsp;&nbsp;&nbsp;菜油</div>
 </div>
  <!--购物车样式-->
@@ -57,7 +59,7 @@
 	 <!--<div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>-->
 	 <ul class="p_s_list">	   
 		<li>
-		    <div class="img"><img src="images/tianma.png"></div>
+		    <div class="img"><img src="/home/images/tianma.png"></div>
 		    <div class="content"><p class="name"><a href="#">产品名称</a></p><p>颜色分类:紫花8255尺码:XL</p></div>
 			<div class="Operations">
 			<p class="Price">￥55.00</p>
@@ -92,26 +94,26 @@
 <!-- 中间主体内容 -->
 @section('layout')
     <div style="height:1000px;"></div>
-@endsection
+@show
 
  <!--友情链接-->
  <div class="link_style clearfix" style="margin:0 auto;">
  <div class="title">友情链接</div>
  <div class="link_name">
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="products/logo/34.jpg"  width="100"/></a>
- </div>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+ </div> 
  </div>
 </div>
 <!-- 友情链接结束 -->
@@ -119,8 +121,8 @@
 <!--网站地图-->
 <div class="fri-link-bg clearfix">
     <div class="fri-link">
-        <div class="logo left margin-r20"><img src="images/fo-logo.jpg" width="152" height="81" /></div>
-        <div class="left"><img src="images/qd.jpg" width="90"  height="90" />
+        <div class="logo left margin-r20"><img src="/home/images/fo-logo.jpg" width="152" height="81" /></div>
+        <div class="left"><img src="/home/images/qd.jpg" width="90"  height="90" />
             <p>扫描下载APP</p>
         </div>
        <div class="">
@@ -207,14 +209,14 @@
       <div class="ServiceBox">
         <div class="bjfffs"></div>
         <dl onclick="javascript:;">
-		    <dt><img src="images/Service1.png"></dt>
+		    <dt><img src="/home/images/Service1.png"></dt>
 		       <dd><strong>QQ客服1</strong>
 		          <p class="p1">9:00-22:00</p>
 		           <p class="p2"><a href="">点击交谈</a></p>
 		          </dd>
 		        </dl>
 				<dl onclick="javascript:;">
-		          <dt><img src="images/Service1.png"></dt>
+		          <dt><img src="/home/images/Service1.png"></dt>
 		          <dd> <strong>QQ客服1</strong>
 		            <p class="p1">9:00-22:00</p>
 		            <p class="p2"><a href="#">点击交谈</a></p>
@@ -227,7 +229,7 @@
 			<div class="cartBox">
        		<div class="bjfff"></div>
 			<div class="QR_code">
-			 <p><img src="images/erweim.jpg" width="180px" height="180px" /></p>
+			 <p><img src="/home/images/erweim.jpg" width="180px" height="180px" /></p>
 			 <p>微信扫一扫，关注我们</p>
 			</div>		
 			</div>

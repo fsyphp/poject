@@ -70,7 +70,7 @@
                                             <td class=" " width="100px"><img src="{{\Config('app.gpic')}}{{$v->gpic}}" alt="" width="100%"></td>
                                         <!-- 商品详情图 -->
                                             <td width="200px"> 
-                                                    @foreach(explode(',',$v->detail->manypic) as $kk=>$vv)
+                                                    @foreach(explode(',',$v->detail['manypic']) as $kk=>$vv)
                                                             <img src="{{\Config('app.gpic')}}{{$vv}}" alt="" width="20%">
                                                     @endforeach 
                                             </td>
@@ -87,7 +87,7 @@
                                            
                                             <td width="200px">
                                         <!-- 商品规格 -->
-                                                @foreach(explode(',',$v->detail->gram) as $ks=>$vs)
+                                                @foreach(explode(',',$v->detail['gram']) as $ks=>$vs)
                                                         @if($vs==0)
                                                             500g
                                                         @elseif($vs==1)
@@ -97,8 +97,8 @@
                                                         @endif
                                                 @endforeach
                                             </td>
-                                            <td>{{$v->detail->stock}}</td>
-                                            <td>{{$v->detail->number}}</td> 
+                                            <td>{{$v->detail['stock']}}</td>
+                                            <td>{{$v->detail['number']}}</td> 
                                             <td class="center "> 
                                                 <a href="/admin/goods/{{$v->id}}/edit" class="btn btn-outline btn-info">修改</a>
                                             </form>

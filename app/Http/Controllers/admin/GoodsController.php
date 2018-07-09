@@ -162,7 +162,7 @@ class GoodsController extends Controller
             $goods=$request->only(['category_id','gname','price','g_static']);
             $goods['gpic']=$files;
             $upload=Goods::where('id',$id)->first()->gpic;
-            $link='./upload/goods/'.$upload;
+            // $link='./upload/goods/'.$upload;
         // 删除原图
             // unlink($link);
             $data=Goods::where('id',$id)->update($goods);
@@ -171,13 +171,13 @@ class GoodsController extends Controller
 
         // 附表处理
                 if($request->has('manypic')){
-                    $manypic=Goods_deetail::where('g_id',$id)->first()->manypic;
+                    $manypic=Goods_deetail::where('g_id',$id)->first()['manypic'];
                     $manypic=explode(',',$manypic);
                 // 删除原图
-                   foreach($manypic as $k=>$v){
-                       $link='./upload/goods/'.$v;
-                       unlink($link);
-                   }
+                //    foreach($manypic as $k=>$v){
+                    //    $link='./upload/goods/'.$v;
+                    //    unlink($link);
+                //    }
                     $arr=[];
                     foreach($request->file('manypic') as $k=>$v){
                         $name=rand().time().microtime(true);

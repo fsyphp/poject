@@ -143,7 +143,7 @@
                         <ul class="nav nav-second-level">
                             <li><a class="J_menuItem" href="/admin/shop">实体店浏览</a>
                             </li>
-                            <li><a class="J_menuItem" href="/admin/shop">实体店添加</a>
+                            <li><a class="J_menuItem" href="/admin/shop/create">实体店添加</a>
                             </li>
                         </ul>
                     </li>
