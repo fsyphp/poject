@@ -281,7 +281,7 @@ li:after{
 .Navigation ul li .hot_icon{ background:url(../images/indexhead_sprite.png) no-repeat right -144px; position:absolute; width:30px; height:20px; top:-10px; right:10px}
 .Navigation ul li a{ font-size:16px; color: #ffffff}
 .Navigation ul li.on{
-	background-color: #FB914A;
+	/* background-color: #FB914A; */
 }
 .Navigation ul li.on .bg_muen{ background-position: -146px 0px ;}
 .Navigation ul li.on a{ color:#FFFFFF}

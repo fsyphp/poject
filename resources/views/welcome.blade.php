@@ -36,16 +36,16 @@
     <ul class="Menu_list">
     @foreach (\App\Model\Cate::getCate() as $k=>$v) 
         <li class="name">
-            <div class="Menu_name"><a href="{{$v->id}}" >{{$v->title}}</a> <span>&lt;</span></div> 
+            <div class="Menu_name"><a href="/home/goods/list?id={{$v->id}}" >{{$v->title}}</a> <span>&lt;</span></div> 
                 <div class="menv_Detail">
                     <div class="cat_pannel clearfix">
                         <div class="hd_sort_list">
                             @foreach($v->sub as $kk=>$vv)
                                 <dl class="clearfix" data-tpc="1">
-                                    <dt><a href="$vv->id">{{$vv->title}}<i>></i></a></dt>
+                                    <dt><a href="/home/goods/list?id={{$vv->id}}">{{$vv->title}}<i>></i></a></dt>
                                     <dd>
                                         @foreach($vv->sub as $ks=>$vs)
-                                            <a href="{{$vs->id}}">{{$vs->title}}</a> 
+                                            <a href="/home/goods/list?id={{$vs->id}}">{{$vs->title}}</a> 
                                         @endforeach
                                     </dd> 
                                 </dl>
@@ -123,9 +123,9 @@
 						<ul>
                             @foreach($chou as $k=>$v)
 							<li>
-								<div class="pic"><a href="/home/detail/{{$v->id}}" target=""><img src="{{$v->img}}" /></a></div>
+								<div class="pic"><a href="home/lottery" target=""><img src="{{$v->img}}" /></a></div>
 								<div class="title">
-                                <a href="/home/detail/{{$v->id}}" target="_blank" class="name">{{$v->title}}</a>
+                                <a href="home/lottery" target="_blank" class="name">{{$v->title}}</a>
                                 <h3><b>库存</b>{{$v->stock}}</h3>
                                 </div>
 							</li>
@@ -138,9 +138,9 @@
 						<ul>
                             @foreach($dui as $k=>$v)
 							<li>
-								<div class="pic"><a href="/home/detail/{{$v->id}}" target="_blank"><img src="{{$v->img}}" /></a></div>
+								<div class="pic"><a href="home/integral" target="_blank"><img src="{{$v->img}}" /></a></div>
 								<div class="title">
-                                <a href="#" target="_blank" class="name">{{$v->title}}</a>
+                                <a href="home/integral" target="_blank" class="name">{{$v->title}}</a>
                                 <h3><b>积分</b>{{$v->price}}</h3>
                                 </div>
 							</li>
@@ -182,49 +182,19 @@
     </div>
     <div class="Plate_product">
     <ul id="lists">
-     <li class="product_display"> 
-     <a href="#" class="img_link"><img src="/home/products/p_44.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-    <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">加入购物车</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_43.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-      <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_41.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-       <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_42.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-     <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
+    @foreach($jius as $k=>$v)
+        <li class="product_display"> 
+        <a href="" class="Collect"><em></em>收藏</a> 
+            <a href="/home/detail/{{$v->id}}" class="img_link"><img src="{{\Config('app.gpic')}}{{$v->gpic}}"  width="140" height="140"/></a>
+            <a href="/home/detail/{{$v->id}}" class="name">{{$v->gname}}</a>
+            <h3><b>￥</b>{{$v->price}}</h3>
+            <div class="Detailed">
+            <div class="content">
+                <p class="center"><a href="#" class="Buy_btn">加入购物车</a></p>
+                </div>
+            </div>
+        </li>
+    @endforeach
     </ul>
     </div>
   </div>
@@ -244,50 +214,19 @@
     </div>
     <div class="Plate_product">
     <ul id="lists">
-     <li class="product_display">
-     <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_15.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-    <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_13.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-      <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_12.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-       <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_11.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-     <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
+    @foreach($shipin as $k=>$v)
+        <li class="product_display">
+        <a href="" class="Collect"><em></em>收藏</a>
+        <a href="/home/detail/{{$v->id}}" class="img_link"><img src="{{\Config('app.gpic')}}{{$v->gpic}}"  width="140" height="140"/></a>
+        <a href="/home/detail/{{$v->id}}" class="name">{{$v->gname}}</a>
+        <h3><b>￥</b>{{$v->price}}</h3>
+        <div class="Detailed">
+        <div class="content">
+            <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+            </div>
+        </div>
+        </li>
+    @endforeach
     </ul>
     </div>
   </div>
@@ -370,50 +309,19 @@
     </div>
     <div class="Plate_product">
     <ul id="lists">
-     <li class="product_display">
-     <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_31.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-    <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_32.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-      <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_33.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-       <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
-     <li class="product_display">
-      <a href="" class="Collect"><em></em>收藏</a>
-     <a href="#" class="img_link"><img src="/home/products/p_37.jpg"  width="140" height="140"/></a>
-     <a href="#" class="name">墨西哥原装进口 科罗娜啤酒 科罗娜啤酒</a>
-     <h3><b>￥</b>34.00</h3>
-     <div class="Detailed">
-	   <div class="content">
-		  <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
-		  </div>
-	   </div>
-     </li>
+    @foreach($fuzhuang as $k=>$v)
+        <li class="product_display">
+        <a href="" class="Collect"><em></em>收藏</a>
+        <a href="/home/detail/{{$v->id}}" class="img_link"><img src="{{\Config('app.gpic')}}{{$v->gpic}}"  width="140" height="140"/></a>
+        <a href="/home/detail/{{$v->id}}" class="name">{{$v->gname}}</a>
+        <h3><b>￥</b>{{$v->price}}</h3>
+        <div class="Detailed">
+        <div class="content">
+            <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
+            </div>
+        </div>
+        </li>
+    @endforeach
     </ul>
     </div>
   </div>

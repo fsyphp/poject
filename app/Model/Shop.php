@@ -9,5 +9,5 @@ class Shop extends Model
     protected $table='shop';
     protected $primaryKey='id';
     public $timestamps = false;
-    protected $fillable = ['shop_name','address','tel','shop_pic'];
+    protected $fillable = ['shop_name','address','tel','shop_pic','content'];
 }
