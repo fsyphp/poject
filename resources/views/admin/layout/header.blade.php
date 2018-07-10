@@ -35,9 +35,11 @@
         .ershi{
             height:20px;
         }
+        
         .sanshi{
             height:30px;
         }
+        
         .wushi{
             height:50px;
         }
