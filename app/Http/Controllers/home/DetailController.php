@@ -87,5 +87,5 @@ class DetailController extends Controller
 
 
 
-
+  
 

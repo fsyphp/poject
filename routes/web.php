@@ -39,7 +39,7 @@ Route::get('admin/indexs','admin\USerController@indexs');
 Route::get('admin/index','admin\USerController@index');
 
 
-
+ 
 
 // 分类管理
 Route::resource('admin/cate','admin\CateController');

@@ -22,7 +22,7 @@
    $("div[class='p_f_name infonav_hidden']").eq(index).animate({height:inHeight});
    $(".infonav_more").eq(index).replaceWith('<p class="infonav_more"><a class="more"  onclick="infonav_more_up('+index+');return false;" href="javascript:">收起<em class="pulldown"></em></a></p>');
   }else{
-   return false;
+   return false;  
   }
  }
  function infonav_more_up(index)

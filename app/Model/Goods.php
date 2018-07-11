@@ -31,5 +31,5 @@ class Goods extends Model
         return Cate::where('id',$id)->first()['title'];
     }
 
- 
+  
 }

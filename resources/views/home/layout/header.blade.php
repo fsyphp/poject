@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<head>
+<head>  
  <div id="header_top">
   <div id="top">
     <div class="Inside_pages">
@@ -31,7 +31,7 @@
         <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(23)</b></a></li>	
 	  </ul>
 	</div>
-    </div>
+    </div>  
   </div>
   <div id="header"  class="header page_style">
   <div class="logo"><a href="/"><img src="/home/images/logo.png" /></a></div>
