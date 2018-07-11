@@ -30,7 +30,8 @@ Route::get('home/integral','home\DetailController@integral');
 Route::get('/','home\HomeController@index'); 
 //详情页
 Route::any('home/detail/{id}','home\DetailController@detail');
-
+// 秒杀商品列表页
+Route::any('home/miao','home\DetailController@miao_list');
 
    
 

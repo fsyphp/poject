@@ -77,8 +77,8 @@
 		 <ul class="Navigation_name">
 			<li><a href="/">首页</a></li>
             <li class="hour"><span class="bg_muen"></span><a href="#">半小时生活圈</a></li>
-			<li><a href="/home/shop">体验店</a></li>
-			<li><a href="#">秒杀专区</a><em class="hot_icon"></em></li>  
+			<li class="shi"><a href="/home/shop">体验店</a></li>
+			<li class="miao"><a href="/home/miao">秒杀专区</a><em class="hot_icon"></em></li>  
 			<li class="chou"><a href="/home/lottery" >抽奖专区</a></li>
 			<li class="ji"><a href="/home/integral">积分兑换专区</a></li>
 			<li><a href="Brands.html">联系我们</a></li>
