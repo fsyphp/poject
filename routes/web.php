@@ -32,7 +32,7 @@ Route::get('/','home\HomeController@index');
 Route::any('home/detail/{id}','home\DetailController@detail');
 
 
-
+   
 
 Route::get('admin/indexs','admin\USerController@indexs');
 Route::get('admin/index','admin\USerController@index');

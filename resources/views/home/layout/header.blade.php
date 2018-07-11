@@ -87,7 +87,7 @@
 	<script>$("#Navigation").slide({titCell:".Navigation_name li",trigger:"click"});</script>
     </div>
 </head>
-
+   
 <!-- 中间主体内容 -->
 @section('layout')
     <div style="height:1000px;"></div>

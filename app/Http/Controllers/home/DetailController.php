@@ -56,14 +56,15 @@ class DetailController extends Controller
                $cate_id=Cate::where('path','like','%,'.$id.',%')->select('id')->get();
                         // 判断子分类是否为空
                         if(empty($cate_id)){
-                                $goods=Goods::where('category_id',$id)->get();
-                                dump($goods);
+                                $goods=Goods::where('category_id',$id)->paginate(12);
+                                // dump($goods);
                         }else{
                                 $category_id[]=$id;
                                 foreach($cate_id as $k=>$v){
                                     $category_id[]=$v->id;
-                                    $goods=Goods::whereIn('category_id',$category_id)->paginate(12)->appends($request->all());
                                 }
+                                $goods=Goods::whereIn('category_id',$category_id)->paginate(12)->appends($request->all());
+
                         } 
            }else{
                 $goods=Goods::where(function($query) use($request){
@@ -73,7 +74,7 @@ class DetailController extends Controller
                         }
                 })->paginate(12); 
            }
-            
+               
            
             return view('home.goods.goodlist',['title'=>'商品列表页','goods'=>$goods]);
 
