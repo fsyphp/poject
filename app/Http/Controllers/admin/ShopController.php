@@ -36,7 +36,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->only(['shop_name','sheng','shi','xian','tel','address']);
+        $data=$request->only(['shop_name','sheng','shi','xian','tel','address','content']);
         if(empty($data['shop_name']) || empty($data['sheng']) || empty($data['shi']) || empty($data['xian']) || empty($data['address'])){
                 return back()->with('error','地址或店铺名称不能为空')->withInput();
         }else{
@@ -93,7 +93,7 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data=$request->only(['shop_name','sheng','shi','xian','tel','address']);
+        $data=$request->only(['shop_name','sheng','shi','xian','tel','address','content']);
         if(empty($data['shop_name']) || $data['sheng']=='请选择' || $data['shi']=='请选择' || $data['xian']=='请选择' || empty($data['address'])){
                 return back()->with('error','地址或店铺名称不能为空')->withInput();
         }else{
@@ -104,6 +104,7 @@ class ShopController extends Controller
                     $files=rand().time().microtime(true);
                     $data['shop_pic']=$files.'.'.$request->file('shop_pic')->getClientOriginalExtension();
                     $request->file('shop_pic')->move('./upload/goods/',$data['shop_pic']);
+        
                     $res=Shop::where('id',$id)->update($data);
                     if($res){
                         return redirect('/admin/shop')->with('success','修改成功');
@@ -138,5 +139,14 @@ class ShopController extends Controller
         }else{
             return 1;
         }
+    }
+    public function indexs(){ 
+        $shop=Shop::paginate(5);
+        return view('home.shop.index',['shop'=>$shop,'title'=>'体验店']);
+    }
+    public function detail($id){
+        $shop=Shop::where('id',$id)->first();
+        return view('home.shop.detail',['title'=>'实体店','shop'=>$shop]);
+        // echo 1;
     }
 }

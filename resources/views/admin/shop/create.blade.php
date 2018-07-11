@@ -49,6 +49,13 @@ html,body{height:auto;}
                                  </div>
                              </div>
                              <div class="form-group">
+                                 <label class="col-sm-3 control-label">介绍：</label>
+                                 <div class="col-sm-8">
+                                     <input id="firstname" name="content" value="{{old('content')}}" class="form-control" type="text">
+                                     <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span>
+                                 </div>
+                             </div>
+                             <div class="form-group">
                                  <label class="col-sm-3 control-label">店铺图片：</label>
                                  <div class="col-sm-8">
                                  <div class="form-group"> 
