@@ -15,7 +15,7 @@ use App\Model\Cate;
 class HomeController extends Controller
 {
     // 首页
-    public function index(){
+    public function index(){ 
         $maio=Goods::where('g_static','0')->get(); 
         $xin=Goods::where('g_static','1')->paginate(5);
         $chou=Lottery::paginate(5);

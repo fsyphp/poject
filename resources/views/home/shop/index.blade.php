@@ -23,7 +23,7 @@
   <div class="menu_styles">
     
   </div>
-</div>
+</div>  
 <div class="right_style" style="">
   <!--内容详细-->
    <div class="title_style"><em></em>店铺专区</div>

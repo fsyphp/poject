@@ -37,7 +37,7 @@
 		<p style="color:red">每次抽奖积分为1000积分</p>
 		<p>您当前积分为{}</p>
 </div>
-</center>
+</center> 
 <div class="lottery">
 	<canvas id="myCanvas" width="600" height="600" style="border:1px solid #d3d3d3;">
 		当前浏览器版本过低，请使用其他浏览器尝试

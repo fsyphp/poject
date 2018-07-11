@@ -21,7 +21,7 @@
             <div class="margin-l50 margin-t10">
             	<div class="shoucang"><img src="images/iconfont-shoucang.png" width="14" height="14" />收藏店铺</div>
                 <div class="liuyan"><img src="images/iconfont-liuyan-alt.png" width="14" height="14" />给我留言</div>
-            </div>
+            </div> 
         </div>
         <div class="text-introduce"><span>{{$shop['shop_name']}}</span>
             <p>地址 :{{$shop['address']}}</p>
