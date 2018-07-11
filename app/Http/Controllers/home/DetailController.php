@@ -18,25 +18,23 @@ class DetailController extends Controller
        $goods=Goods::where('id',$id)->with('detail')->first(); 
        return view('home.detail.detail',['goods'=>$goods,'title'=>'商品详情页','re'=>$re]);
     }
-
+    // 积分兑换列表页
     public function integral(){
         $goods=Integral::paginate(12);
         return view('home.integral.list',['goods'=>$goods,'title'=>'积分兑换列表页']);
     }
 
-
+    // 抽奖商品列表页
     public function lottery(){
         $goods=json_encode(Lottery::get());
         return view('home.lottery.list',['goods'=>$goods,'title'=>'抽奖商品列表页']);
     }
-
+// 商品列表页
    public function goodlist(Request $request){    
-        // $goods=Goods::where(function($query) use($request){ 
-
-        //             $gname=$request->input('gname');
-
-        //             $cid[]=$request->input('id');
-                    
+        // $goods=Goods::where(function($query) use($request){  
+        //             $id=$request->input('id');
+        //             $gname=$request->input('gname'); 
+        //             $cid[]=$request->input('id'); 
         //             $id=DB::table('category')->where('path','like',"%,{$request->input('id')},%")->select('id')->get()->toArray(); 
         //             foreach($id as $k=>$v){
         //                 $cid[]=$v->id;
@@ -63,8 +61,7 @@ class DetailController extends Controller
                                 foreach($cate_id as $k=>$v){
                                     $category_id[]=$v->id;
                                 }
-                                $goods=Goods::whereIn('category_id',$category_id)->paginate(12)->appends($request->all());
-
+                                $goods=Goods::whereIn('category_id',$category_id)->paginate(12)->appends($request->all()); 
                         } 
            }else{
                 $goods=Goods::where(function($query) use($request){
@@ -80,6 +77,11 @@ class DetailController extends Controller
 
         }
     
+        // 秒杀列表
+        public function miao_list(){
+            $goods=Goods::where('g_static','0')->paginate(12); 
+            return view('home.miao.list',['title'=>'秒杀专区','goods'=>$goods]);
+        }
 
    }
 
