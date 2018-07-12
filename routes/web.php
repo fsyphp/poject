@@ -56,6 +56,23 @@ Route::group([],function(){
 	Route::get('admin/banner/destroy/{id}','admin\BannerController@destroy');	
 });
 
+// 添加商品到购物车
+Route::post('home/shoppadd','home\ShoppingController@shoppadd');
+Route::get('home/show','home\ShoppingController@show');
+Route::post('home/del','home\ShoppingController@del');
+
+// 测试存 session
+Route::get('home/add','home\ShoppingController@add');
+
+//用户填写地址
+Route::get('home/address','home\OrdersController@address');
+Route::post('home/commit','home\OrdersController@commit');
+Route::post('home/addr','home\OrdersController@addr');
+Route::get('home/generate','home\OrdersController@generate');
+Route::post('home/orders','home\OrdersController@orders');
+Route::get('home/success','home\OrdersController@success');
+
+
 
 
 

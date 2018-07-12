@@ -1,0 +1,187 @@
+<?php
+
+namespace App\Http\Controllers\home;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Model\User_address;
+use App\Model\Goods;
+use App\Model\Goods_deetail;
+use App\Model\Orders;
+use App\Model\Orders_detail;
+use App\Model\User_detail;
+use App\Model\Shopping;
+use DB;
+
+class OrdersController extends Controller
+{
+    //
+    public function address()
+    {
+        // 用户结算 选择地址
+        return view('home/shopping/addr');
+    }
+
+    // 查询用户是否有收货地址
+    public function addr(Request $req)
+    {   
+        $gid = $req -> input('gid');
+        session(['gid'=>$gid]);
+        $sum = $req -> input('sum');
+        session(['sum'=>$sum]);
+        $gsum = $req -> input('gsum');
+        session(['gsum'=>$gsum]);
+        $user_id = session('user_id');
+        $user_address = User_address::where('user_id',$user_id)->first();
+        if($user_address == null){
+            return '0';
+        }
+    }
+
+    //添加收货地址
+    public function commit(Request $req)
+    {
+        if($req -> input('city') == '请选择'){
+            return 'city';
+        } else if($req -> input('tel') == ''){
+            return 'tel';
+        } else if($req -> input('user') == ''){
+            return 'user';
+        } else if($req -> input('detail') == ''){
+            return 'detail';
+        } else {
+            $data = $req -> all();
+            $user_addr = User_address::create([
+                'user_id' => session('user_id'),
+                'address' => $data['addr'],
+                'address_tel' => $data['tel'],
+                'address_user' => $data['user'],
+            ]);
+            if($user_addr){
+                return '01';
+            } else {
+                return '02';
+            }
+        }
+    }
+
+    // 确认生成订单页
+    public function generate()
+    {
+        // 商品的相关信息
+        $user_id = session('user_id');
+        // $gid = session('gid');
+        $gid = explode(',',session('gid'));
+        $sum = session('sum');
+        $gsum = explode(',',session('gsum'));
+        $goods_sum = array_sum($gsum);
+        // 查询用户的收货地址
+        $addr = User_address::where('user_id',$user_id) -> get();
+
+        // 查询商品
+        $count = count($gid)-1;
+        $arr = [];
+        $stock = [];
+        for($i=0;$i<count($gid)-1;$i++){
+            $arr[] = Goods::where('id',$gid[$i])->first();
+            $stock[] = Goods_deetail::where('g_id',$gid[$i])->select('stock')->first();
+        }
+
+        $sk = [];
+        foreach($stock as $k=>$v){
+            $sk[] = $v->stock;
+        }
+        return view('home/shopping/generate',[
+            'addr' => $addr,
+            'arr' => $arr,
+            'gsum' => $gsum,
+            'sk' => $sk,
+            'sum' => $sum,
+            'goods_sum' => $goods_sum,
+            ]);
+    }
+
+    // 生成订单
+    public function orders(Request $req)
+    {
+        // 商品id
+        $goods_id = explode(',',session('gid'));
+        array_pop($goods_id);
+
+        // 获取购买商品的单价
+        $arr = [];
+        for($i=0;$i<count($goods_id);$i++){
+            $arr[] = Goods::where('id',$goods_id[$i])->select('price')->first();
+        }
+        
+        $brr = [];
+        foreach($arr as $k=>$v){
+            $brr[] = $v['price'];
+        }
+        // 购买数量
+        $gsum = explode(',',session('gsum'));
+        array_pop($gsum);
+        // 用户 id
+        $user_id = session('user_id');
+        if($req -> input('adr') == null){
+            return '0';
+        }
+        try{
+            // 开启事务
+            DB::beginTransaction();
+            // 将积分更新到用户详情表
+            /* $integral = User_detail::where('user_id',session('user_id'))->select('integral')->first();
+            $jf = $integral+$req -> input('jf');
+            User_detail::where('user_id',session('user_id')) -> updata(['integral'=>$jf]); */
+            // 插入到订单主表 生成订单
+            $orders = Orders::create([
+                'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
+                'user_id' => $user_id,
+                'address_user' => $req ->input('user'),
+                'address' => $req -> input('adr'),
+                'orders_at' => time(),
+                'orders_tel' => $req -> input('tel'),
+                'sum' => $req -> input('sum'),
+                'total' => $req -> input('total'),
+                'orders_msg' => $req -> input('msg'),
+            ]);
+            // 插入到订单详情表
+            $id = $orders -> id ;
+            $ord = Orders::find($id);
+            $ordes_dei =[] ;
+            foreach($goods_id as $k => $v){
+                $crr = [];
+                $crr['orders_id'] = $id;
+                $crr['goods_id'] = $goods_id[$k];
+                $crr['price'] = $brr[$k];
+                $crr['cnt'] = $gsum[$k];
+                $ordes_dei[] = $crr;
+            }
+            $orders_detail = $ord -> orders_detail() -> createMany($ordes_dei);
+        }catch(\Exception $e){
+            return '2';
+        }
+        if($orders && $ord){
+            DB::commit();
+            // 订单生成 成功 将购物车的信息删除
+            foreach($goods_id as $k=>$v){
+                Shopping::where('gid',$v[$k])->delete();
+            }
+            return '1';
+        } else {
+            DB::rollBack();
+            return '2';
+        }
+    }
+
+    // 订单 生成 成功提示页
+    public function success()
+    {
+        // 查询订单号和总金额
+        $orders = Orders::where('user_id',session('user_id')) -> select('number','total')->get();
+        $row = count($orders)-1;
+        $num = $orders[$row]->number;
+        $total = $orders[$row]->total;
+        return view('home/shopping/success',['num'=>$num,'total'=>$total]);
+    }
+}
