@@ -111,10 +111,6 @@
 <!-- footer end -->
 
 
- 
-
-
-
    <!-- MEDIAV  end  -->
       
 <div id="wx-share-tip"><span class="tip-arrow"><em class="layer1"></em><em class="layer2"></em></span><div class="tip-inner"><div class="wx-qrcode"><span id="wx-arcode-img" src="//temp.im/80x80/FAF0E4/000" alt="" class="qrcode"><canvas width="120" height="120"></canvas></span><div class="cont"><div class="title"><strong>微信扫一扫</strong><br>分享到微信购物圈，与好友分享！</div><div class="hint">好友购买你分享的商品，您们都将获得京豆奖励！</div></div></div><div class="wx-explain"><div class="title">购物圈是什么？</div><div class="hint">购物圈是微信好友购物的分享社区，在这里您可以和好友分享购物乐趣</div><img src="/static/home/images/gwq-step.jpg" alt="" class="step"></div></div></div>

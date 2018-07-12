@@ -37,3 +37,5 @@ class Shopping extends Model
         return $this->belongsTo('App\Model\Goods','gid');
     }
 }
+
+

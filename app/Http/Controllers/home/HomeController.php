@@ -46,5 +46,7 @@ class HomeController extends Controller
         $fuzhuang=Goods::whereIn('category_id',$fuz)->paginate(4); 
         return view('welcome',['maio'=>$maio,'xin'=>$xin,'chou'=>$chou,'dui'=>$dui,'re'=>$re,'fuzhuang'=>$fuzhuang,'jius'=>$jius,'shipin'=>$shipin,'lunbo'=>$lunbo,'title'=>'超市首页']);
     } 
+
+    
 }
    

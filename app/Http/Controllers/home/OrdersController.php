@@ -184,4 +184,6 @@ class OrdersController extends Controller
         $total = $orders[$row]->total;
         return view('home/shopping/success',['num'=>$num,'total'=>$total]);
     }
+
+    
 }

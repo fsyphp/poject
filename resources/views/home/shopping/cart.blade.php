@@ -290,9 +290,6 @@
             offset: ['100px'],
         });
 
-
-
-
 		/* var rs = confirm('删除商品?');
 		if(!rs) return;
 		//获取id

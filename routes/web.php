@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/404',function(){
     abort(404);
 });
@@ -92,14 +93,6 @@ Route::post('home/addr','home\OrdersController@addr');
 Route::get('home/generate','home\OrdersController@generate');
 Route::post('home/orders','home\OrdersController@orders');
 Route::get('home/success','home\OrdersController@success');
-
-
-
-
-
-
-
-
 
 
 //前台用户注册

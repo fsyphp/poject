@@ -142,6 +142,7 @@
             return false;
         });
         $(function(){
+
             $(':radio').click(function(){
                 // 收货人
                 var user = $(this).parents('tr').find('td').eq(1).text();
@@ -161,3 +162,4 @@
 @section('links')
 
 @endsection
+

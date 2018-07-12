@@ -34,3 +34,4 @@ class Orders extends Model
         return $this -> hasMany('App\Model\Orders_detail','orders_id');
     }
 }
+

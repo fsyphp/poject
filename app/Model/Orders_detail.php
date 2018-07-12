@@ -31,3 +31,6 @@ class Orders_detail extends Model
      */
     protected $fillable = ['orders_id','price','goods_id','cnt'];
 }
+
+
+
