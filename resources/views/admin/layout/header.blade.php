@@ -35,9 +35,11 @@
         .ershi{
             height:20px;
         }
+        
         .sanshi{
             height:30px;
         }
+        
         .wushi{
             height:50px;
         }
@@ -422,13 +424,13 @@
        
         
     </div>
-    <!-- <script src="/admin/js/jquery.min.js?v=2.1.4"></script> -->
+    <script src="/admin/js/jquery.min.js?v=2.1.4"></script>
     <script src="/admin/js/bootstrap.min.js?v=3.3.5"></script>
     <script src="/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="/admin/js/plugins/sweetalert/sweetalert.min.js"></script>
     <!-- <script src="/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script> -->
 
-    <!-- <script src="/admin/js/plugins/layer/layer.min.js"></script> -->
+    <script src="/admin/js/plugins/layer/layer.min.js"></script>
     <script src="/admin/js/hplus.min.js?v=4.0.0"></script>
 </body>
 

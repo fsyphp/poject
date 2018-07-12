@@ -7,8 +7,10 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "gregwar/captcha": "^1.1",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "mews/captcha": "^2.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -21,12 +23,13 @@
         "classmap": [
             "database/seeds",
             "database/factories",
-            "app/class/CateClass.php"
+            "app/class/CateClass.php",
+            "app/code/Code.php"
         ],
         "psr-4": {
             "App\\": "app/"
         },
-        "files":[
+        "files": [
             "app/function/cate.php"
         ]
     },
@@ -37,8 +40,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {

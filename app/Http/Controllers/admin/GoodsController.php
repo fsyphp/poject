@@ -141,7 +141,7 @@ class GoodsController extends Controller
     public function edit($id)
     {
         $data=Goods::where('id',$id)->with('detail')->first(); 
-        echo $data['detail']['stock'];
+        // echo $data['detail']['stock'];
         return view('admin.Goods.edit',['data'=>$data]);
     }
 

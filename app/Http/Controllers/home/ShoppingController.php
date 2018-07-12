@@ -75,12 +75,16 @@ class ShoppingController extends Controller
             $id = $v->gid;
             $goods[] = Goods::find($id);
         }
-
+        $info = true;
+        if(empty($goods)){
+            $info = false;
+        }
         return view('home/shopping/cart',[
             'goods' => $goods,
             'sum' => $sum,
             'size' => $size,
             'gid' => $gid,
+            'info' => $info,
         ]);
         /* $goods = [];
         foreach($data as $k=>$v){
@@ -128,8 +132,6 @@ class ShoppingController extends Controller
     {
         session(['user_id'=>1]);        
     }
-
-
 
     //
     /* public function shoppadd(Request $req)

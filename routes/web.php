@@ -13,13 +13,33 @@
 Route::get('/404',function(){
     abort(404);
 });
+
+// 体验店
+Route::get('home/shop','admin\ShopController@indexs');
+Route::get('home/shop/detail/{id}','admin\ShopController@detail');
+
+//商品列表页
+Route::get('home/goods/list','home\DetailController@goodlist');
+
+
+// 抽奖列表页
+Route::get('home/lottery','home\DetailController@lottery');
+// 积分兑换列表页
+Route::get('home/integral','home\DetailController@integral');
 //   首页
 Route::get('/','home\HomeController@index'); 
 //详情页
-Route::any('home/detail/{id}','home\DetailController@detail'); 
+Route::any('home/detail/{id}','home\DetailController@detail');
+// 秒杀商品列表页
+Route::any('home/miao','home\DetailController@miao_list');
+
+   
 
 Route::get('admin/indexs','admin\USerController@indexs');
 Route::get('admin/index','admin\USerController@index');
+
+
+ 
 
 // 分类管理
 Route::resource('admin/cate','admin\CateController');
@@ -46,6 +66,7 @@ Route::post('admin/static','admin\LotteryController@static');
 
 // 实体店
 Route::resource('admin/shop','admin\ShopController');
+
 
 Route::group([],function(){
 	Route::get('admin/banner/index','admin\BannerController@index');
@@ -81,3 +102,9 @@ Route::get('home/success','home\OrdersController@success');
 
 
 
+//前台用户注册
+Route::get('home/register','home\LoginController@register');
+Route::post('home/insert','home\LoginController@insert');
+Route::post('home/user','home\LoginController@user');
+Route::get('home/email','home\LoginController@email');
+Route::get('home/code','home\LoginController@code');

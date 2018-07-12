@@ -360,10 +360,17 @@ document.getElementById(bg_div).style.display='none';
         <div class="hotpro_box">
             <div class="pro-view-hot" style=" width:1200px;">
             @foreach($re as $k=>$v)
+<<<<<<< HEAD
                 <ul>
                     <li class="pro-img"><a href="#"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
                     <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
                     <li><a href="/index" class="title">{{$v->goods['gname']}} </a></li>
+=======
+                <ul >
+                    <li class="pro-img"><a href="/home/detail/{{$v->id}}"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
+                    <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
+                    <li><a href="/home/detail/{{$v->id}}" class="title">{{$v->goods['gname']}} </a></li>
+>>>>>>> 92a32ed9097804a78ded4bedc568299e3353abce
                 </ul>
             @endforeach
             </div>

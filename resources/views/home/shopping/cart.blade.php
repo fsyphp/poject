@@ -57,79 +57,97 @@
 @endsection
 
 @section('layout')
-<div class="content-wrap">
-	<div class="container clearfix lamp203">
-		<div class="table-responsive bottommargin">
-			<table class="table cart">
-				<thead>
-					<tr>
-						<th class="cart-product-remove"><a href="javascript:void(0)" class='as'>全选</a></th>
-						<th class="cart-product-thumbnail">商品图片</th>
-						<th class="cart-product-name">商品名</th>
-						<th class="cart-product-price">价格</th>
-						<th class="cart-product-price">规格</th>
-						<th class="cart-product-quantity">数量</th>
-						<th class="cart-product-subtotal">小计</th>
-						<th class="cart-product-subtotal">操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($goods as $k => $v)
-					<tr class="cart_item">
-						<td class="cart-product-thumbnail">
-							<input gid="{{$v->id}}" size="{{$size[$k]}}" type="checkbox">
-						</td>
-						<td class="cart-product-thumbnail">
-							<a href="#"><img src="{{Config('app.gpic').$v->gpic}}" alt="Pink Printed Dress"></a>
-						</td>
-						<td class="cart-product-name">
-							<a href="#">{{$v->gname}}</a>
-						</td>
-						<td class="cart-product-price">
-							¥<span class="price">{{$v->price}}</span>
-						</td>
-						<td class="cart-product-price">
-							<span class="amount">{{$size[$k]}}</span>
-						</td>
-						<td class="cart-product-quantity">
-							<div class="quantity clearfix">
-								<input type="button" value="-" class="minus">
-								<input type="text" name="quantity" value="{{$sum[$k]}}" class="qty" />
-								<input type="button" value="+" class="plus">
-							</div>
-						</td>
-						<td class="cart-product-subtotal">
-							¥<span class="xiaoji">{{$sum[$k]*$v->price}}</span>
-						</td>
-						<td class="cart-product-remove">
-							<a href="javascript:void(0)" class="remove" title="移除物品" ids='{{$v->id}}'><i class="icon-trash2"></i></a>
-						</td>
-					</tr>
-					@endforeach
-					<tr class="cart_item">
-						<td colspan="9">
-							<div class="row clearfix">
-								<div class="col-md-12 col-xs-12 nopadding">
-                                    <strong style="margin-right:15px;">总金额</strong>
-									¥<span class="total">0</span>.00
-
-                                    <!-- <strong style="margin-left:30px;">已选商品 <span class="cur">0</spam> 件</strong> -->
-									<a href="" class="button btn button-3d notopmargin fright">结算</a>
+@if($info)
+	<div class="content-wrap">
+		<div class="container clearfix lamp203">
+			<div class="table-responsive bottommargin">
+				<table class="table cart">
+					<thead>
+						<tr>
+							<th class="cart-product-remove"><a href="javascript:void(0)" class='as'>全选</a></th>
+							<th class="cart-product-thumbnail">商品图片</th>
+							<th class="cart-product-name">商品名</th>
+							<th class="cart-product-price">价格</th>
+							<th class="cart-product-price">规格</th>
+							<th class="cart-product-quantity">数量</th>
+							<th class="cart-product-subtotal">小计</th>
+							<th class="cart-product-subtotal">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($goods as $k => $v)
+						<tr class="cart_item">
+							<td class="cart-product-thumbnail">
+								<input gid="{{$v->id}}" size="{{$size[$k]}}" type="checkbox">
+							</td>
+							<td class="cart-product-thumbnail">
+								<a href="#"><img src="{{Config('app.gpic').$v->gpic}}" alt="Pink Printed Dress"></a>
+							</td>
+							<td class="cart-product-name">
+								<a href="#">{{$v->gname}}</a>
+							</td>
+							<td class="cart-product-price">
+								¥<span class="price">{{$v->price}}</span>
+							</td>
+							<td class="cart-product-price">
+								<span class="amount">{{$size[$k]}}</span>
+							</td>
+							<td class="cart-product-quantity">
+								<div class="quantity clearfix">
+									<input type="button" value="-" class="minus">
+									<input type="text" name="quantity" value="{{$sum[$k]}}" class="qty" />
+									<input type="button" value="+" class="plus">
 								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+							</td>
+							<td class="cart-product-subtotal">
+								¥<span class="xiaoji">{{$sum[$k]*$v->price}}</span>
+							</td>
+							<td class="cart-product-remove">
+								<a href="javascript:void(0)" class="remove" title="移除物品" ids='{{$v->id}}'><i class="icon-trash2"></i></a>
+							</td>
+						</tr>
+						@endforeach
+						<tr class="cart_item">
+							<td colspan="9">
+								<div class="row clearfix">
+									<div class="col-md-12 col-xs-12 nopadding">
+										<strong style="margin-right:15px;">总金额</strong>
+										¥<span class="total">0</span>.00
+
+										<!-- <strong style="margin-left:30px;">已选商品 <span class="cur">0</spam> 件</strong> -->
+										<a href="" class="button bt btn button-3d notopmargin fright">结算</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-</div>
+@else
+	<div class="cart-empty" style="height:300px;margin-left:100px;">
+		<div class="message">
+			<ul>
+				<li class="txt">
+					购物车空空的哦~，去看看心仪的商品吧~
+				</li>
+				<li class="mt10" style="margin-top:20px;">
+					<a href="/" class="ftx-05 btn btn-info">
+						去购物&gt;
+					</a>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+@endif
 
 <script>
     /* var ji = $('.xiaoji').text();
     $('.total').text(ji); */
 
-    $('.btn').click(function(){
+    $('.bt').click(function(){
 		var check = '';
 		$(':checked').each(function(){
 			check = $(this).attr('checked');
@@ -261,6 +279,9 @@
                 $.post('/home/del',{gid:gid},function(data){
                     if(data == '1'){
                         tr.remove();
+						if($('.remove').parents('tr').length == 0){
+							location.reload(true);
+						}
                     }
                 });
                 layer.close(index);
