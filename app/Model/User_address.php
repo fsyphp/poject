@@ -31,3 +31,4 @@ class user_address extends Model
      */
     protected $fillable = ['user_id','address','address_tel','address_user'];
 }
+
