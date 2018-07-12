@@ -69,7 +69,7 @@ class DetailController extends Controller
                         if(!empty($gname)){
                             $query->where('gname','like','%'.$gname.'%');
                         }
-                })->paginate(12); 
+                })->paginate(12)->appends($request->all()); 
            }
                
            

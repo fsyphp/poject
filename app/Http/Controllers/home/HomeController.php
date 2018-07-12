@@ -24,18 +24,21 @@ class HomeController extends Controller
         $lunbo=Banner::paginate(5);
         $re=Goods_deetail::with('goods')->orderBy('number','desc')->paginate(5);  
         // 酒
+        $j=[];
         $jiu=Cate::where('path','like','%,15,%')->select('id')->get();
         foreach($jiu as $k=>$v){
             $j[]=$v->id;
         } 
         $jius=Goods::whereIn('category_id',$j)->paginate(4);
         // 食品
+        $ship=[];
         $shi=Cate::where('path','like','%,7,%')->select('id')->get();
         foreach($shi as $k=>$v){
             $ship[]=$v->id;
         }
         $shipin=Goods::whereIn('category_id',$ship)->paginate(4);
         // 服装
+        $fuz=[];
         $fu=Cate::where('path','like','%,132,%')->select('id')->get();
         foreach($fu as $k=>$v){
             $fuz[]=$v->id;

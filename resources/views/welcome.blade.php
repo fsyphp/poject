@@ -77,7 +77,7 @@
 							<li>
 								<div class="pic"><a href="/home/detail/{{$v->id}}" target=""><img src="{{\Config('app.gpic')}}{{$v->gpic}}" /></a></div>
 								<div class="title">
-                                <a href="/home/detail/{{$v->id}}" target="_blank" class="name">{{$v->gname}}</a>
+                                <a href="/home/detail/{{$v->id}}" target="" class="name">{{$v->gname}}</a>
                                 <h3><b>￥</b>{{$v->price}}</h3>
                                 </div>
 							</li>
@@ -110,7 +110,7 @@
 							<li>
 								<div class="pic"><a href="/home/detail/{{$v->id}}" target=""><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" /></a></div>
 								<div class="title">
-                                <a href="/home/detail/{{$v->id}}" target="_blank" class="name">{{$v->goods['gname']}}</a>
+                                <a href="/home/detail/{{$v->id}}" target="" class="name">{{$v->goods['gname']}}</a>
                                 <h3><b>￥</b>{{$v->goods['price']}}</h3>
                                 </div>
 							</li> 
@@ -138,9 +138,9 @@
 						<ul>
                             @foreach($dui as $k=>$v)
 							<li>
-								<div class="pic"><a href="home/integral" target="_blank"><img src="{{$v->img}}" /></a></div>
+								<div class="pic"><a href="home/integral" target=""><img src="{{$v->img}}" /></a></div>
 								<div class="title">
-                                <a href="home/integral" target="_blank" class="name">{{$v->title}}</a>
+                                <a href="home/integral" target="" class="name">{{$v->title}}</a>
                                 <h3><b>积分</b>{{$v->price}}</h3>
                                 </div>
 							</li>
