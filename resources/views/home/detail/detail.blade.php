@@ -7,6 +7,7 @@
 <script type="text/javascript" src="/home/js/jquery-1.8.3.min.js"></script>
 <script src="/home/js/jquery.simpleGal.js"></script>
 <script type="text/javascript" src="/home/js/jquery.imagezoom.min.js"></script>
+<script src="/js/layer.js"></script>
 <style>
 img {
 	max-width: none;
@@ -166,7 +167,7 @@ document.getElementById(bg_div).style.display='none';
                 </div>
                 <ul class="tb-thumb" id="thumblist" style=" width: 380px;"> 
                 <?php
-                    $pic=explode(',',$goods->detail['manypic']); 
+                    $pic=explode(',',$goods->detail['manypic']);
                 ?>
                 @foreach($pic as $k=>$v)
                     <li class="" style="float:left">
@@ -206,7 +207,7 @@ document.getElementById(bg_div).style.display='none';
             <div class="clear"></div>
             <div class="pro_detail_price  margin-t20"><span class="margin-r20">市场价</span><span style=" font-size:16px"><s>￥2000.00</s></span></div>
             <div class="clear"></div>
-            <div class="pro_detail_act margin-t20 fl"><span class="margin-r20">售价</span><span style="font-size:26px; font-weight:bold; color:#dd514c;">￥{{$goods->price}}</span></div>
+            <div class="pro_detail_act margin-t20 fl"><span class="margin-r20">售价</span><span style="font-size:26px; font-weight:bold; color:#dd514c;" class="jiege" gid={{$goods['id']}}>￥{{$goods->price}}</span></div>
             <div class="clear"></div>
             <!-- <div class="act_block margin-t5"><span>本商品可使用9999积分抵用￥9.99元</span></div> -->
             <div class="pro_detail_number margin-t30">
@@ -225,7 +226,7 @@ document.getElementById(bg_div).style.display='none';
                         ?>
                         @foreach($gram as $k=>$v)
                             <li class="guige-cur">
-                                <input type="radio" name="gram">@if($v==0) 500g @elseif($v==1) 1000g @else 5000g @endif
+                                <input type="radio" name="gram" @if($v==0) checked @endif value="@if($v==0) 500g @elseif($v==1) 1000g @else 5000g @endif" >@if($v==0) 500g @elseif($v==1) 1000g @else 5000g @endif
                             </li> 
                     
                         @endforeach
@@ -240,7 +241,7 @@ document.getElementById(bg_div).style.display='none';
             <div class="pro_detail_btn margin-t30">
                 <ul>
                     <li class="pro_detail_shop"><a href="">立即购买</a></li>
-                    <li class="pro_detail_add"><a href="" onclick="">加入我的购物车</a></li>
+                    <li class="pro_detail_add"><a href="">加入我的购物车</a></li>
                 </ul>
             </div>
         </div>
@@ -359,6 +360,10 @@ document.getElementById(bg_div).style.display='none';
         <div class="hotpro_box">
             <div class="pro-view-hot" style=" width:1200px;">
             @foreach($re as $k=>$v)
+                <ul>
+                    <li class="pro-img"><a href="#"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
+                    <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
+                    <li><a href="/index" class="title">{{$v->goods['gname']}} </a></li>
                 <ul >
                     <li class="pro-img"><a href="/home/detail/{{$v->id}}"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
                     <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
@@ -396,8 +401,82 @@ document.getElementById(bg_div).style.display='none';
             </div>
         </div>
     </div>
-    
 </div>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    // 立即购买
+    $('.pro_detail_shop').click(function(){
+        // 商品 id
+        var gid = $('.jiege').attr('gid');
+        //购买数量
+        var sum = $('.choose_input').val();
+        //规格
+        size = $(':checked').val();
+        // 发送 ajax 
+        $.post('/home/go',{gid:gid,sum:sum,size:size},function(data){
+            if(data == '0'){
+                location.href = '/home/goshopping';
+            }
+        });
+        return false;
+    });
+    //加入购物车
+    $('.pro_detail_add').click(function(){
+        // 商品id
+        var gid = $('.jiege').attr('gid');
+        //购买数量
+        var sum = $('.choose_input').val();
+        //规格
+        size = $(':checked').val();
+        // 发送 ajax 添加商品到购物车
+        $.post('/home/shoppadd',{gid:gid,sum:sum,size:size},function(data){
+            if(data == '0'){
+                layer.open({
+                    type: 2,
+                    title: '登录操作',
+                    content: '/home/shop_login',
+                    area: ['395px', '340px'],
+                    offset: '100px',
+                    closeBtn: 2,
+                });
+            } else if(data == '1'){
+                layer.open({
+                    type: 0,
+                    title: '添加成功!',
+                    icon: 6,
+                    content: '商品已成功加入购物车...',
+                    btn: ['去查看','继续购'],
+                    yes: function(){
+                        location.href = '/home/show';
+                    },
+                    btn2: function(){
+                        location.href = '/';
+                    },
+                    closeBtn: 2,
+                });
+            } else if(data == '2'){
+                layer.open({
+                    type: 0,
+                    title: '重复操作!',
+                    icon: 5,
+                    content: '商品已在购物车了哦...',
+                    btn: ['去查看'],
+                    yes: function(){
+                        location.href = '/home/show';
+                    },
+                    closeBtn: 2,
+                });
+            }
+         });
+
+         return false;
+    });
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -434,3 +513,6 @@ $(document).ready(function(){
             })
         </script>
 @endsection
+
+
+

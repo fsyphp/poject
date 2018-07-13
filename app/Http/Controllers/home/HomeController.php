@@ -26,6 +26,7 @@ class HomeController extends Controller
         // 酒
         $j=[];
         $jiu=Cate::where('path','like','%,15,%')->select('id')->get();
+        $j = [];
         foreach($jiu as $k=>$v){
             $j[]=$v->id;
         } 
@@ -33,6 +34,7 @@ class HomeController extends Controller
         // 食品
         $ship=[];
         $shi=Cate::where('path','like','%,7,%')->select('id')->get();
+        $ship = [];
         foreach($shi as $k=>$v){
             $ship[]=$v->id;
         }
@@ -40,11 +42,14 @@ class HomeController extends Controller
         // 服装
         $fuz=[];
         $fu=Cate::where('path','like','%,132,%')->select('id')->get();
+        $fuz = [];
         foreach($fu as $k=>$v){
             $fuz[]=$v->id;
         }
         $fuzhuang=Goods::whereIn('category_id',$fuz)->paginate(4); 
         return view('welcome',['maio'=>$maio,'xin'=>$xin,'chou'=>$chou,'dui'=>$dui,'re'=>$re,'fuzhuang'=>$fuzhuang,'jius'=>$jius,'shipin'=>$shipin,'lunbo'=>$lunbo,'title'=>'超市首页']);
     } 
+
+    
 }
    

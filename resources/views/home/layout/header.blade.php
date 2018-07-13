@@ -2,12 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="/home/css/common.css" rel="stylesheet" type="text/css" />
 <link href="/home/css/style.css" rel="stylesheet" type="text/css" />
 <script src="/home/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="/home/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 <script src="/home/js/common_js.js" type="text/javascript"></script>
 <script src="/home/js/footer.js" type="text/javascript"></script>
+@section('css')
+
+@show
 <title>@yield('title')</title>
 <style>
     .ershi{
@@ -33,6 +37,7 @@
 	</div>
     </div>  
   </div>
+  @section('nav')
   <div id="header"  class="header page_style">
   <div class="logo"><a href="/"><img src="/home/images/logo.png" /></a></div>
   <!--结束图层-->
@@ -87,12 +92,14 @@
 	<script>$("#Navigation").slide({titCell:".Navigation_name li",trigger:"click"});</script>
     </div>
 </head>
-   
+@show
+
 <!-- 中间主体内容 -->
 @section('layout')
     <div style="height:1000px;"></div>
 @show
 
+@section('links')
  <!--友情链接-->
  <div class="link_style clearfix" style="margin:0 auto;">
  <div class="title">友情链接</div>
@@ -114,6 +121,7 @@
  </div>
 </div>
 <!-- 友情链接结束 -->
+@show
 <div class="ershi"></div>
 <!--网站地图-->
 <div class="fri-link-bg clearfix">
@@ -241,3 +249,5 @@
 </html>
 
 <!-- 结束 -->
+
+

@@ -1,0 +1,18 @@
+/* 底 部 */
+#page li{float:left;margin-left:20px;font-size:18px;}
+#pagr li a{display:block;background:red;}
+#page .pagination{width:440px;margin:0 auto;}
+#page .pagination li a{display:block;
+						background:red;
+						width:35px;height:20px;
+						text-align:center;
+						text-decoration:none;
+						color:#fff;
+						margin-bottom:15px;
+			}
+#bottom{clear:both;padding-left:150px;height:100px;background-color:#F5F5F5;margin-top:15px;}
+#b_m>img{float:left;margin-top:20px;margin-right:72px;}
+#footer{margin:0px auto;width:1210px;height:300px;}
+#footer dl{float:left;margin-right:120px;}
+#footer dt{height:30px;}
+#footer dd{font-size:12px;margin-left:0px;line-height:20px;}
