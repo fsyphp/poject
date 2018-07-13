@@ -204,14 +204,95 @@ class OrdersController extends Controller
     // 立即购买
     public function go(Request $req)
     {
+        if(!session('user_id')){
+            return '01';
+        }
         // 商品 id
-        session(['gs_id'=>$req -> input('gid')]);
+        session(['gid'=>$req -> input('gid')]);
         // 购买数量
-        session(['number'=>$req -> input('sum')]);
+        session(['gsum'=>$req -> input('sum')]);
         // 规格
         session(['weight'=>$req -> input('size')]);
 
-        return '0';
+        return '00';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 生成立即购买订单
+    public function goorders(Request $req)
+    {
+        // 商品id
+        $goods_id =session('gid');
+        // 获取购买商品的单价
+        $pri = Goods::where('id',$goods_id)->select('price')->first();
+        // 购买数量
+        $gsum = session('gsum');
+        // 用户 id
+        $user_id = session('user_id');
+        if($req -> input('adr') == null){
+            return '0';
+        }
+        try{
+            // 开启事务
+            DB::beginTransaction();
+            // 将积分更新到用户详情表
+            $integral = DB::table('user_detail')->value('integral');
+            $jf = $integral+$req -> input('jf');
+            DB::table('user_detail')->where('user_id',session('user_id'))->update(['integral'=>$jf]);
+            // 减去商品对应的余额
+            $money = DB::table('user_detail')->value('money');
+            $total = $req -> input('total');
+            $balance = $money - $total;
+            if($balance<0){
+                return '3';
+            } else {
+                DB::table('user_detail') -> where('user_id',session('user_id'))->update(['money'=> $balance]);
+            }
+            // 插入到订单主表 生成订单
+            $orders = Orders::create([
+                'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
+                'user_id' => $user_id,
+                'address_user' => $req ->input('user'),
+                'address' => $req -> input('adr'),
+                'orders_at' => time(),
+                'orders_tel' => $req -> input('tel'),
+                'sum' => $req -> input('sum'),
+                'total' => $req -> input('total'),
+                'orders_msg' => $req -> input('msg'),
+            ]);
+            // 插入到订单详情表
+            $id = $orders -> id ;
+            $ord = Orders::find($id);
+            $orders_detail = Orders_detail::create([
+                'orders_id' => $id,
+                'price' => $pri->price,
+                'goods_id' => $goods_id,
+                'cnt' => $gsum,
+                ]);
+        }catch(\Exception $e){
+            return '2';
+        }
+        if($orders && $ord){
+            DB::commit();
+            return '1';
+        } else {
+            DB::rollBack();
+            return '2';
+        }
     }
 
     public function goshopping()
@@ -222,12 +303,12 @@ class OrdersController extends Controller
             return redirect('/404');
         }
         // 商品id
-        $id = session('gs_id');
+        $id = session('gid');
         if(!$id){
             return redirect('/404');
         }
         // 购买数量
-        $sum = session('number');
+        $sum = session('gsum');
         // 规格
         $size = session('weight');
         // 查询商品信息

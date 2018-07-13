@@ -130,7 +130,7 @@
             var adr = adr[1];
             // 购买积分
             var jf = $('.jifen').text();
-            $.post('/home/orders',{sum:gsum,total:sum,user:user,tel:tel,adr:adr,msg:val,jf:jf},function(data){
+            $.post('/home/goorders',{sum:gsum,total:sum,user:user,tel:tel,adr:adr,msg:val,jf:jf},function(data){
                 console.log(data);
                 if(data == '0'){ 
                     layer.open({

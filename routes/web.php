@@ -100,6 +100,7 @@ Route::get('home/generate','home\OrdersController@generate');
 
 // 立即购买
 Route::post('home/go','home\OrdersController@go');
+Route::post('home/goorders','home\OrdersController@goorders');
 Route::get('home/goshopping','home\OrdersController@goshopping');
 
 // 取消订单
@@ -117,7 +118,7 @@ Route::get('home/email','home\LoginController@email');
 Route::get('home/code','home\LoginController@code');
 
 // 用户地址管理
-Route::resource('home/address','home\AddressController');
+Route::resource('home/address/','home\AddressController');
 
 // 订单收货地址修改
 Route::get('home/addredit/{id}/edit/{user_id}','home\AddrController@addredit');

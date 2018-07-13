@@ -7,7 +7,7 @@
 @section('layout')
 <div style="height:26px;"></div>
     <div class=".container">
-        <div class="row col-md-11" style="margin-left:35px;">
+        <div class="row col-md-12">
             <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>订单编号</th>
@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{$v->number}}</td>
                         <td>{{$v->total}}</td>
-                        <td>{{date('Y-m-d',$v->ordersx_at)}}</td>
+                        <td>{{date('Y-m-d',$v->orders_at)}}</td>
                         <td>{{$v->address_user}}</td>
                         <td>{{$v->address}}</td>
                         <td>{{$v->orders_msg}}</td>

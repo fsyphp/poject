@@ -419,8 +419,17 @@ document.getElementById(bg_div).style.display='none';
         size = $(':checked').val();
         // 发送 ajax 
         $.post('/home/go',{gid:gid,sum:sum,size:size},function(data){
-            if(data == '0'){
+            if(data == '00'){
                 location.href = '/home/goshopping';
+            } else if(data == '01'){
+                layer.open({
+                    type: 2,
+                    title: '登录操作',
+                    content: '/home/shop_login',
+                    area: ['395px', '340px'],
+                    offset: '100px',
+                    closeBtn: 2,
+                });
             }
         });
         return false;

@@ -15,7 +15,12 @@ class AddressController extends Controller
      */
     public function index()
     {
+        // 查询用户的收货地址
+        $user_addr = User_address::where('user_id',session('user_id'))->get();
         // 显示收货地址
+        return view('home/address/index',[
+            'user_addr' => $user_addr,
+        ]);
     }
 
     /**
@@ -59,7 +64,7 @@ class AddressController extends Controller
     public function edit(Request $req,$id)
     {
         // 修改收货地址
-        
+        return 1;
         // $adr =  $req -> input('address');
         // $user_adr = User_address::where('address',$adr)->first();
         // return $user_adr;
