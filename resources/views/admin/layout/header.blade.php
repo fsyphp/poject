@@ -7,8 +7,9 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @section('head')
+    @show
     <title>后台管理</title>
-
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
@@ -172,12 +173,12 @@
                     <li>
                         <a href="mailbox.html"><i class="fa fa-truck"></i> <span class="nav-label">订单管理 </span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" href="mailbox.html">收件箱</a>
+                            <li><a class="J_menuItem" href="/admin/orders">浏览订单</a>
                             </li>
-                            <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
+                           <!--  <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
                             </li>
                             <li><a class="J_menuItem" href="mail_compose.html">写信</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li>
@@ -424,7 +425,6 @@
        
         
     </div>
-    <script src="/admin/js/jquery.min.js?v=2.1.4"></script>
     <script src="/admin/js/bootstrap.min.js?v=3.3.5"></script>
     <script src="/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="/admin/js/plugins/sweetalert/sweetalert.min.js"></script>

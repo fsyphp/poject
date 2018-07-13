@@ -179,7 +179,7 @@
 					layer.open({
 						type: 2,
 						title: '请填写收货地址...',
-						content: '/home/address',
+						content: '/home/addres',
 						closeBtn: 2,
 						offset: ['60px'],
 						area: ['400px','400px'],

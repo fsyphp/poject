@@ -360,17 +360,14 @@ document.getElementById(bg_div).style.display='none';
         <div class="hotpro_box">
             <div class="pro-view-hot" style=" width:1200px;">
             @foreach($re as $k=>$v)
-<<<<<<< HEAD
                 <ul>
                     <li class="pro-img"><a href="#"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
                     <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
                     <li><a href="/index" class="title">{{$v->goods['gname']}} </a></li>
-=======
                 <ul >
                     <li class="pro-img"><a href="/home/detail/{{$v->id}}"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
                     <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
                     <li><a href="/home/detail/{{$v->id}}" class="title">{{$v->goods['gname']}} </a></li>
->>>>>>> 92a32ed9097804a78ded4bedc568299e3353abce
                 </ul>
             @endforeach
             </div>
@@ -404,7 +401,6 @@ document.getElementById(bg_div).style.display='none';
             </div>
         </div>
     </div>
-    
 </div>
 
 <script>
@@ -412,6 +408,22 @@ document.getElementById(bg_div).style.display='none';
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+    // 立即购买
+    $('.pro_detail_shop').click(function(){
+        // 商品 id
+        var gid = $('.jiege').attr('gid');
+        //购买数量
+        var sum = $('.choose_input').val();
+        //规格
+        size = $(':checked').val();
+        // 发送 ajax 
+        $.post('/home/go',{gid:gid,sum:sum,size:size},function(data){
+            if(data == '0'){
+                location.href = '/home/goshopping';
+            }
+        });
+        return false;
     });
     //加入购物车
     $('.pro_detail_add').click(function(){
@@ -427,8 +439,10 @@ document.getElementById(bg_div).style.display='none';
                 layer.open({
                     type: 2,
                     title: '登录操作',
-                    content: '/home/login',
-                    area: ['500px', '500px'],
+                    content: '/home/shop_login',
+                    area: ['395px', '340px'],
+                    offset: '100px',
+                    closeBtn: 2,
                 });
             } else if(data == '1'){
                 layer.open({

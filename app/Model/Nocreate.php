@@ -4,20 +4,20 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User_address extends Model
+class Nocreate extends Model
 {
-    //用户收货地址表
+    //未生成订单表
     /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'user_address';
+    protected $table = 'noCreate';
 
     // 主键
     protected $primaryKey = 'id';
 
-     /**
+    /**
      * 该模型是否被自动维护时间戳
      *
      * @var bool
@@ -29,5 +29,5 @@ class User_address extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','address','address_tel','address_user'];
+    protected $fillable = ['goods_id','gsum','user_id'];
 }

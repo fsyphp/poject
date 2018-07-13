@@ -83,14 +83,28 @@ Route::post('home/shoppadd','home\ShoppingController@shoppadd');
 Route::get('home/show','home\ShoppingController@show');
 Route::post('home/del','home\ShoppingController@del');
 
+// 添加购物车要登录
+Route::get('home/shop_login','home\ShoppingController@shop_login');
+// 通过 ajax 判断用户名和密码
+Route::post('home/shoplogin','home\ShoppingController@shoplogin');
+
 // 测试存 session
 Route::get('home/add','home\ShoppingController@add');
 
 //用户填写地址
-Route::get('home/address','home\OrdersController@address');
+Route::get('home/addres','home\OrdersController@address');
 Route::post('home/commit','home\OrdersController@commit');
 Route::post('home/addr','home\OrdersController@addr');
+// 生成订单
 Route::get('home/generate','home\OrdersController@generate');
+
+// 立即购买
+Route::post('home/go','home\OrdersController@go');
+Route::get('home/goshopping','home\OrdersController@goshopping');
+
+// 取消订单
+Route::post('home/nocreate','home\OrdersController@nocreate');
+
 Route::post('home/orders','home\OrdersController@orders');
 Route::get('home/success','home\OrdersController@success');
 
@@ -101,3 +115,22 @@ Route::post('home/insert','home\LoginController@insert');
 Route::post('home/user','home\LoginController@user');
 Route::get('home/email','home\LoginController@email');
 Route::get('home/code','home\LoginController@code');
+
+// 用户地址管理
+Route::resource('home/address','home\AddressController');
+
+// 订单收货地址修改
+Route::get('home/addredit/{id}/edit/{user_id}','home\AddrController@addredit');
+// 更新收货地址
+Route::post('home/update','home\AddrController@addrupdate');
+// 显示添加收货地址页面
+Route::get('home/insert','home\AddrController@addrinsert');
+// 添加收货地址
+Route::post('home/store','home\AddrController@addrstore');
+
+// 后台订单管理
+Route::resource('admin/orders','admin\OrdersController');
+// 订单详情
+Route::get('admin/ordersdetail/{id}','admin\OrdersController@ordersdetail');
+// 商品发货
+Route::post('admin/sends','admin\OrdersController@sends');

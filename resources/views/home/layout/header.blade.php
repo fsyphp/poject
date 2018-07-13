@@ -5,13 +5,13 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="/home/css/common.css" rel="stylesheet" type="text/css" />
 <link href="/home/css/style.css" rel="stylesheet" type="text/css" />
-@section('css')
-
-@show
 <script src="/home/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="/home/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 <script src="/home/js/common_js.js" type="text/javascript"></script>
 <script src="/home/js/footer.js" type="text/javascript"></script>
+@section('css')
+
+@show
 <title>@yield('title')</title>
 <style>
     .ershi{

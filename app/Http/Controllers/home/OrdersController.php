@@ -12,6 +12,7 @@ use App\Model\Orders_detail;
 use App\Model\User_detail;
 use App\Model\Shopping;
 use DB;
+use App\Model\Nocreate;
 
 class OrdersController extends Controller
 {
@@ -68,6 +69,12 @@ class OrdersController extends Controller
     // 确认生成订单页
     public function generate()
     {
+        if(!session('user_id')){
+            return redirect('/404');
+        }
+        if(!session('gid')){
+            return redirect('/404');
+        }
         // 商品的相关信息
         $user_id = session('user_id');
         // $gid = session('gid');
@@ -91,6 +98,7 @@ class OrdersController extends Controller
         foreach($stock as $k=>$v){
             $sk[] = $v->stock;
         }
+        
         return view('home/shopping/generate',[
             'addr' => $addr,
             'arr' => $arr,
@@ -98,6 +106,7 @@ class OrdersController extends Controller
             'sk' => $sk,
             'sum' => $sum,
             'goods_sum' => $goods_sum,
+            'user_id' => $user_id,
             ]);
     }
 
@@ -130,9 +139,18 @@ class OrdersController extends Controller
             // 开启事务
             DB::beginTransaction();
             // 将积分更新到用户详情表
-            /* $integral = User_detail::where('user_id',session('user_id'))->select('integral')->first();
+            $integral = DB::table('user_detail')->value('integral');
             $jf = $integral+$req -> input('jf');
-            User_detail::where('user_id',session('user_id')) -> updata(['integral'=>$jf]); */
+            DB::table('user_detail')->where('user_id',session('user_id'))->update(['integral'=>$jf]);
+            // 减去商品对应的余额
+            $money = DB::table('user_detail')->value('money');
+            $total = $req -> input('total');
+            $balance = $money - $total;
+            if($balance<0){
+                return '3';
+            } else {
+                DB::table('user_detail') -> where('user_id',session('user_id'))->update(['money'=> $balance]);
+            }
             // 插入到订单主表 生成订单
             $orders = Orders::create([
                 'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
@@ -164,9 +182,7 @@ class OrdersController extends Controller
         if($orders && $ord){
             DB::commit();
             // 订单生成 成功 将购物车的信息删除
-            foreach($goods_id as $k=>$v){
-                Shopping::where('gid',$v[$k])->delete();
-            }
+            Shopping::whereIn('gid',$goods_id)->delete();
             return '1';
         } else {
             DB::rollBack();
@@ -185,5 +201,69 @@ class OrdersController extends Controller
         return view('home/shopping/success',['num'=>$num,'total'=>$total]);
     }
 
-    
+    // 立即购买
+    public function go(Request $req)
+    {
+        // 商品 id
+        session(['gs_id'=>$req -> input('gid')]);
+        // 购买数量
+        session(['number'=>$req -> input('sum')]);
+        // 规格
+        session(['weight'=>$req -> input('size')]);
+
+        return '0';
+    }
+
+    public function goshopping()
+    {
+        // 用户 id 
+        $user_id = session('user_id');
+        if(!$user_id){
+            return redirect('/404');
+        }
+        // 商品id
+        $id = session('gs_id');
+        if(!$id){
+            return redirect('/404');
+        }
+        // 购买数量
+        $sum = session('number');
+        // 规格
+        $size = session('weight');
+        // 查询商品信息
+        $goods = Goods::where('id',$id)->first();
+        // 查询商品的库存
+        $goods_stock = Goods_deetail::where('g_id',$goods->id)->select('stock')->first();
+        // 获取用户的地址信息
+        $addr = User_address::where('user_id',$user_id)->get();
+        return view('home/go/shopping',[
+            'user_id' => $user_id,
+            'goods' => $goods,
+            'sum' => $sum,
+            'size' => $size,
+            'addr' => $addr,
+            'goods_stock' => $goods_stock,
+        ]);
+    }
+
+    // 取消订单 将商品信息在未付款订单显示
+    public function nocreate(Request $req)
+    {
+        // 用户 id
+        $user_id = session('user_id');
+        // 商品 id
+        $goods_id = session('gid');
+        // 将信息插入未生成订单表
+        $no = Nocreate::create([
+            'goods_id' => $goods_id,
+            'user_id' => $user_id,
+            'gsum' => $req -> input('gsum'),
+        ]);
+        if($no){
+            return '0';
+        } else {
+            return '1';
+        }
+    }
+
 }
