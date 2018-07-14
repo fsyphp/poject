@@ -30,6 +30,18 @@ class Orders_detail extends Model
      * @var array
      */
     protected $fillable = ['orders_id','price','goods_id','cnt'];
+
+
+    /* 和商品表关联 
+
+        商品表      订单详情表
+           1          多
+    */ 
+     public function goods_orders()
+    {
+        return $this->belongsTo('App\Model\Goods','goods_id');
+    }
+
 }
 
 

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\User_address;
+use App\Model\Orders;
+use App\Model\Orders_detail;
+use App\Model\Goods;
 
-class AddressController extends Controller
+class UserordesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +17,11 @@ class AddressController extends Controller
      */
     public function index()
     {
-        if(!session('user_id')){
-            return redirect('/404');
-        }
-        // 查询用户的收货地址
-        $user_addr = User_address::where('user_id',session('user_id'))->get();
-        // 显示收货地址
-        return view('home/address/index',[
-            'user_addr' => $user_addr,
+        // 订单表和订单详情表 一对多获取数据  with
+        $orders = Orders::with('orders_detail')->where('user_id',session('user_id'))->get();
+        // 显示用户的所有订单
+        return view('home/userorders/index',[
+            'orders' => $orders,
         ]);
     }
 
@@ -33,7 +32,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        // 新增收货地址
+        //
     }
 
     /**
@@ -44,7 +43,7 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        // 保存收货地址
+        //
     }
 
     /**
@@ -64,13 +63,9 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $req, $id)
+    public function edit($id)
     {
-        // 修改收货地址
-        return 1;
-        // $adr =  $req -> input('address');
-        // $user_adr = User_address::where('address',$adr)->first();
-        // return $user_adr;
+        //
     }
 
     /**
@@ -94,22 +89,5 @@ class AddressController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    // 显示修改地址表单
-    public function modifie($id)
-    {
-        $user_address = User_address::where('id',$id)->first();
-        $addr = explode(' ',$user_address->address)[1];
-        return view('home/address/edit',[
-            'user_address' => $user_address,
-            'addr' => $addr,
-        ]);
-    }
-
-    // 更新地址到数据库
-    public function addressupdate(Request $req)
-    {
-        dump($req -> except('_token'));
     }
 }

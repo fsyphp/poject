@@ -117,9 +117,15 @@ Route::post('home/user','home\LoginController@user');
 Route::get('home/email','home\LoginController@email');
 Route::get('home/code','home\LoginController@code');
 
+/* =================== 前台个人中心地址管理 ================================= */
 // 用户地址管理
 Route::resource('home/address/','home\AddressController');
+// 修改地址
+Route::get('home/modifier/{id}','home\AddressController@modifie');
+// 更新地址
+Route::post('home/addressupdate','home\AddressController@addressupdate');
 
+/* ================= 后台订单 ========================= */
 // 订单收货地址修改
 Route::get('home/addredit/{id}/edit/{user_id}','home\AddrController@addredit');
 // 更新收货地址
@@ -135,3 +141,8 @@ Route::resource('admin/orders','admin\OrdersController');
 Route::get('admin/ordersdetail/{id}','admin\OrdersController@ordersdetail');
 // 商品发货
 Route::post('admin/sends','admin\OrdersController@sends');
+
+
+/* =========================== 个人订单 ================================= */
+
+Route::resource('home/userorders','home\UserordesController');

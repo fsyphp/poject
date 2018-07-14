@@ -31,5 +31,15 @@ class Goods extends Model
         return Cate::where('id',$id)->first()['title'];
     }
 
+    /*
+     和订单详情表关联
+        商品表      订单详情表
+          1             多
+    */
+
+    public function orders_goods()
+    {
+        return $this -> hasMany('App\Model\Orders_detail','orders_id');
+    }
   
 }
