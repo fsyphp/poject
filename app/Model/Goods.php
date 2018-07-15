@@ -39,7 +39,7 @@ class Goods extends Model
 
     public function orders_goods()
     {
-        return $this -> hasMany('App\Model\Orders_detail','orders_id');
+        return $this -> hasMany('App\Model\Orders_detail','goods_id');
     }
   
 }

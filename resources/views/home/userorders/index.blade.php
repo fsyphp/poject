@@ -346,7 +346,7 @@
                                         </td>
                                     </tr>
                                 </thead>
-                                @foreach($orders as $k=>$v)
+                                @foreach($data as $k=>$v)
                                 <tbody>
                                     <tr class="Order_info">
                                         <td colspan="6" class="Order_form_time">
@@ -355,8 +355,14 @@
                                             </em>
                                         </td>
                                     </tr>
-                                    @foreach($v->orders_detail as $j=>$x)
-                                    {{$x->goods_id}}
+                                    
+
+
+
+
+
+
+                                    
                                     <tr class="Order_Details">
                                         <td colspan="3">
                                             <table class="Order_product_style">
@@ -369,7 +375,7 @@
                                                                 </a>
                                                                 
                                                                 <a href="3" class="p_name">
-                                                                    天然绿色多汁香甜无污染水蜜桃
+                                                                    
                                                                 </a>
                                                                 <p class="specification">
                                                                     礼盒装20个/盒
@@ -377,30 +383,25 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            {{$x->price}}
+                                                        价格
                                                         </td>
                                                         <td>
-                                                            {{$x->cnt}}
+                                                            数量
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </td>
                                         <td class="split_line">
-                                            {{$x->cnt*$x->price}}
+                                            总价格
                                         </td>
                                         <td class="split_line">
+
                                             <p style="color:#F30">
-                                                @if($v->static == 0)
-                                                    等待发货
-                                                @elseif($v->static == 1)
-                                                    已发货，待收货
-                                                @elseif($v->static == 2)
-                                                    已收货，待评价
                                                     <a href="#" class="btn btn-info btn-xs" style="width:50px;margin-left:35px;">
                                                         去评价
                                                     </a>
-                                                @endif
+                                                
                                             </p>
                                         </td>
                                         <td class="operating">
@@ -418,9 +419,12 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    
+
+                                
                                 </tbody>
-                                @endforeach
+
+                               @endforeach 
                                 
                                 
                                 <!-- <tbody>

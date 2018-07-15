@@ -115,8 +115,7 @@ class OrdersController extends Controller
     {
         // 商品id
         $goods_id = explode(',',session('gid'));
-        array_pop($goods_id);
-
+         array_pop($goods_id);
         // 获取购买商品的单价
         $arr = [];
         for($i=0;$i<count($goods_id);$i++){
@@ -201,6 +200,25 @@ class OrdersController extends Controller
         return view('home/shopping/success',['num'=>$num,'total'=>$total]);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // 立即购买
     public function go(Request $req)
     {
@@ -216,21 +234,6 @@ class OrdersController extends Controller
 
         return '00';
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // 生成立即购买订单
     public function goorders(Request $req)
@@ -266,6 +269,7 @@ class OrdersController extends Controller
             $orders = Orders::create([
                 'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
                 'user_id' => $user_id,
+                'goods_id' => $goods_id,
                 'address_user' => $req ->input('user'),
                 'address' => $req -> input('adr'),
                 'orders_at' => time(),
@@ -280,7 +284,6 @@ class OrdersController extends Controller
             $orders_detail = Orders_detail::create([
                 'orders_id' => $id,
                 'price' => $pri->price,
-                'goods_id' => $goods_id,
                 'cnt' => $gsum,
                 ]);
         }catch(\Exception $e){
@@ -291,7 +294,7 @@ class OrdersController extends Controller
             return '1';
         } else {
             DB::rollBack();
-            return '2';
+            // return '2';
         }
     }
 
