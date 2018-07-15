@@ -26,8 +26,10 @@ class UserordesController extends Controller
         // join
         $data = DB::table('orders_detail')
             ->join('orders', 'orders.id', '=', 'orders_detail.orders_id')
+            ->join('user','user.id','=','orders.user_id')
             ->join('goods', 'goods.id', '=', 'orders_detail.orders_id')
             ->get();
+            
         dump($data);
         exit;
         /* $orders = Orders::with('orders_detail')->where('user_id',session('user_id'))->get();
