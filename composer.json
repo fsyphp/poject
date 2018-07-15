@@ -24,7 +24,8 @@
             "database/seeds",
             "database/factories",
             "app/class/CateClass.php",
-            "app/code/Code.php"
+            "app/code/Code.php",
+            "app/library/Redis.php"
         ],
         "psr-4": {
             "App\\": "app/"
