@@ -15,6 +15,13 @@ Route::get('/404',function(){
     abort(404);
 });
 
+// // 聊天
+// Route::get('/home/t1','home\LtController@t1');
+// Route::get('/home/t2','home\LtController@t2');
+// Route::any('/home/sub','home\LtController@sub');
+// Route::any('/home/pub','home\LtController@pub');
+
+
 // 体验店
 Route::get('home/shop','admin\ShopController@indexs');
 Route::get('home/shop/detail/{id}','admin\ShopController@detail');
