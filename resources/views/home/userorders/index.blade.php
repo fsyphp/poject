@@ -3,6 +3,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="css/common.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <link href="css/user_style.css" rel="stylesheet" type="text/css" />
@@ -264,12 +265,12 @@
                                 <dd>
                                     <ul>
                                         <li>
-                                            <a href="用户中心-我的订单.html">
+                                            <a href="/home/userorders">
                                                 我的订单
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="用户中心-收货地址.html">
+                                            <a href="/home/address">
                                                 收货地址
                                             </a>
                                         </li>
@@ -299,8 +300,8 @@
                     </div>
                     <div class="Order_form_style">
                         <div class="Order_form_filter">
-                            <a href="#" class="on">
-                                我的订单（23）
+                            <a href="/home/userorders" class="on">
+                                我的订单（{{count($data)}}）
                             </a>
                             <a href="#" class="on">
                                 抽奖订单（23）
@@ -308,20 +309,22 @@
                             <a href="#" class="on">
                                 兑换订单（23）
                             </a>
-                            <a href="#" class="">
-                                待付款（2）
+                            <a href="/home/nocreate" class="number">
+                                未完成（<span>{{count($no)}}</span>）
                             </a>
-                            <a href="#" class="">
+                            <a href="/home/when" class="">
                                 待发货（3）
                             </a>
-                            <a href="#" class="">
+                            <a href="/home/collect" class="">
                                 待收货（5）
                             </a>
                             <!-- <a href="#" class="">退货/退款（0）</a> -->
-                            <a href="#" class="">
+                            <a href="/home/success" class="">
                                 交易成功（0）
                             </a>
                         </div>
+
+                        @section('orders')
                         <div class="Order_form_list">
                             <table>
                                 <thead>
@@ -350,19 +353,12 @@
                                 <tbody>
                                     <tr class="Order_info">
                                         <td colspan="6" class="Order_form_time">
-                                            下单时间：{{date('Y-m-d',$v->orders_at)}} | 订单号：{{$v->number}}
+                                            下单时间：{{date('Y-m-d',$v['orders_at'])}} | 订单号：{{$v['number']}}
                                             <em>
                                             </em>
                                         </td>
                                     </tr>
-                                    
-
-
-
-
-
-
-                                    
+                                    @foreach($v['orders_detail'] as $j=>$x)
                                     <tr class="Order_Details">
                                         <td colspan="3">
                                             <table class="Order_product_style">
@@ -370,47 +366,55 @@
                                                     <tr>
                                                         <td>
                                                             <div class="product_name clearfix">
+                                                            
                                                                 <a href="#" class="product_img">
-                                                                    <img src="Products/p_2.jpg" width="80px" height="80px">
+                                                                    <img src="{{Config('app.gpic').$x['goods_orders']['gpic']}}" width="80px" height="80px">
                                                                 </a>
-                                                                
+                                                            
                                                                 <a href="3" class="p_name">
                                                                     
                                                                 </a>
                                                                 <p class="specification">
-                                                                    礼盒装20个/盒
+                                                                    {{$x['goods_orders']['gname']}}
                                                                 </p>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                        价格
+                                                        {{$x['price']}}
                                                         </td>
                                                         <td>
-                                                            数量
+                                                            {{$x['cnt']}}
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </td>
+                                        @endforeach
                                         <td class="split_line">
-                                            总价格
+                                            {{$v['total']}}
                                         </td>
                                         <td class="split_line">
 
                                             <p style="color:#F30">
+                                                @if($v['static']=='0')
+                                                    待发货
+                                                @elseif($v['static']=='1')
+                                                    已发货
+                                                @elseif($v['static']=='2')
                                                     <a href="#" class="btn btn-info btn-xs" style="width:50px;margin-left:35px;">
                                                         去评价
                                                     </a>
-                                                
+                                                @else
+                                                    异常
+                                                @endif
                                             </p>
                                         </td>
                                         <td class="operating">
-                                            <a href="#">
-                                                查看订单
+                                        @if($v['static'] == '1')
+                                            <a href="#" gid="{{$v['id']}}" class="btn btn-info btn-xs success" style="width:60px;font-size:13px;height:20px;line-height:20px;margin-left:30px;">
+                                                确定收货
                                             </a>
-                                            <a href="#">
-                                                查看物流
-                                            </a>
+                                        @endif
                                             <a href="#">
                                                 联系客服
                                             </a>
@@ -419,74 +423,11 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    
-
-                                
                                 </tbody>
-
                                @endforeach 
-                                
-                                
-                                <!-- <tbody>
-                                    <tr class="Order_info">
-                                        <td colspan="6" class="Order_form_time">
-                                            下单时间：2015-12-3 | 订单号：445454654654654
-                                        </td>
-                                    </tr>
-                                    <tr class="Order_Details">
-                                        <td colspan="3">
-                                            <table class="Order_product_style">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="product_name clearfix">
-                                                                <a href="#" class="product_img">
-                                                                    <img src="Products/p_12.jpg" width="80px" height="80px">
-                                                                </a>
-                                                                <a href="3" class="p_name">
-                                                                    天然绿色多汁香甜无污染水蜜桃
-                                                                </a>
-                                                                <p class="specification">
-                                                                    礼盒装20个/盒
-                                                                </p>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            5
-                                                        </td>
-                                                        <td>
-                                                            2
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                        <td class="split_line">
-                                            100
-                                        </td>
-                                        <td class="split_line">
-                                            <p style="color:#F33">
-                                                确认收货
-                                            </p>
-                                            <p style="color:#CCC">
-                                                买家未评价
-                                            </p>
-                                        </td>
-                                        <td class="operating">
-                                            <a href="#">
-                                                查看详细
-                                            </a>
-                                            <a href="#">
-                                                在线客服
-                                            </a>
-                                            <a href="#" class="Refund_btn">
-                                                评价商品
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody> -->
                             </table>
                         </div>
+                        @show
                     </div>
                 </div>
             </div>
@@ -664,6 +605,33 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.success').click(function(){
+                var is = $(this);
+                var text = $(this).parents('tr').find('td').eq(5);
+                var id = $(this).attr('gid');
+                $.post('/home/belong',{id:id},function(data){
+                    if(data=='00'){
+                        text.empty();
+                        is.remove();
+                        text.html('<a href="#" class="btn btn-info btn-xs" style="width:50px;margin-left:35px;">去评价</a>');
+                        layer.msg('快去评价你买的商品吧...',{time: 3000});
+                    } else {
+                        layer.msg('网络繁忙,请稍后再试...',{
+                            time: 3000,
+                        });
+                    }
+                });
+                return false;
+            });
+        </script>
+
         <!--网站地图END-->
         <!--网站页脚-->
         <div class="copyright">

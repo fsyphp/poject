@@ -119,8 +119,8 @@ Route::get('home/code','home\LoginController@code');
 
 /* =================== 前台个人中心地址管理 ================================= */
 // 用户地址管理
-Route::resource('home/address/','home\AddressController');
-// 修改地址
+Route::resource('home/address','home\AddressController');
+// 显示修改地址表单
 Route::get('home/modifier/{id}','home\AddressController@modifie');
 // 更新地址
 Route::post('home/addressupdate','home\AddressController@addressupdate');
@@ -146,3 +146,21 @@ Route::post('admin/sends','admin\OrdersController@sends');
 /* =========================== 个人订单 ================================= */
 
 Route::resource('home/userorders','home\UserordesController');
+
+// 未付款订单
+Route::get('home/nocreate','home\UserordesController@nocreate');
+
+// 删除未付款订单
+Route::post('home/del','home\UserordesController@del');
+
+// 待发货订单
+Route::get('home/when','home\DeliveryController@when');
+
+// 待收货订单
+Route::get('home/collect','home\DeliveryController@collect');
+
+// 交易完成
+Route::get('home/success','home\DeliveryController@success');
+
+// 确认收货
+Route::post('home/belong','home\DeliveryController@belong');

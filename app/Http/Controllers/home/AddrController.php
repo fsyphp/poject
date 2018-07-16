@@ -11,6 +11,9 @@ class AddrController extends Controller
     //
     public function addredit(Request $req,$id,$user_id)
     {
+        if(!isset($_SERVER['HTTP_REFERER'])){
+            return redirect('/404');
+        }
         if($_SERVER['HTTP_REFERER'] == "http://www.project.com/home/goshopping"){
             $req->session()->flash('url', 1);
         }
@@ -56,6 +59,10 @@ class AddrController extends Controller
 
     public function addrinsert()
     {
+        if(!isset($_SERVER['HTTP_REFERER'])){
+            return redirect('/404');
+        }
+
         if( $_SERVER['HTTP_REFERER'] == 'http://www.project.com/home/goshopping' ){
             $req->session()->flash('url', 1);
         }
@@ -86,6 +93,8 @@ class AddrController extends Controller
             return back()->with('error','请选择城市...');
         }
         $ords = $req -> except('_token');
+        dump($ords);
+        exit;
         $ordes['address'] = $ords['city'].$ords['county'].$ords['town'].' '.$ords['addr'];
         try{
             $adr = User_address::create([

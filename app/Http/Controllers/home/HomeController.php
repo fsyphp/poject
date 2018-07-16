@@ -11,11 +11,14 @@ use App\Model\Integral;
 use DB;
 use App\Model\Banner;
 use App\Model\Cate;
+use App\Model\Shopping;
 
 class HomeController extends Controller
 {
     // 首页
-    public function index(){ 
+    public function index(){
+        // 查询购物车数量
+        $shopping = Shopping::where('user_id',session('user_id'))->get();
         $maio=Goods::where('g_static','0')->get(); 
         $xin=Goods::where('g_static','1')->paginate(5);
         $chou=Lottery::paginate(5);
@@ -47,7 +50,7 @@ class HomeController extends Controller
             $fuz[]=$v->id;
         }
         $fuzhuang=Goods::whereIn('category_id',$fuz)->paginate(4); 
-        return view('welcome',['maio'=>$maio,'xin'=>$xin,'chou'=>$chou,'dui'=>$dui,'re'=>$re,'fuzhuang'=>$fuzhuang,'jius'=>$jius,'shipin'=>$shipin,'lunbo'=>$lunbo,'title'=>'超市首页']);
+        return view('welcome',['maio'=>$maio,'xin'=>$xin,'chou'=>$chou,'dui'=>$dui,'re'=>$re,'fuzhuang'=>$fuzhuang,'jius'=>$jius,'shipin'=>$shipin,'lunbo'=>$lunbo,'shopping'=>$shopping,'title'=>'超市首页']);
     } 
 
     
