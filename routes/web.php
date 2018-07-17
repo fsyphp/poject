@@ -21,7 +21,11 @@ Route::get('/404',function(){
 // Route::any('/home/sub','home\LtController@sub');
 // Route::any('/home/pub','home\LtController@pub');
 
-
+// 售后
+Route::any('home/after','home\AfterController@index');
+Route::any('home/after/shouhou','home\AfterController@shouhou');
+Route::post('home/after/after','home\AfterController@after');
+Route::get('home/after/liulan','home\AfterController@liulan');
 // 体验店
 Route::get('home/shop','admin\ShopController@indexs');
 Route::get('home/shop/detail/{id}','admin\ShopController@detail');
@@ -42,7 +46,7 @@ Route::any('home/detail/{id}','home\DetailController@detail');
 Route::any('home/miao','home\DetailController@miao_list');
 
    
-
+// 后台
 Route::get('admin/indexs','admin\USerController@indexs');
 Route::get('admin/index','admin\USerController@index');
 
@@ -84,7 +88,10 @@ Route::group([],function(){
 	Route::post('admin/banner/update/{id}','admin\BannerController@update');
 	Route::get('admin/banner/destroy/{id}','admin\BannerController@destroy');	
 });
+Route::any('admin/after/shen','admin\AfterController@shen');
 
+Route::resource('admin/after','admin\AfterController');
+///后台
 // 添加商品到购物车
 Route::post('home/shoppadd','home\ShoppingController@shoppadd');
 Route::get('home/show','home\ShoppingController@show');
