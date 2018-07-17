@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Orders extends Model
 {
@@ -25,45 +26,28 @@ class Orders extends Model
      *
      * @var array
      */
-    protected $fillable = ['number','user_id','address_user','address','orders_at','orders_tel','orders_msg','sum','total'];
+    protected $fillable = ['id','number','user_id','address_user','address','orders_at','orders_tel','orders_msg','sum','total'];
 
     //和订单详情表关联 主表 详情表
                     // 1    多
-     public function orders_detail()
-    {
-        return $this -> hasMany('App\Model\Orders_detail','orders_id');
+    //  public function orders_detail()
+    // {
+    //     return $this -> hasMany('App\Model\Orders_detail','orders_id');
+    // }
+  
+    
+    
+    public function orderDetail(){
+        return $this->hasMany('App\Model\Orders_detail','orders_id','id');
     }
-
-     public  function demo(){
-        $data = $this -> with(['orders_detail.goods_orders:id,gname,gpic','orders_detail:id,orders_id,goods_id,cnt,price']) -> where ('user_id',session('user_id')) -> get();
+    public  function demo(){
+        $data = $this->with(['orderDetail.good:id,gname,price','orderDetail:id,orders_id,goods_id'])->where('user_id',session('user_id'))->get();
         if(count($data) > 0){
-            return $data -> toArray();
+            return $data->toArray();
         }
-        return array();
+        return null;
+        
    }
-
-   public  function when(){
-        $data = $this -> with(['orders_detail.goods_orders:id,gname,gpic','orders_detail:id,orders_id,goods_id,cnt,price'])->where('user_id',session('user_id'))->where('static','0')->get();
-        if(count($data) > 0){
-            return $data -> toArray();
-        }
-        return array();
-   }
-
-   public  function coll(){
-        $data = $this -> with(['orders_detail.goods_orders:id,gname,gpic','orders_detail:id,orders_id,goods_id,cnt,price'])->where('user_id',session('user_id'))->where('static','1')->get();
-        if(count($data) > 0){
-            return $data -> toArray();
-        }
-        return array();
-   }
-
-   public  function success(){
-        $data = $this -> with(['orders_detail.goods_orders:id,gname,gpic','orders_detail:id,orders_id,goods_id,cnt,price'])->where('user_id',session('user_id'))->where('static','2')->get();
-        if(count($data) > 0){
-            return $data -> toArray();
-        }
-        return array();
-   }
+    // sql查询
 }
 
