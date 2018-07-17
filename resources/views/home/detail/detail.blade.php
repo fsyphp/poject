@@ -364,10 +364,7 @@ document.getElementById(bg_div).style.display='none';
                     <li class="pro-img"><a href="#"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
                     <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
                     <li><a href="/index" class="title">{{$v->goods['gname']}} </a></li>
-                <ul >
-                    <li class="pro-img"><a href="/home/detail/{{$v->id}}"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
-                    <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
-                    <li><a href="/home/detail/{{$v->id}}" class="title">{{$v->goods['gname']}} </a></li>
+              
                 </ul>
             @endforeach
             </div>

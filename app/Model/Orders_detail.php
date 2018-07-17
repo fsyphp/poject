@@ -37,21 +37,23 @@ class Orders_detail extends Model
         商品表      订单详情表
            1          多
     */ 
-    public function goods_orders()
-    {
-        return $this->belongsTo('App\Model\Goods','goods_id','id');
-    }
+    // public function goods_orders()
+    // {
+    //     return $this->belongsTo('App\Model\Goods','goods_id','id');
+    // }
 
     /* 和订单主表表关联 
 
         订单主表      订单详情表
            1          多
     */ 
-    public function orders_goods()
-    {
-        return $this->belongsTo('App\Model\Orders','orders_id','id');
+    // public function orders_goods()
+    // {
+    //     return $this->belongsTo('App\Model\Orders','orders_id','id');
+    // }
+    public function good(){
+        return $this->belongsTo('App\Model\Goods','goods_id','id');
     }
-
 
 }
 
