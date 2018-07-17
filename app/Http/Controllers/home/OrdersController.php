@@ -218,6 +218,9 @@ class OrdersController extends Controller
 
     
 
+
+
+
     // 生成立即购买订单
     public function goorders(Request $req)
     {
@@ -230,7 +233,7 @@ class OrdersController extends Controller
         if($req -> input('adr') == null){
             return '0';
         }
-        try{
+        // try{
             // 开启事务
             DB::beginTransaction();
             // 将积分更新到用户详情表
@@ -265,11 +268,11 @@ class OrdersController extends Controller
                 'orders_id' => $id,
                 'goods_id' => $goods_id,
                 'price' => $pri->price,
-                'cnt' => $gsum,
+                'cnt' => session('gsum'),
                 ]);
-        }catch(\Exception $e){
-            return '2';
-        }
+        // }catch(\Exception $e){
+            // return '2';
+        // }
         if($orders && $ord){
             DB::commit();
             return '1';
@@ -278,6 +281,7 @@ class OrdersController extends Controller
             return '2';
         }
     }
+
 
     public function goshopping()
     {
@@ -310,6 +314,9 @@ class OrdersController extends Controller
             'goods_stock' => $goods_stock,
         ]);
     }
+
+
+
 
 
     // 取消订单 将商品信息在未付款订单显示
