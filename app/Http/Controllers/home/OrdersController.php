@@ -11,6 +11,9 @@ use App\Model\Orders;
 use App\Model\Orders_detail;
 use App\Model\User_detail;
 use App\Model\Shopping;
+use App\Model\Integral;
+use App\Model\Change;
+use App\Model\Lottery;
 use DB;
 use App\Model\Nocreate;
 
@@ -150,6 +153,15 @@ class OrdersController extends Controller
             } else {
                 DB::table('user_detail') -> where('user_id',session('user_id'))->update(['money'=> $balance]);
             }
+            // 获取商品购买的数量
+            $data = Goods_deetail::whereIn('g_id',$goods_id)->select('stock','number')->get();
+            $ay = [];
+            foreach($data as $k=>$v){
+                $ay['stock'] = $v->stock-$gsum[$k];
+                $ay['number'] = $gsum[$k]+$v->number;
+            }
+            // 减库存 加销量
+            $sto = Goods_deetail::whereIn('g_id',$goods_id)->update($ay);
             // 插入到订单主表 生成订单
             $orders = Orders::create([
                 'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
@@ -217,10 +229,6 @@ class OrdersController extends Controller
     }
 
     
-
-
-
-
     // 生成立即购买订单
     public function goorders(Request $req)
     {
@@ -233,7 +241,7 @@ class OrdersController extends Controller
         if($req -> input('adr') == null){
             return '0';
         }
-        // try{
+        try{
             // 开启事务
             DB::beginTransaction();
             // 将积分更新到用户详情表
@@ -249,6 +257,16 @@ class OrdersController extends Controller
             } else {
                 DB::table('user_detail') -> where('user_id',session('user_id'))->update(['money'=> $balance]);
             }
+            // 减库存 加销量
+            $data = Goods_deetail::where('g_id',$goods_id)->select('stock','number')->first();
+            // 购买数量
+            $stk = $data->stock-$req -> input('sum');
+            // 加销量
+            $num = $data->number+$req -> input('sum');
+            $data = Goods_deetail::where('g_id',$goods_id)->update([
+                'stock' => $stk,
+                'number' => $num,
+            ]);
             // 插入到订单主表 生成订单
             $orders = Orders::create([
                 'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
@@ -270,9 +288,9 @@ class OrdersController extends Controller
                 'price' => $pri->price,
                 'cnt' => session('gsum'),
                 ]);
-        // }catch(\Exception $e){
-            // return '2';
-        // }
+        }catch(\Exception $e){
+            return '2';
+        }
         if($orders && $ord){
             DB::commit();
             return '1';
@@ -280,6 +298,126 @@ class OrdersController extends Controller
             DB::rollBack();
             return '2';
         }
+    }
+
+
+    // 生成兑换商品订单
+    public function huan(Request $req)
+    {
+        // 商品id
+        $goods_id =session('gid');
+        // 获取购买商品的积分
+        $pri = Integral::where('id',$goods_id)->select('price')->first();
+        // 用户 id
+        $user_id = session('user_id');
+        if($req -> input('adr') == null){
+            return '0';
+        }
+        try{
+            // 开启事务
+            DB::beginTransaction();
+            // 将积分更新到用户详情表
+            $integral = DB::table('user_detail')->where('user_id',session('user_id'))->value('integral');
+            $jf = $integral-$req -> input('total');
+            if($jf<0){
+                return '3';
+            }
+            $user = DB::table('user_detail')->where('user_id',session('user_id'))->update(['integral'=>$jf]);
+            // 减库存 加销量
+            $data = Integral::where('id',$goods_id)->select('stock','salecent')->first();
+            // 减库存
+            $stk = $data->stock-1;
+            // 加销量
+            $num = $data->salecent+1;
+            $data = Integral::where('id',$goods_id)->update([
+                'stock' => $stk,
+                'salecent' => $num,
+            ]);
+            // 插入到订单主表 生成订单
+            $orders = Change::create([
+                'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
+                'user_id' => $user_id,
+                'int_id' => $goods_id,
+                'address_user' => $req ->input('user'),
+                'address' => $req -> input('adr'),
+                'orders_at' => time(),
+                'orders_tel' => $req -> input('tel'),
+                'total' => $req -> input('total'),
+                'orders_msg' => $req -> input('msg'),
+            ]);
+        }catch(\Exception $e){
+            return '2';
+        }
+        if($orders && $user){
+            DB::commit();
+            return '1';
+        } else {
+            DB::rollBack();
+            return '2';
+        }
+    }
+
+
+
+    // 生成抽奖商品订单
+    public function chous(Request $req)
+    {
+        // 商品id
+        $goods_id = session('gid');
+        /* // 获取购买商品的积分
+        $pri = Integral::where('id',$goods_id)->select('price')->first(); */
+        // 用户 id
+        $user_id = session('user_id');
+        if($req -> input('adr') == null){
+            return '0';
+        }
+        try{
+            // 开启事务
+            DB::beginTransaction();
+            // 插入到订单主表 生成订单
+            $data = Lottery::where('id',$goods_id)->select('stock','salecent')->first();
+            // 减库存
+            $stk = $data->stock-1;
+            // 加销量
+            $num = $data->salecent+1;
+            $data = Lottery::where('id',$goods_id)->update([
+                'stock' => $stk,
+                'salecent' => $num,
+            ]);
+            $orders = Change::create([
+                'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
+                'user_id' => $user_id,
+                'int_id' => $goods_id,
+                'address_user' => $req ->input('user'),
+                'address' => $req -> input('adr'),
+                'orders_at' => time(),
+                'orders_tel' => $req -> input('tel'),
+                'deliver' => '1',
+                'total' => 0,
+                'orders_msg' => $req -> input('msg'),
+            ]);
+        }catch(\Exception $e){
+            return '2';
+        }
+        if($orders){
+            DB::commit();
+            return '1';
+        } else {
+            DB::rollBack();
+            return '2';
+        }
+    }
+
+
+
+
+
+
+
+    // 生成抽奖商品订单
+    public function chou()
+    {
+        return 1;
     }
 
 

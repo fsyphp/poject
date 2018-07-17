@@ -34,7 +34,7 @@
 <center>
 <center>
 <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';"> 
-		<p style="color:red">每次抽奖积分为1000积分</p>
+		<p style="color:red">每次抽奖消耗 1000 积分</p>
 		<p>您当前积分为{}</p>
 </div>
 </center> 

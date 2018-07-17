@@ -7,6 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Model\Orders;
 use App\Model\Orders_detail;
 use App\Model\Goods;
+<<<<<<< HEAD
+=======
+use App\Model\Nocreate;
+use App\Model\User_address;
+use App\Model\Integral;
+use App\Model\Change;
+use App\Model\Lottery;
+>>>>>>> origin/xjx
 use DB;
 
 class UserordesController extends Controller
@@ -121,4 +129,110 @@ class UserordesController extends Controller
     {
         //
     }
+<<<<<<< HEAD
+=======
+
+    // 确认兑换商品
+    public function act(Request $req)
+    {
+        session(['gid'=>$req->input('id')]);
+        return '00';
+    }
+
+
+    // 显示兑换商品订单生成页面
+    public function scdd()
+    {
+        if(!session('user_id')){
+            return redirect('/404');
+        }
+        if(!session('gid')){
+            return redirect('/404');
+        }
+        // 商品的相关信息
+        $user_id = session('user_id');
+        // 查询用户的收货地址
+        $addr = User_address::where('user_id',$user_id) -> get();
+        // 查询商品
+        $goods = Integral::where('id',session('gid'))->first();
+        /* dump($goods);
+        dump($addr);
+        exit; */
+        return view('home/go/scdd',[
+            'addr' => $addr,
+            'goods' => $goods,
+            'user_id' => $user_id,
+        ]);
+    }
+
+    // 抽奖商品信息入库
+    // public function 
+
+    // 兑换商品订单显示
+    public function exchange()
+    {
+        // 查询兑换商品信息
+        $int = Change::with('int')->where('deliver',0)->get();
+        return view('home/Integral/int',[
+            'data' => [],
+            'no' => [],
+            'int' => $int,
+            ]);
+    }
+
+    // 抽奖商品生成订单提示
+    public function jiesuan($id)
+    {
+        session(['gid'=>$id]);
+        // 商品的相关信息
+        $user_id = session('user_id');
+        // 查询用户的收货地址
+        $addr = User_address::where('user_id',$user_id) -> get();
+        // 查询抽奖商品的信息
+        $goods = Lottery::where('id',$id)->first();
+        return view('admin/Integral/draw',[
+            'addr' => $addr,
+            'user_id'=> $user_id,
+            'goods' => $goods,
+        ]);
+    }
+
+    public function draw()
+    {
+        // 查询抽奖商品信息
+        $chou = Change::with('lot')->where('deliver',1)->get();
+        return view('home/userorders/draw',[
+            'data' => [],
+            'no' => [],
+            'chou' => $chou,
+        ]);
+    }
+
+    // 待付款订单
+    public function nocreate()
+    {
+        //  查询我的已付款订单数
+        $orders = new Orders();
+        $data = $orders -> demo();
+       
+        // 查询我的未完成订单数
+        $no = Nocreate::with('nogoods')->where('user_id',session('user_id'))->get(); 
+        return view('home/userorders/nocreate',[
+            'data' => $data,
+            'no' => $no,
+        ]);
+    }
+
+    // 删除未完成订单
+    public function del(Request $req)
+    {
+        $id = $req -> input('id');
+        $del = Nocreate::where('id',$id)->delete();
+        if($del){
+            return '00';
+        } else {
+            return '01';
+        }
+    }
+>>>>>>> origin/xjx
 }
