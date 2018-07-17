@@ -88,10 +88,10 @@
                         <a href="/home/userorders" class="on">
                             我的订单（{{count($data)}}）
                         </a>
-                        <a href="#" class="on">
+                        <a href="/home/draw" class="on">
                             抽奖订单（23）
                         </a>
-                        <a href="#" class="on">
+                        <a href="/home/exchange" class="on">
                             兑换订单（23）
                         </a>
                         <a href="/home/nocreate" class="number">

@@ -147,6 +147,12 @@ Route::post('admin/sends','admin\OrdersController@sends');
 
 Route::resource('home/userorders','home\UserordesController');
 
+// 抽奖商品订单
+Route::get('home/draw','home\UserordesController@draw');
+
+// 兑换商品订单
+Route::get('home/exchange','home\UserordesController@exchange');
+
 // 未付款订单
 Route::get('home/nocreate','home\UserordesController@nocreate');
 
@@ -167,3 +173,20 @@ Route::post('home/belong','home\DeliveryController@belong');
 
 // 删除已收货订单
 Route::post('home/delete','home\DeliveryController@delete');
+
+/* ====================== 抽奖商品和兑换商品 ================================ */
+
+// 兑换商品
+Route::post('home/act','home\UserordesController@act');
+
+// 生成兑换商品订单提示页
+Route::get('home/scdd','home\UserordesController@scdd');
+
+// 生成订单
+Route::post('home/huan','home\OrdersController@huan');
+
+// 生成抽奖商品订单提示页
+Route::get('home/jiesuan/{id}','home\UserordesController@jiesuan');
+
+// 生成订单
+Route::post('home/chous','home\OrdersController@chous');

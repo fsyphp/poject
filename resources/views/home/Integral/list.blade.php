@@ -1,4 +1,7 @@
 @extends('home.layout.header')
+@section('css')
+    <script src="/js/layer.js"></script>
+@endsection
 @section('title',$title)
 @section('layout')
  <style>
@@ -94,7 +97,7 @@ $(function() {
                 <div class="name"><a href="javascript:void(0)">{{$v->title}}组</a></div>
                 <div class="Shop_name"><a href="#">库存 : {{$v->stock}}</a></div>
                 <div class="p-operate">
-                <a href="javascript:void(0)" class="p-o-btn Collect"><em></em>立即兑换</a>
+                <a href="" gid="{{$v->id}}" class="p-o-btn act Collect"><em></em>立即兑换</a>
                 <a href="javascript:void(0)" class="p-o-btn shop_cart"><em></em>联系我们</a>
                 </div>
                 </div>
@@ -106,6 +109,41 @@ $(function() {
 </div>
 </div>
 
-
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.act').click(function(){
+        var gid = $(this).attr('gid');
+        layer.open({
+            title: '兑换操作',
+            content: '确定兑换该商品吗?',
+            offset: '120px',
+            closeBtn: 2,
+            icon: 3,
+            btn: ['确定','取消'],
+            yes:function(index){
+                 $.post('/home/act',{id:gid},function(data){
+                    if(data=='02'){
+                        layer.open({
+                            type: 2,
+                            title: '登录操作',
+                            content: '/home/shop_login',
+                            area: ['395px', '340px'],
+                            offset: '100px',
+                            closeBtn: 2,
+                        });
+                    } else if(data=='00'){
+                        location.href = '/home/scdd';
+                    }
+                });
+                layer.close(index);
+            },
+        });
+        return false;
+    });
+</script>
 
 @endsection
