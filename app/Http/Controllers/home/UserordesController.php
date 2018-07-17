@@ -126,10 +126,7 @@ class UserordesController extends Controller
     public function destroy($id)
     {
         //
-    }
-<<<<<<< HEAD
-=======
-
+    } 
     // 确认兑换商品
     public function act(Request $req)
     {
@@ -231,6 +228,5 @@ class UserordesController extends Controller
         } else {
             return '01';
         }
-    }
->>>>>>> origin/xjx
+    } 
 }
