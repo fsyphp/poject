@@ -164,3 +164,6 @@ Route::get('home/success','home\DeliveryController@success');
 
 // 确认收货
 Route::post('home/belong','home\DeliveryController@belong');
+
+// 删除已收货订单
+Route::post('home/delete','home\DeliveryController@delete');

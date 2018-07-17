@@ -5,7 +5,9 @@ namespace App\Http\Controllers\home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Orders;
+use App\Model\Orders_detail;
 use App\Model\Nocreate;
+use DB;
 
 class DeliveryController extends Controller
 {
@@ -75,6 +77,27 @@ class DeliveryController extends Controller
         if($orders){
             return '00';
         } else {
+            return '01';
+        }
+    }
+
+    // ajax 删除已收货订单
+    public function delete(Request $req)
+    {
+        $id = $req -> input('id');
+        //  开启事务
+        DB::beginTransaction();
+        // 删除订单主表的数据
+        $del = Orders::where('id',$id)->delete();
+        // 删除订单详情表中的内容
+         $detail_del = Orders_detail::where('orders_id',$id)->delete();
+        if($del && $detail_del){
+            // 提交
+            DB::commit();
+            return '00';
+        } else {
+            // 回滚
+            DB::rollBack();
             return '01';
         }
     }
