@@ -362,9 +362,8 @@ document.getElementById(bg_div).style.display='none';
             @foreach($re as $k=>$v)
                 <ul>
                     <li class="pro-img"><a href="#"><img src="{{\Config('app.gpic')}}{{$v->goods['gpic']}}" width="100%"></a></li>
-                    <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li> 
-                    <li><a href="/index" class="title">{{$v->goods['gname']}} </a></li> 
-
+                    <li class="price"><strong>{{$v->goods['price']}}</strong><span>已销售{{$v->number}}</span></li>  
+                    <li><a href="/index" class="title">{{$v->goods['gname']}} </a></li>  
                 </ul>
             @endforeach
             </div>
