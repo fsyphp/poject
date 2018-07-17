@@ -29,5 +29,16 @@ class Nocreate extends Model
      *
      * @var array
      */
-    protected $fillable = ['goods_id','gsum','user_id'];
+    protected $fillable = ['goods_id','create_at','user_id'];
+
+    // 和商品表关联
+
+        //   1 对  一
+    
+    public function nogoods()
+    {
+        return $this -> belongsTo('App\Model\Goods','goods_id');
+    }
+
+ 
 }

@@ -32,7 +32,7 @@
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
-        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(23)</b></a></li>	
+        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(0)</b></a></li>	
 	  </ul>
 	</div>
     </div>  
@@ -89,7 +89,7 @@
 			<li><a href="Brands.html">联系我们</a></li>
 		 </ul>			 
 		</div>
-	<script>$("#Navigation").slide({titCell:".Navigation_name li",trigger:"click"});</script>
+	<!-- <script>$("#Navigation").slide({titCell:".Navigation_name li",trigger:"click"});</script> -->
     </div>
 </head>
 @show

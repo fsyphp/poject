@@ -200,25 +200,6 @@ class OrdersController extends Controller
         return view('home/shopping/success',['num'=>$num,'total'=>$total]);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // 立即购买
     public function go(Request $req)
     {
@@ -235,6 +216,8 @@ class OrdersController extends Controller
         return '00';
     }
 
+    
+
     // 生成立即购买订单
     public function goorders(Request $req)
     {
@@ -242,8 +225,6 @@ class OrdersController extends Controller
         $goods_id =session('gid');
         // 获取购买商品的单价
         $pri = Goods::where('id',$goods_id)->select('price')->first();
-        // 购买数量
-        $gsum = session('gsum');
         // 用户 id
         $user_id = session('user_id');
         if($req -> input('adr') == null){
@@ -269,7 +250,6 @@ class OrdersController extends Controller
             $orders = Orders::create([
                 'number' => time().rand(0000,1111).rand(1111,9999).rand(000000,999999),
                 'user_id' => $user_id,
-                'goods_id' => $goods_id,
                 'address_user' => $req ->input('user'),
                 'address' => $req -> input('adr'),
                 'orders_at' => time(),
@@ -283,6 +263,7 @@ class OrdersController extends Controller
             $ord = Orders::find($id);
             $orders_detail = Orders_detail::create([
                 'orders_id' => $id,
+                'goods_id' => $goods_id,
                 'price' => $pri->price,
                 'cnt' => $gsum,
                 ]);
@@ -294,7 +275,7 @@ class OrdersController extends Controller
             return '1';
         } else {
             DB::rollBack();
-            // return '2';
+            return '2';
         }
     }
 
@@ -330,6 +311,7 @@ class OrdersController extends Controller
         ]);
     }
 
+
     // 取消订单 将商品信息在未付款订单显示
     public function nocreate(Request $req)
     {
@@ -337,12 +319,18 @@ class OrdersController extends Controller
         $user_id = session('user_id');
         // 商品 id
         $goods_id = session('gid');
+        $goods_id = explode(',',$goods_id);
+        array_pop($goods_id);
         // 将信息插入未生成订单表
-        $no = Nocreate::create([
-            'goods_id' => $goods_id,
-            'user_id' => $user_id,
-            'gsum' => $req -> input('gsum'),
-        ]);
+        $nocreate = [];
+        foreach($goods_id as $k=>$v){
+            $arr = [];
+            $arr['goods_id'] = $v;
+            $arr['user_id'] = $user_id;
+            $arr['create_at'] = time();
+            $nocreate[] = $arr;
+        }
+        $no = DB::table('nocreate')->insert($nocreate);
         if($no){
             return '0';
         } else {

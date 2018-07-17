@@ -11,6 +11,7 @@
     <script type="text/javascript" src="http://lib.h-ui.net/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.provincesCity.js"></script>
 	<script type="text/javascript" src="/js/provincesData.js"></script>	
+    <script src="/js/layer.js"></script>
     <!-- <script src="/home/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script> -->
     <!-- <script src="/home/js/common_js.js" type="text/javascript"></script> -->
     <!-- <script src="/home/js/footer.js" type="text/javascript"></script> -->
@@ -41,7 +42,7 @@
      <div class="sideMen">
      <!--菜单列表图层-->
      <dl class="accountSideOption1">
-      <dt class="transaction_manage"><i class="icon_1"></i>订单管理</dt>
+      <dt class="transaction_manage"><em class="icon_1"></em>订单管理</dt>
       <dd>
         <ul>
           <li> <a href="用户中心-我的订单.html">我的订单</a></li>
@@ -50,22 +51,22 @@
       </dd>
     </dl>
     </div>
-      <script>jQuery(".sideMen").slide({titCell:"dt", targetCell:"dd",trigger:"click",defaultIndex:0,effect:"slideDown",delayTime:300,returnDefault:true});</script>
+      <!-- <script>jQuery(".sideMen").slide({titCell:"dt", targetCell:"dd",trigger:"click",defaultIndex:0,effect:"slideDown",delayTime:300,returnDefault:true});</script> -->
    </div>
  </div>
  <!--右侧样式属性-->
  <div class="right_style">
  <!--地址管理-->
   <div class="user_address_style">
-    <div class="title_style">修改地址</div> 
+    <div class="title_style"><em></em>地址管理</div> 
    <div class="add_address">
     <span class="name">添加送货地址</span>
-    <table cellpadding="0" cellspacing="0" width="100%">
     <form action="/home/addressupdate" method="post">
     {{ csrf_field() }}
-    <input type="hidden" name"id" value="{{$user_address->id}}" >
-     <tr><td class="label_name">收&nbsp;货&nbsp;&nbsp;人：</td><td><input name="address_user" value="{{$user_address->address_user}}" type="text"  class="add_text" style=" width:100px"/></td></tr>
-     <tr><td class="label_name">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</td><td><input name="address_tel" value="{{$user_address->address_tel}}" type="text" class="add_text" style=" width:200px"/>&nbsp;&nbsp;</td></tr>     
+    <input type="hidden" name="id" value="{{$user_address->id}}">
+    <table cellpadding="0" cellspacing="0" width="100%">
+     <tr><td class="label_name">收&nbsp;货&nbsp;&nbsp;人：</td><td><input name="address_user" autocomplete=”off” value="{{$user_address->address_user}}" type="text"  class="add_text" style=" width:100px"/></td></tr>
+     <tr><td class="label_name">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</td><td><input  autocomplete=”off” value="{{$user_address->address_tel}}" name="address_tel" type="text" class="add_text" style=" width:200px"/>&nbsp;&nbsp;</td></tr>     
      <tr>
      <td class="label_name">选择城市：</td>
      <td>
@@ -78,16 +79,16 @@
         </script>
      </td>
      </tr>
-     <tr><td class="label_name">详细地址：</td><td><textarea name="address" cols="" rows="" style=" width:500px; height:100px; margin:5px 0px">{{$addr}}</textarea><i></i></td></tr>
-    <tr><td></td><td style="float:left;" class="center"><input type="submit" value="修改" class="add_dzbtn"/></td></tr>    
+     <tr><td class="label_name">详细地址：</td><td><textarea name="detail" cols="" rows="" style=" width:500px; height:100px; margin:5px 0px">{{$addr}}</textarea><i></i></td></tr>
+    <tr><td colspan="2" class="center"><input type="submit" value="修改"  class="add_dzbtn"/><input name="" type="reset" value="清空" class="reset_btn"/></td></tr>    
     </table>
     </form>
-   </div>
-   <!--用户地址-->
+   </div>  
   </div>
  </div>
  </div>
  </div>
+ <div id="error" style="display:none;">{{session('error')}}</div>
     <script>
         $(document).ready(function(){
             $('.moren_dz input').iCheck({
@@ -95,8 +96,15 @@
             radioClass: 'iradio_flat-green'
             });
         });
+        var err = $('#error').text();
+        if(err){
+            layer.open({
+                title: '修改失败...',
+                icon: 2,
+                content: err,
+            });
+        }
     </script>
-
 @endsection
 
 @section('links')
