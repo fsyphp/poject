@@ -6,15 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Orders;
 use App\Model\Orders_detail;
-use App\Model\Goods;
-<<<<<<< HEAD
-=======
+use App\Model\Goods; 
 use App\Model\Nocreate;
 use App\Model\User_address;
 use App\Model\Integral;
 use App\Model\Change;
 use App\Model\Lottery;
->>>>>>> origin/xjx
+
 use DB;
 
 class UserordesController extends Controller
