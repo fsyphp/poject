@@ -41,7 +41,7 @@ class Orders_detail extends Model
     {
         return $this->belongsTo('App\Model\Goods','goods_id','id');
     }
-
+   
     /* 和订单主表表关联 
 
         订单主表      订单详情表
