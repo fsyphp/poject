@@ -36,6 +36,7 @@ Route::get('home/goods/list','home\DetailController@goodlist');
 
 // 抽奖列表页
 Route::get('home/lottery','home\DetailController@lottery');
+Route::post('home/lottery/chou','home\DetailController@chou');
 // 积分兑换列表页
 Route::get('home/integral','home\DetailController@integral');
 //   首页
