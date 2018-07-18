@@ -30,7 +30,7 @@ class Orders extends Model
     //和订单详情表关联 主表 详情表
                     // 1    多
      public function orders_detail()
-    {
+    {  
         return $this -> hasMany('App\Model\Orders_detail','orders_id');
     }
     
