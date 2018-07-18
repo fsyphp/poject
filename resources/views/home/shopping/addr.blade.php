@@ -85,7 +85,7 @@
         var county = $('select[name=county]').val();
         var town = $('select[name=town]').val();
         var detail = $('input[name=detail]').val();
-        var addr = city+county+town+detail;
+        var addr = city+county+town+' '+detail;
         $.post('/home/commit',{user:user,tel:tel,msg:msg,addr:addr,city:city,detail:detail},function(data){
             if(data=='01'){
                 layer.open({

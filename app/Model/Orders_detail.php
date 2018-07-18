@@ -51,7 +51,7 @@ class Orders_detail extends Model
     {
         return $this->belongsTo('App\Model\Orders','orders_id','id');
     }
-
+   
 
 }
 

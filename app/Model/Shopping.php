@@ -35,7 +35,7 @@ class Shopping extends Model
     public function goods()
     {
         return $this->belongsTo('App\Model\Goods','gid');
-    }
+    }  
 }
 
 

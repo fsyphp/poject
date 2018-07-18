@@ -64,6 +64,6 @@ class Orders extends Model
             return $data -> toArray();
         }
         return array();
-   }
+   }   
 }
 

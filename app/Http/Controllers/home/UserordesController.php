@@ -43,7 +43,7 @@ class UserordesController extends Controller
         }
         // 查询未完成订单
         $no = Nocreate::where('user_id',session('user_id'))->get();
-        // dump($data);
+        // dump($data);  
         // exit;
         /* $orders = Orders::with('orders_detail')->where('user_id',session('user_id'))->get();
         foreach($orders as $k=>$v){
@@ -133,6 +133,9 @@ class UserordesController extends Controller
     // 确认兑换商品
     public function act(Request $req)
     {
+        if(!session('user_id')){
+            return '02';
+        }
         session(['gid'=>$req->input('id')]);
         return '00';
     }

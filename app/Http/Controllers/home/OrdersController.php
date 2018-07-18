@@ -54,7 +54,7 @@ class OrdersController extends Controller
         } else if($req -> input('detail') == ''){
             return 'detail';
         } else {
-            $data = $req -> all();
+            $data = $req -> all();   
             $user_addr = User_address::create([
                 'user_id' => session('user_id'),
                 'address' => $data['addr'],

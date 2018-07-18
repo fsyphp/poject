@@ -8,7 +8,7 @@ use App\Model\Goods;
 use App\Model\Goods_deetail;
 use App\Model\Lottery;
 use App\Model\Integral;
-use App\Model\Cate;
+use App\Model\Cate;    
 use DB; 
 class DetailController extends Controller
 {
