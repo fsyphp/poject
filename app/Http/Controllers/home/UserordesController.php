@@ -66,7 +66,7 @@ class UserordesController extends Controller
         // 显示用户的所有订单
         return view('home/userorders/index',[
             'data' => $data,
-            
+            'no' => $no,
         ]);
     }
 
@@ -178,7 +178,7 @@ class UserordesController extends Controller
     public function exchange()
     {
         // 查询兑换商品信息
-        $int = Change::with('int')->where('deliver',0)->get();
+        $int = Change::with('int')->where('deliver',0)->where('user_id',session('user_id'))->get();
         return view('home/Integral/int',[
             'data' => [],
             'no' => [],
@@ -206,7 +206,7 @@ class UserordesController extends Controller
     public function draw()
     {
         // 查询抽奖商品信息
-        $chou = Change::with('lot')->where('deliver',1)->get();
+        $chou = Change::with('lot')->where('deliver',1)->where('user_id',session('user_id'))->get();
         return view('home/userorders/draw',[
             'data' => [],
             'no' => [],
