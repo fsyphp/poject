@@ -28,6 +28,7 @@
 		background-color: #FB914A;
 	}
 </style> 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 <body>
@@ -35,7 +36,9 @@
 <center>
 <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';"> 
 		<p style="color:red">每次抽奖消耗 1000 积分</p>
-		<p>您当前积分为{}</p>
+		@if(!empty(session('user_id')))
+		<p>您当前积分为<span id="jifen">{{$lottery->integral}}</span></p>
+		@endif
 </div>
 </center> 
 <div class="lottery">
@@ -44,10 +47,42 @@
 	</canvas>
     <p id="message"></p>
     <div id="dvs" style="display:none">{{$goods}}</div>
-	<img src="/images/start.png" id="start">
+	@if(empty(session('user_id') && $lottery->integral>=1000))
+		<img src="/images/stop.jpg"> 
+	@else
+		<img src="/images/start.png" id="start">
+	@endif
+	<img src="/images/stop.jpg" id="stop" style="display:none">
 </div>
 </center> 
 <script>
+	// 
+	@if(!empty(session('user_id')))
+		$('#start').click(function(){ 
+			var ji=$('#jifen').text();
+			var id={{session('user_id')}}; 
+			$.ajax({
+				url:'/home/lottery/chou',
+				type:'post',
+				data:{'integral':ji,'id':id},
+				dataType:'json',
+				success:function(mes){
+					$('#jifen').text(mes);
+					if(mes==0){
+						$("#stop").css('display','block');
+					}
+				},
+				error:function(err){
+					console.log(err);
+				},
+				headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						},
+				anysc:true
+			})
+		});
+
+	@endif
  var aa=eval($('#dvs').text()); 
    var title=[];
    var pic=[];
@@ -197,7 +232,7 @@
 
 	
 </script>
-<center>
+<center> 
 <div id="jiang" style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';"> 
 	
 </div>

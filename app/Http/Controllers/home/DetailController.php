@@ -26,8 +26,21 @@ class DetailController extends Controller
 
     // 抽奖商品列表页
     public function lottery(){
+        $lottery=DB::table('user_detail')->where('user_id',session('user_id'))->select('integral')->first();  
         $goods=json_encode(Lottery::get());
-        return view('home.lottery.list',['goods'=>$goods,'title'=>'抽奖商品列表页']);
+        return view('home.lottery.list',['goods'=>$goods,'title'=>'抽奖商品列表页','lottery'=>$lottery]);
+    }
+    public function chou(Request $request){
+        $lottery=DB::table('user_detail')->where('user_id',$request->input('id'))->select('integral')->first();
+        $num=$lottery->integral-1000;
+        $res['integral']=$num;
+        try{
+            $data=Db::table('user_detail')->where('user_id',$request->input('id'))->update($res);
+            return $num;
+
+        }catch(\Exception $e){
+            return 0;
+        }
     }
 // 商品列表页
    public function goodlist(Request $request){    
