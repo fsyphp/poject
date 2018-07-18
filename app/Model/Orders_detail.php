@@ -54,6 +54,7 @@ class Orders_detail extends Model
     public function good(){
         return $this->belongsTo('App\Model\Goods','goods_id','id');
     }
+   
 
 }
 

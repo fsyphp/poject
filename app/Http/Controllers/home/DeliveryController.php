@@ -13,7 +13,7 @@ class DeliveryController extends Controller
 {
     // 待发货
     public function when()
-    {
+    {   
         // 我的订单
         $orders = new Orders();
         $data = $orders -> demo();

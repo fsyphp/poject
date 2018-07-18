@@ -45,9 +45,7 @@ class Orders extends Model
         if(count($data) > 0){
             return $data->toArray();
         }
-        return null;
-        
-   }
-    // sql查询
+        return array();
+   }   
 }
 

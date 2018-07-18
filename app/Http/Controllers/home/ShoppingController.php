@@ -183,7 +183,7 @@ class ShoppingController extends Controller
     {
         return view('home/shopping/shop_login');
     }
-
+   
     // ajax 验证账号密码
     public function shoplogin(Request $req)
     {

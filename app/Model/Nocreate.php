@@ -39,6 +39,6 @@ class Nocreate extends Model
     {
         return $this -> belongsTo('App\Model\Goods','goods_id');
     }
-
+  
  
 }

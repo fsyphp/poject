@@ -9,7 +9,7 @@ use App\Model\User_address;
 class AddrController extends Controller
 {
     //
-    public function addredit(Request $req,$id,$user_id)
+    public function addredit(Request $req, $id, $user_id)
     {
         if(!isset($_SERVER['HTTP_REFERER'])){
             return redirect('/404');
@@ -57,16 +57,13 @@ class AddrController extends Controller
         }
     }
 
-    public function addrinsert()
+    public function addrinsert(Request $req)
     {
         if(!isset($_SERVER['HTTP_REFERER'])){
             return redirect('/404');
         }
-
-        if( $_SERVER['HTTP_REFERER'] == 'http://www.project.com/home/goshopping' ){
-            $req->session()->flash('url', 1);
-        }
-        
+        $url = $_SERVER['HTTP_REFERER'];
+        $req->session()->flash('url', $url);
         $addr = User_address::where('user_id',session('user_id'))->get();
         if( count($addr)>4 ){
             return back()->with('erro','收货地址添加已达上限...');
@@ -93,8 +90,6 @@ class AddrController extends Controller
             return back()->with('error','请选择城市...');
         }
         $ords = $req -> except('_token');
-        dump($ords);
-        exit;
         $ordes['address'] = $ords['city'].$ords['county'].$ords['town'].' '.$ords['addr'];
         try{
             $adr = User_address::create([
@@ -107,11 +102,9 @@ class AddrController extends Controller
             return back()->with('error','添加失败...');
         }
         if($adr){
-            if(session('url')){
-                return redirect('/home/goshopping')->with('success','添加成功...');
-            } else {
-                return redirect('/home/generate')->with('success','添加成功...');
-            }
+            dump(session('url'));
+            exit;
+            return redirect( session('url') )->with('success','添加成功...');            
         } else{
             return back()->with('error','添加失败...');
         }
