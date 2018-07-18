@@ -71,8 +71,7 @@ class UserordesController extends Controller
         // 显示用户的所有订单
         return view('home/userorders/index',[
             'data' => $data,
-            'no'=>$no
-            
+            'no' => $no
         ]);
     }
 
