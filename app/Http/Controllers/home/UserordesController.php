@@ -40,13 +40,21 @@ class UserordesController extends Controller
         $orders_detail = Orders_detail::with('goods_orders')->whereIn('orders_id',$arr)->get(); */
 
         // join
-        // $data = DB::table('orders_detail')
-        //     // ->where('user_id',session('user_id'))
-        //     ->join('orders', 'orders.id', '=', 'orders_detail.orders_id')
-        //     ->join('goods', 'goods.id', '=', 'orders_detail.orders_id')
-        //     ->get();
-        // $data=Orders::with('demo')->where('user_id',session('user_id'))->get();
-        // dump($data);
+        /* $data = DB::table('orders_detail')
+            ->join('orders', 'orders.id', '=', 'orders_detail.orders_id')
+            ->join('goods', 'goods.id', '=', 'orders_detail.orders_id')
+            ->get(); 
+        dump($data);
+        exit; */
+
+        $orders = new Orders();
+        $data = $orders -> demo();
+        if($data == null){
+            $data = [];
+        }
+        // 查询未完成订单
+        $no = Nocreate::where('user_id',session('user_id'))->get();
+        // dump($data);  
         // exit;
         /* $orders = Orders::with('orders_detail')->where('user_id',session('user_id'))->get();
         foreach($orders as $k=>$v){
@@ -63,8 +71,7 @@ class UserordesController extends Controller
         // 显示用户的所有订单
         return view('home/userorders/index',[
             'data' => $data,
-            'no'=>$no
-            
+            'no' => $no
         ]);
     }
 
@@ -136,6 +143,9 @@ class UserordesController extends Controller
     // 确认兑换商品
     public function act(Request $req)
     {
+        if(!session('user_id')){
+            return '02';
+        }
         session(['gid'=>$req->input('id')]);
         return '00';
     }
@@ -173,7 +183,7 @@ class UserordesController extends Controller
     public function exchange()
     {
         // 查询兑换商品信息
-        $int = Change::with('int')->where('deliver',0)->get();
+        $int = Change::with('int')->where('deliver',0)->where('user_id',session('user_id'))->get();
         return view('home/Integral/int',[
             'data' => [],
             'no' => [],
@@ -201,7 +211,7 @@ class UserordesController extends Controller
     public function draw()
     {
         // 查询抽奖商品信息
-        $chou = Change::with('lot')->where('deliver',1)->get();
+        $chou = Change::with('lot')->where('deliver',1)->where('user_id',session('user_id'))->get();
         return view('home/userorders/draw',[
             'data' => [],
             'no' => [],

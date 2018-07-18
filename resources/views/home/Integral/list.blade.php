@@ -104,7 +104,6 @@ $(function() {
             </li>
         @endforeach
    </ul>
-   
    </div>
 </div>
 </div>

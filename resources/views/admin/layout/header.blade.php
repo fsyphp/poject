@@ -175,9 +175,9 @@
                         <ul class="nav nav-second-level">
                             <li><a class="J_menuItem" href="/admin/orders">浏览订单</a>
                             </li>
-                           <!--  <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
+                            <li><a class="J_menuItem" href="/admin/lotDraw">抽奖和兑换商品</a>
                             </li>
-                            <li><a class="J_menuItem" href="mail_compose.html">写信</a>
+                            <!-- <li><a class="J_menuItem" href="mail_compose.html">写信</a>
                             </li> -->
                         </ul>
                     </li>

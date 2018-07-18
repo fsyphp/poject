@@ -54,7 +54,7 @@ class OrdersController extends Controller
         } else if($req -> input('detail') == ''){
             return 'detail';
         } else {
-            $data = $req -> all();
+            $data = $req -> all();   
             $user_addr = User_address::create([
                 'user_id' => session('user_id'),
                 'address' => $data['addr'],
@@ -145,7 +145,7 @@ class OrdersController extends Controller
             $jf = $integral+$req -> input('jf');
             DB::table('user_detail')->where('user_id',session('user_id'))->update(['integral'=>$jf]);
             // 减去商品对应的余额
-            $money = DB::table('user_detail')->value('money');
+            $money = DB::table('user_detail')->where('user_id',session('user_id'))->value('money');
             $total = $req -> input('total');
             $balance = $money - $total;
             if($balance<0){
