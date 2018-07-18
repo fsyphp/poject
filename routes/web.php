@@ -149,12 +149,19 @@ Route::get('home/insert','home\AddrController@addrinsert');
 // 添加收货地址
 Route::post('home/store','home\AddrController@addrstore');
 
-// 后台订单管理
+/* ======================= 后台常规订单管理 ================================= */
 Route::resource('admin/orders','admin\OrdersController');
 // 订单详情
 Route::get('admin/ordersdetail/{id}','admin\OrdersController@ordersdetail');
 // 商品发货
 Route::post('admin/sends','admin\OrdersController@sends');
+
+/* ============================ 后台抽奖兑换管理 =============================== */
+Route::resource('admin/lotDraw','admin\LotdrawController');
+// 发货
+Route::post('admin/fahuo','admin\LotdrawController@fahuo');
+// 订单详情
+Route::get('admin/lotDetail/{id}','admin\LotdrawController@lotdetail');
 
 
 /* =========================== 个人订单 ================================= */

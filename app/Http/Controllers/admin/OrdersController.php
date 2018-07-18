@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Orders;
+use App\Model\Change;
 use App\Model\Orders_detail;
 use App\Model\Goods;
 use DB;
@@ -21,7 +22,9 @@ class OrdersController extends Controller
         // 查询订单信息
         $orders = Orders::get();
         // 显示订单信息
-        return view('admin/orders/index',['orders'=>$orders]);
+        return view('admin/orders/index',[
+            'orders' => $orders,   
+        ]);
     }
 
     /**
@@ -78,6 +81,11 @@ class OrdersController extends Controller
      */
     public function update(Request $req, $id)
     {
+        $this->validate($req, [
+            'address_user' => 'required',
+            'orders_tel' => 'required|regex:/\d+/',
+            'address' => 'required',
+        ]);
         // 修改订单
         $orders = $req -> except('_token','_method');
         $upd = Orders::where('id',$id)->update($orders);

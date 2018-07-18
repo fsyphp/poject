@@ -8,7 +8,7 @@
 <div style="height:26px;"></div>
     <div class=".container">
         <div class="row col-md-12">
-            <h2 style="text-align:center;">订单管理</h2>
+            <h2 style="text-align:center;">抽奖和兑换商品管理</h2>
             <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>订单编号</th>
@@ -18,11 +18,11 @@
                     <th>收货电话</th>
                     <th>收货地址</th>
                     <th>买家留言</th>
-                    <th>总数量</th>
+                    <th>类别</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
-                @foreach($orders as $k=>$v)
+                @foreach($lot as $k=>$v)
                     <tr>
                         <td>{{$v->number}}</td>
                         <td>{{$v->total}}</td>
@@ -31,7 +31,15 @@
                         <td>{{$v->orders_tel}}</td>
                         <td>{{$v->address}}</td>
                         <td>{{$v->orders_msg}}</td>
-                        <td>{{$v->sum}}</td>
+                        <td>
+                            @if($v->deliver=='0')
+                                兑换商品
+                            @elseif($v->deliver=='1')
+                                抽奖商品
+                            @else
+                                未知商品
+                            @endif
+                        </td>
                         <td class="huo">
                         @if($v->static==0)
                             尚未发货
@@ -44,8 +52,8 @@
                         @endif
                         </td>
                         <td>
-                            <a class="btn btn-info btn-xs" href="/admin/orders/{{$v->id}}/edit">修改</a>
-                            <a class="btn btn-info btn-xs" href="/admin/ordersdetail/{{$v->id}}">订单详情</a>
+                            <a class="btn btn-info btn-xs" href="/admin/lotDraw/{{$v->id}}/edit">修改</a>
+                            <a class="btn btn-info btn-xs" href="/admin/lotDetail/{{$v->id}}">订单详情</a>
                             <a oid = {{$v->id}} class="btn fh btn-info btn-xs" href="">
                             @if($v->static==0)
                                 发货
@@ -57,11 +65,11 @@
                                 异常
                             @endif
                             </a>
-                            <form id="form" action="/admin/orders/{{$v->id}}" method="post" style="display:inline;">
+                            <form id="form" action="/admin/lotDraw/{{$v->id}}" method="post" style="display:inline;">
                                 {{ csrf_field() }}
                                  {{ method_field('DELETE') }}
                                  @if(($v->static==2))
-                                <button class="btn btn-info remove btn-xs">删除</button>
+                                    <button class="btn btn-info remove btn-xs">删除</button>
                                 @endif
                             </form>
                         </td>
@@ -79,7 +87,7 @@
         $('.fh').click(function(){
             var id = $(this).attr('oid');
             var text = $(this);
-            $.post('/admin/sends',{id:id},function(data){
+            $.post('/admin/fahuo',{id:id},function(data){
                 if(data == '0'){
                     text.text('已发货');
                     text.parents('tr').find('td').eq(7).text('等待收货');
