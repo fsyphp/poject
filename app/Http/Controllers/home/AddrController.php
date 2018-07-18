@@ -9,7 +9,7 @@ use App\Model\User_address;
 class AddrController extends Controller
 {
     //
-    public function addredit(Request $req, $id, $user_id)
+    public function addredit(Request $req,$id,$user_id)
     {
         if(!isset($_SERVER['HTTP_REFERER'])){
             return redirect('/404');
@@ -57,13 +57,16 @@ class AddrController extends Controller
         }
     }
 
-    public function addrinsert(Request $req)
+    public function addrinsert()
     {
         if(!isset($_SERVER['HTTP_REFERER'])){
             return redirect('/404');
         }
-        $url = $_SERVER['HTTP_REFERER'];
-        $req->session()->flash('url', $url);
+
+        if( $_SERVER['HTTP_REFERER'] == 'http://www.project.com/home/goshopping' ){
+            $req->session()->flash('url', 1);
+        }
+        
         $addr = User_address::where('user_id',session('user_id'))->get();
         if( count($addr)>4 ){
             return back()->with('erro','收货地址添加已达上限...');
@@ -102,9 +105,11 @@ class AddrController extends Controller
             return back()->with('error','添加失败...');
         }
         if($adr){
-            dump(session('url'));
-            exit;
-            return redirect( session('url') )->with('success','添加成功...');            
+            if(session('url')){
+                return redirect('/home/goshopping')->with('success','添加成功...');
+            } else {
+                return redirect('/home/generate')->with('success','添加成功...');
+            }
         } else{
             return back()->with('error','添加失败...');
         }

@@ -107,7 +107,7 @@ Route::get('home/goshopping','home\OrdersController@goshopping');
 Route::post('home/nocreate','home\OrdersController@nocreate');
 
 Route::post('home/orders','home\OrdersController@orders');
-Route::get('home/success','home\OrdersController@success');
+Route::get('home/succes','home\OrdersController@success');
 
 
 //前台用户注册
@@ -161,7 +161,7 @@ Route::get('home/draw','home\UserordesController@draw');
 Route::get('home/exchange','home\UserordesController@exchange');
 
 // 未付款订单
-Route::get('home/nocreate','home\UserordesController@nocreate');
+Route::get('home/nocreate','home\UserordesController@nocreate');               
 
 // 删除未付款订单
 Route::post('home/del','home\UserordesController@del');

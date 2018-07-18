@@ -27,7 +27,6 @@
 <div style="height:40px;"></div>
     <div id='order'>
         <span id='o-title'>选择收货地址</span>
-        <span id='o-title' style="float:right;"><a href="/home/insert" style="color:blue;">添加收货地址</a></span>
         
          <div style="height:20px;"></div>
 		 <div style='clear:both;'></div>
@@ -39,7 +38,6 @@
             <td><span user="{{$v->address_user}}" id='o-addrse'>收货人 : {{$v->address_user}}</span></td>
             <td><span adr="{{$v->address}}" id='o-addrse'>收货地址 : {{$v->address}}</span></td>
             <td><span tel="{{$v->address_tel}}" id='o-addrse'>联系电话 : {{$v->address_tel}}</span></td>
-            <td><a class="edit" href="/home/addredit/{{$v->id}}/edit/{{$user_id}}" style="color:blue;">修改收货地址</a></td>
          </tr>
          @endforeach
          </table>
