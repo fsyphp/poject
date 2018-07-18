@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Orders;
 use App\Model\Orders_detail;
 use App\Model\Nocreate;
+use App\Model\Change;
 use DB;
 
 class DeliveryController extends Controller
@@ -23,6 +24,8 @@ class DeliveryController extends Controller
         // 查询未发货订单
         $orders = new Orders();
         $when = $orders -> when();
+        // 查询抽奖和兑换后未发货的商品
+        $wei = Change::where('static',0)->where('user_id',session('user_id'))->get();
         return view('home/userorders/when',[
             'data'=>$data,
             'no'=>$no,

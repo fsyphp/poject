@@ -1,26 +1,5 @@
 @extends('home/after/index')
 
-@section('css')
-    <style>
-        #province select{margin-right:10px;width:85px;height:30px;}
-    </style>
-    <link href="/home/css/common.css" rel="stylesheet" type="text/css" />
-    <link href="/home/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="/home/css/user_style.css" rel="stylesheet" type="text/css" />
-    <link href="/home/skins/all.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://lib.h-ui.net/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.provincesCity.js"></script>
-	<script type="text/javascript" src="/js/provincesData.js"></script>	
-    <script src="/js/layer.js"></script>
-    <!-- <script src="/home/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script> -->
-    <!-- <script src="/home/js/common_js.js" type="text/javascript"></script> -->
-    <!-- <script src="/home/js/footer.js" type="text/javascript"></script> -->
-    <!-- <script src="/home/layer/layer.js" type="text/javascript"></script> -->
-    <!-- <script src="/home/js/iCheck.js" type="text/javascript"></script> -->
-    <!-- <script src="/home/js/custom.js" type="text/javascript"></script> -->
-@endsection
-
-
  @section('content')
  <!--右侧样式属性-->
  <div class="right_style">
@@ -87,6 +66,7 @@
                 title: '成功提示...',
                 icon: 1,
                 content: text,
+                closeBtn: 2,
             });
         }
         if(err){
@@ -94,6 +74,7 @@
                 title: '添加失败...',
                 icon: 2,
                 content: err,
+                closeBtn: 2,
             });
         }
         if(errs){
@@ -101,12 +82,14 @@
                 title: '添加失败...',
                 icon: 2,
                 content: '最多添加五条收货地址...',
+                closeBtn: 2,
             });
         }
         $('.btn_del').click(function(){
             layer.open({
                 title: '删除操作...',
                 icon: 3,
+                closeBtn: 2,
                 content: '你确定删除吗?',
                 btn: ['确定','取消'],
                 yes:function(index){

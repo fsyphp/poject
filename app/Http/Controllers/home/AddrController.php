@@ -57,7 +57,7 @@ class AddrController extends Controller
         }
     }
 
-    public function addrinsert()
+    public function addrinsert(Request $req)
     {
         if(!isset($_SERVER['HTTP_REFERER'])){
             return redirect('/404');

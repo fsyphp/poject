@@ -160,7 +160,6 @@
                                             </tbody>
                                         </table>
                                     </td>
-                                    @endforeach
                                     <td class="split_line">
                                         {{$v['total']}}
                                         <span class="oid" oid="{{$v['id']}}"></span>
@@ -197,6 +196,7 @@
                                         @endif
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                             @endforeach 
                         </table>
