@@ -23,6 +23,7 @@ class AddressController extends Controller
         // 显示收货地址
         return view('home/address/index',[
             'user_addr' => $user_addr,
+            'title' => '收货地址管理'
         ]);
     }
 

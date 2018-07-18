@@ -1,5 +1,5 @@
 @extends('home.after.index')
-@section('title',$title)
+@section('title','申请记录')
 @section('content')
  
  <!--分销店铺详细-->

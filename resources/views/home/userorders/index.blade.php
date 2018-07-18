@@ -10,72 +10,58 @@
 @section('layout')
     <div class="user_style clearfix">
         <div class="user_center clearfix">
-            <div class="left_style">
-                <div class="menu_style">
-                    <div class="user_title">
-                        <a href="用户中心.html">
-                            用户中心
-                        </a>
-                    </div>
-                    <div class="user_Head">
-                        <div class="user_portrait">
-                            <a href="#" title="修改头像" class="btn_link">
-                            </a>
-                            <img src="images/people.png">
-                            <div class="background_img">
-                            </div>
-                        </div>
-                        <div class="user_name">
-                            <p>
-                                <span class="name">
-                                    化海天堂
-                                </span>
-                                <a href="#">
-                                    [修改密码]
-                                </a>
-                            </p>
-                            <p>
-                                访问时间：2016-1-21 10:23
-                            </p>
-                        </div>
-                    </div>
-                    <div class="sideMen">
-                        <!--菜单列表图层-->
-                        <dl class="accountSideOption1">
-                            <dt class="transaction_manage">
-                                <em class="icon_1">
-                                </em>
-                                订单管理
-                            </dt>
-                            <dd>
-                                <ul>
-                                    <li>
-                                        <a href="/home/userorders">
-                                            我的订单
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/home/address">
-                                            收货地址
-                                        </a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
-                    </div>
-                    <script>
-                        jQuery(".sideMen").slide({
-                            titCell: "dt",
-                            targetCell: "dd",
-                            trigger: "click",
-                            defaultIndex: 0,
-                            effect: "slideDown",
-                            delayTime: 300,
-                            returnDefault: true
-                        });
-                    </script>
-                </div>
-            </div>
+           
+     <div class="left_style">
+     <div class="menu_style">
+     <div class="user_title">用户中心</div>
+     <div class="user_Head">
+     <div class="user_portrait">
+      <a href="#" title="修改头像" class="btn_link"></a> <img src="images/people.png">
+      <div class="background_img"></div>
+      </div>
+      <div class="user_name">
+       <p><span class="name">化海天堂</span><a href="#">[修改密码]</a></p>
+       <p>访问时间：2016-1-21 10:23</p>
+       </div>           
+     </div>
+     <div class="sideMen">
+     <!--菜单列表图层-->
+     <dl class="accountSideOption1">
+      <dt class="transaction_manage"><em class="icon_1"></em>订单管理</dt>
+      <dd>
+        <ul>
+          <li> <a href="/home/userorders">我的订单</a></li>
+          <li> <a href="/home/address">收货地址</a></li> 
+        </ul>
+      </dd>
+    </dl>
+     <dl class="accountSideOption1">
+      <dt class="transaction_manage"><em class="icon_2"></em>会员管理</dt>
+        <dd>
+      <ul>
+        <li> <a href="#"> 用户信息</a></li>
+        <li> <a href="用户中心-我的收藏.html"> 我的收藏</a></li>
+        <li> <a href="#"> 我的留言</a></li>
+        <li> <a href="#">我的标签</a></li>
+        <li> <a href="#"> 我的推荐</a></li>
+        <li><a href="#"> 我的评论</a></li>
+      </ul>
+    </dd>
+    </dl>
+     <dl class="accountSideOption1">
+      <dt class="transaction_manage"><em class="icon_3"></em>申请售后</dt>
+      <dd>
+       <ul>
+        <li><a href="/home/after/shouhou">申请售后</a></li>
+        <li><a href="/home/after/liulan">浏览记录</a></li>    
+      </ul>
+     </dd>
+    </dl>
+    
+    </div>
+      <script>jQuery(".sideMen").slide({titCell:"dt", targetCell:"dd",trigger:"click",defaultIndex:0,effect:"slideDown",delayTime:300,returnDefault:true});</script>
+   </div>
+ </div>
             <!--右侧样式-->
             <div class="right_style">
                 <div class="title_style">
@@ -89,23 +75,23 @@
                             我的订单（{{count($data)}}）
                         </a>
                         <a href="/home/draw" class="on">
-                            抽奖订单（23）
+                            抽奖订单
                         </a>
                         <a href="/home/exchange" class="on">
-                            兑换订单（23）
+                            兑换订单
                         </a>
                         <a href="/home/nocreate" class="number">
                             未完成（<span>{{count($no)}}</span>）
                         </a>
                         <a href="/home/when" class="">
-                            待发货（3）
+                            待发货
                         </a>
                         <a href="/home/collect" class="">
-                            待收货（5）
+                            待收货
                         </a>
                         <!-- <a href="#" class="">退货/退款（0）</a> -->
                         <a href="/home/success" class="">
-                            交易成功（0）
+                            交易成功
                         </a>
                     </div>
 

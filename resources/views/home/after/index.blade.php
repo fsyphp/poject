@@ -39,9 +39,8 @@
       <dt class="transaction_manage"><em class="icon_1"></em>订单管理</dt>
       <dd>
         <ul>
-          <li> <a href="用户中心-我的订单.html">我的订单</a></li>
-          <li> <a href="用户中心-收货地址.html">收货地址</a></li>
-          <li> <a href="#">缺货登记</a></li>
+          <li> <a href="/home/userorders">我的订单</a></li>
+          <li> <a href="/home/address">收货地址</a></li>
         </ul>
       </dd>
     </dl>
@@ -67,17 +66,7 @@
       </ul>
      </dd>
     </dl>
-     <dl class="accountSideOption1">
-        <dt class="transaction_manage"><em class="icon_4"></em>分销管理</dt>
-        <dd>
-            <ul>
-            <li> <a href="#">店铺管理</a></li>
-            <li> <a href="#">我的盟友</a></li>
-            <li> <a href="#">我的佣金</a></li>
-            <li> <a href="#">申请提现</a></li>
-            </ul>
-        </dd>
-    </dl>
+    
     </div>
       <script>jQuery(".sideMen").slide({titCell:"dt", targetCell:"dd",trigger:"click",defaultIndex:0,effect:"slideDown",delayTime:300,returnDefault:true});</script>
    </div>
