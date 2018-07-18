@@ -276,7 +276,8 @@
             icon: 3,
             btn: ['确定','取消'],
             yes: function(index){
-                $.post('/home/del',{gid:gid},function(data){
+                $.post('/home/dels',{gid:gid},function(data){
+					console.log(data);
                     if(data == '1'){
                         tr.remove();
 						if($('.remove').parents('tr').length == 0){

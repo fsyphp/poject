@@ -96,7 +96,7 @@ Route::resource('admin/after','admin\AfterController');
 // 添加商品到购物车
 Route::post('home/shoppadd','home\ShoppingController@shoppadd');
 Route::get('home/show','home\ShoppingController@show');
-Route::post('home/del','home\ShoppingController@del');
+Route::post('home/dels','home\ShoppingController@del');
 
 // 添加购物车要登录
 Route::get('home/shop_login','home\ShoppingController@shop_login');
