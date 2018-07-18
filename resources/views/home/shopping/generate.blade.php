@@ -176,7 +176,7 @@
                         closeBtn: 2,
                     });
                 } else if(data == '1'){
-                    location.href = '/home/success';
+                    location.href = '/home/succes';
                 } else if(data == '2'){
                      layer.open({
                         title: '错误提示...',
