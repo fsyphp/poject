@@ -121,7 +121,7 @@ Route::get('home/goshopping','home\OrdersController@goshopping');
 Route::post('home/nocreate','home\OrdersController@nocreate');
 
 Route::post('home/orders','home\OrdersController@orders');
-Route::get('home/success','home\OrdersController@success');
+Route::get('home/succes','home\OrdersController@success');
 
 
 //前台用户注册
