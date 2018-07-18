@@ -14,7 +14,11 @@ class LoginMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        return $next($request);
+    {   
+        if(session('uname') || session('auth') || session('img')){
+            return $next($request);
+        }else{
+            return redirect('/admin/login');
+        }
     }
 }

@@ -172,7 +172,7 @@
                                             @elseif($v['static']=='1')
                                                 已发货
                                             @elseif($v['static']=='2')
-                                                <a href="#" class="btn btn-info btn-xs" style="width:50px;margin-left:35px;">
+                                                <a href="/home/comment/create?g_id={{$x['goods_id']}}" class="btn btn-info btn-xs" style="width:50px;margin-left:35px;">
                                                     去评价
                                                 </a>
                                             @else
