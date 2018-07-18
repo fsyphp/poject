@@ -113,7 +113,7 @@ Route::post('home/addr','home\OrdersController@addr');
 // 生成订单
 Route::get('home/generate','home\OrdersController@generate');
 
-// 立即购买
+// 立即购买   
 Route::post('home/go','home\OrdersController@go');
 Route::post('home/goorders','home\OrdersController@goorders');
 Route::get('home/goshopping','home\OrdersController@goshopping');
