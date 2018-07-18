@@ -245,11 +245,11 @@ class OrdersController extends Controller
             // 开启事务
             DB::beginTransaction();
             // 将积分更新到用户详情表
-            $integral = DB::table('user_detail')->value('integral');
+            $integral = DB::table('user_detail')->where('user_id',session('user_id'))->value('integral');
             $jf = $integral+$req -> input('jf');
             DB::table('user_detail')->where('user_id',session('user_id'))->update(['integral'=>$jf]);
             // 减去商品对应的余额
-            $money = DB::table('user_detail')->value('money');
+            $money = DB::table('user_detail')->where('user_id',session('user_id'))->value('money');
             $total = $req -> input('total');
             $balance = $money - $total;
             if($balance<0){

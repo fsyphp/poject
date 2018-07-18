@@ -28,7 +28,6 @@
     <div id='order'>
         <span id='o-title'>选择收货地址</span>
         <span id='o-title' style="float:right;"><a href="/home/insert" style="color:blue;">添加收货地址</a></span>
-        
          <div style="height:20px;"></div>
 		 <div style='clear:both;'></div>
          <div style="padding:5px 0 0 50px;">
@@ -140,7 +139,7 @@
                         closeBtn: 2,
                     });
                 } else if(data == '1'){
-                    location.href = '/home/success';
+                    location.href = '/home/succes';
                 } else if(data == '2'){
                      layer.open({
                         title: '错误提示...',

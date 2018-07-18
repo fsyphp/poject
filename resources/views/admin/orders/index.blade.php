@@ -82,7 +82,7 @@
             $.post('/admin/sends',{id:id},function(data){
                 if(data == '0'){
                     text.text('已发货');
-                    text.parents('tr').find('td').eq(7).text('等待收货');
+                    text.parents('tr').find('td').eq(8).text('等待收货');
                 }
             });
             return false;

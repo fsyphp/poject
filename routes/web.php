@@ -175,7 +175,7 @@ Route::get('home/draw','home\UserordesController@draw');
 Route::get('home/exchange','home\UserordesController@exchange');
 
 // 未付款订单
-Route::get('home/nocreate','home\UserordesController@nocreate');
+Route::get('home/nocreate','home\UserordesController@nocreate');               
 
 // 删除未付款订单
 Route::post('home/del','home\UserordesController@del');
