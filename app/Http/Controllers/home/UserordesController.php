@@ -25,9 +25,14 @@ class UserordesController extends Controller
     public function index()
     {
 
-        $model = new Orders();
-        $data = $model->demo();
-        // dd($data);
+        $orders = new Orders();
+        $data = $orders -> demo();
+        if($data == null){
+            $data = [];
+        }
+        // 查询未完成订单
+        $no = Nocreate::where('user_id',session('user_id'))->get();
+        // dump($data);
 
         // 订单表和订单详情表 一对多获取数据  with
         /* $orders = Orders::with('orders_detail')->where('user_id',session('user_id'))->get();
@@ -58,6 +63,7 @@ class UserordesController extends Controller
         // 显示用户的所有订单
         return view('home/userorders/index',[
             'data' => $data,
+            'no'=>$no
             
         ]);
     }

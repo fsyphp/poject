@@ -137,7 +137,7 @@ class OrdersController extends Controller
         if($req -> input('adr') == null){
             return '0';
         }
-        try{
+        // try{
             // 开启事务
             DB::beginTransaction();
             // 将积分更新到用户详情表
@@ -187,9 +187,9 @@ class OrdersController extends Controller
                 $ordes_dei[] = $crr;
             }
             $orders_detail = $ord -> orders_detail() -> createMany($ordes_dei);
-        }catch(\Exception $e){
-            return '2';
-        }
+        // }catch(\Exception $e){
+            // return '2';
+        // }
         if($orders && $ord){
             DB::commit();
             // 订单生成 成功 将购物车的信息删除
