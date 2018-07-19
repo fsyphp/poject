@@ -195,13 +195,14 @@ class ShoppingController extends Controller
         $pass = $req -> input('pass');
 
         // 通过用户名查询密码
-        $user = User::where('uname',$uname)->select('pass','id')->first();
+        $user = User::where('uname',$uname)->select('pass','id','uname')->first();
         if(!$user){
             return '02';
         }
         // 验证密码
         if (Hash::check($pass, $user->pass)) {
             session(['user_id'=>$user->id]);
+            session(['unames'=>$user->uname]);
             $req->session()->flash('success', 'success');
             return '00';
         } else {
