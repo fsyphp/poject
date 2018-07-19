@@ -63,55 +63,56 @@ Route::post('home/userinfo/update/{id}','home\UserinfoController@update');
 
 
 
-// 后台
-Route::get('admin/indexs','admin\USerController@indexs');
-Route::get('admin/index','admin\USerController@index');
+   
+
 
 
  
+Route::group(['middleware'=>'login'],function(){
+	// 分类管理
+	Route::resource('admin/cate','admin\CateController');
+	Route::post('admin/cate/update','admin\CateController@update');
+	// 上架
+	Route::any('admin/goods/sj','admin\GoodsController@sj');
+	// 下架
+	Route::any('admin/goods/xj','admin\GoodsController@xj');
+	// 商品管理
+	Route::resource('admin/goods','admin\GoodsController');
+});
 
-// 分类管理
-Route::resource('admin/cate','admin\CateController');
-Route::post('admin/cate/update','admin\CateController@update');
-// 上架
-Route::any('admin/goods/sj','admin\GoodsController@sj');
-// 下架
-Route::any('admin/goods/xj','admin\GoodsController@xj');
-// 商品管理
-Route::resource('admin/goods','admin\GoodsController');
- 
+Route::group(['middleware'=>'login'],function(){
+	//积分商品管理
+	Route::resource('admin/integral','admin\IntegralController');
 
-//积分商品管理
-Route::resource('admin/integral','admin\IntegralController');
+	//通过ajax修改积分商品名称
+	Route::post('admin/title','admin\IntegralController@title');
 
-//通过ajax修改积分商品名称
-Route::post('admin/title','admin\IntegralController@title');
+	//抽奖商品
+	Route::resource('admin/lottery','admin\LotteryController');
 
-//抽奖商品
-Route::resource('admin/lottery','admin\LotteryController');
+	//通过 ajax 改变奖品状态
+	Route::post('admin/static','admin\LotteryController@static');
 
-//通过 ajax 改变奖品状态
-Route::post('admin/static','admin\LotteryController@static');
+	// 实体店
+	Route::resource('admin/shop','admin\ShopController');
+});
 
-// 实体店
-Route::resource('admin/shop','admin\ShopController');
-
-
-Route::group([],function(){
+Route::group(['middleware'=>'login'],function(){
 	Route::get('admin/banner/index','admin\BannerController@index');
 	Route::get('admin/banner/create','admin\BannerController@create');
 	Route::post('admin/banner/store','admin\BannerController@store');
 	Route::get('admin/banner/edit/{id}','admin\BannerController@edit');
 	Route::post('admin/banner/update/{id}','admin\BannerController@update');
-	Route::get('admin/banner/destroy/{id}','admin\BannerController@destroy');	
-});
-Route::any('admin/after/shen','admin\AfterController@shen');
+	Route::get('admin/banner/destroy/{id}','admin\BannerController@destroy');
+	Route::any('admin/after/shen','admin\AfterController@shen');
 
-Route::resource('admin/after','admin\AfterController');
+	Route::resource('admin/after','admin\AfterController');	
+});
+
 ///后台
 // 添加商品到购物车
 Route::post('home/shoppadd','home\ShoppingController@shoppadd');
-Route::get('home/show','home\ShoppingController@show');
+Route::get('home/show','home\ShoppingController@show')->middleware('hlogin'); //------------------
 Route::post('home/dels','home\ShoppingController@del');
 
 // 添加购物车要登录
@@ -166,22 +167,21 @@ Route::get('home/insert','home\AddrController@addrinsert');
 // 添加收货地址
 Route::post('home/store','home\AddrController@addrstore');
 
-/* ======================= 后台常规订单管理 ================================= */
-Route::resource('admin/orders','admin\OrdersController');
-//删除订单 
-Route::post('admin/ordersDel','admin\OrdersController@ordersDel');
-// 订单详情
-Route::get('admin/ordersdetail/{id}','admin\OrdersController@ordersdetail');
-// 商品发货
-Route::post('admin/sends','admin\OrdersController@sends');
+Route::group(['middleware'=>'login'],function(){
+	/* ======================= 后台常规订单管理 ================================= */
+	Route::resource('admin/orders','admin\OrdersController');
+	// 订单详情
+	Route::get('admin/ordersdetail/{id}','admin\OrdersController@ordersdetail');
+	// 商品发货
+	Route::post('admin/sends','admin\OrdersController@sends');
 
-/* ============================ 后台抽奖兑换管理 =============================== */
-Route::resource('admin/lotDraw','admin\LotdrawController');
-// 发货
-Route::post('admin/fahuo','admin\LotdrawController@fahuo');
-// 订单详情
-Route::get('admin/lotDetail/{id}','admin\LotdrawController@lotdetail');
-
+	/* ============================ 后台抽奖兑换管理 =============================== */
+	Route::resource('admin/lotDraw','admin\LotdrawController');
+	// 发货
+	Route::post('admin/fahuo','admin\LotdrawController@fahuo');
+	// 订单详情
+	Route::get('admin/lotDetail/{id}','admin\LotdrawController@lotdetail');
+});
 
 /* =========================== 个人订单 ================================= */
 
@@ -236,6 +236,10 @@ Route::post('home/chous','home\OrdersController@chous');
 
 /* ========================== 用户管理 ========================= */
 Route::group(['middleware'=>'login'],function(){
+	// 后台
+	Route::get('admin/indexs','admin\USerController@indexs');
+	Route::get('admin/index','admin\USerController@index');
+	/*------------ 用户 --------------*/
 	Route::get('/admin/user/indexs','admin\UserController@indexs');  // 父类模板
 	Route::get('/admin/user/create','admin\UserController@create')->middleware('logins');  // 添加页面
 	Route::post('/admin/user/insert','admin\UserController@insert')->middleware('logins');   // 添加操作
@@ -266,14 +270,15 @@ Route::any('/home/gpass_cz','home\LoginController@gpass_cz'); // 修改密码操
 Route::any('/home/pass','home\LoginController@pass');  // 密码重置
 Route::any('/edit','home\LoginController@edit'); // 退出登陆
 
-/* ============================== 评价管理 ================================ */
-Route::get('/admin/comment/index','admin\CommentController@index');  // 显示页面
-Route::any('/admin/comment/delete','admin\CommentController@delete')->middleware('login'); // 删除操作
+ // ============================== 评价管理 ================================ 
+Route::group(['middleware'=>'login'],function(){
+	Route::get('/admin/comment/index','admin\CommentController@index');  // 显示页面
+	Route::any('/admin/comment/delete','admin\CommentController@delete')->middleware('login'); // 删除操作
 
-Route::get('/home/comment/create','admin\CommentController@create');  /// 添加评论页面
-Route::any('/home/comment/insert','admin\CommentController@insert');  /// 添加评论操作
-Route::any('/home/comment/comment_over','admin\CommentController@over'); // 评价结束页
-
+	Route::get('/home/comment/create','admin\CommentController@create');  /// 添加评论页面
+	Route::any('/home/comment/insert','admin\CommentController@insert');  /// 添加评论操作
+	Route::any('/home/comment/comment_over','admin\CommentController@over'); // 评价结束页
+});
 
 /* =============================== 聊天客服 ================================== */
 Route::group(['middleware'=>'login'],function(){
@@ -281,5 +286,5 @@ Route::group(['middleware'=>'login'],function(){
 	Route::post('/admin/chat/create','admin\ChatController@create'); // ajax post 传值到前台页面
 	Route::any('/admin/chat','admin\ChatController@chat')->middleware('logins'); // 后台聊天页面
 });
-Route::any('/home/chat','home\ChatController@chat'); // 前台聊天页面
+Route::any('/home/chat','home\ChatController@chat')->middleware('hlogin'); // 前台聊天页面
 Route::post('/home/chat/create','home\ChatController@create'); // ajax post 传值到后台页面

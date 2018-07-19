@@ -279,7 +279,7 @@
                             <a href="index_v1.html" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i>网站首页</a>
                         </li>
                         <li class="dropdown hidden-xs">
-                          <a href="login.html" class="oll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>  
+                          <a href="/admin/loginout" class="oll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>  
                         </li>
                     </ul>
                 </nav>

@@ -233,6 +233,7 @@ class LoginController extends Controller
     public function edit()
     {
         session(['unames'=>'']); //清空session值
+        session(['user_id'=>'']); // 清空session值
         return redirect('/home/login')->with('success','退出成功');
     }
 

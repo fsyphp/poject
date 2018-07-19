@@ -26,19 +26,18 @@
   <div id="top">
     <div class="Inside_pages">
       <div class="Collection">
-      @if(!session('unames'))
+      @if(!session('user_id'))
       <a href="/home/login" class="green">请登录</a> 
       @else
-      <b>欢迎:{{session('unames')}} <a href="/edit">退出</a></b>
+      <b>欢迎:<a href="/home/userinfo/index">{{session('unames')}}</a> <a href="/edit">退出</a></b>
       @endif
       <a href="/home/zhuce" class="green">免费注册</a></div>
   <div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">首页</a></li> 
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">消息中心</a></li>
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/">首页</a></li> 
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/home/chat">消息中心</a></li>
        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">商品分类</a></li>
-        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的购物车<b>(0)</b></a></li>	
+        <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="/home/show">我的购物车<b></b></a></li>	
 	  </ul>
 	</div>
     </div>  
@@ -200,12 +199,7 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
   <ul class="fixedBoxList">
-      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>消息中心</strong></a> </li>
-    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-		<p class="good_cart">9</p>
-			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
+    <li class="fixeBoxLi cart_bd" id="cartboxs"><a href="/home/show"><span class="fixeBoxSpan"></span> <strong>购物车</strong></a>
     <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
       <div class="ServiceBox">
         <div class="bjfffs"></div>
@@ -218,18 +212,7 @@
 		        </dl>
 	          </div>
      </li>
-	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">
-			<span class="fixeBoxSpan"></span> <strong>微信</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div>
-			<div class="QR_code">
-			 <p><img src="/home/images/erweim.jpg" width="180px" height="180px" /></p>
-			 <p>微信扫一扫，关注我们</p>
-			</div>		
-			</div>
-			</li>
-
-    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏夹</strong> </a> </li>
+    <li class="fixeBoxLi Home"> <a href="/home/collect/index"> <span class="fixeBoxSpan"></span> <strong>收藏夹</strong> </a> </li>
     <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
   </ul>
 </div>
