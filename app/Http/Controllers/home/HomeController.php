@@ -12,6 +12,7 @@ use DB;
 use App\Model\Banner;
 use App\Model\Cate;
 use App\Model\Shopping;
+use App\Model\FriendLink;
 
 class HomeController extends Controller
 {

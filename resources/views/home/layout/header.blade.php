@@ -104,19 +104,9 @@
  <div class="link_style clearfix" style="margin:0 auto;">
  <div class="title">友情链接</div>
  <div class="link_name">
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
-  <a href="#"><img src="/home/products/logo/34.jpg"  width="100"/></a>
+    @foreach(App\Model\FriendLink::friendLink() as $k=>$v)
+      <dd style="float:left;margin-left:150px;margin:20px;"><a href="{{$v->url}}" style="color:block;font-size:20px;text-align:center;">{{$v->name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></dd>
+    @endforeach
  </div> 
  </div>
 </div>
