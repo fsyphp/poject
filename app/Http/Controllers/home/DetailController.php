@@ -16,12 +16,18 @@ class DetailController extends Controller
 {
     public function detail($id)
     {
-  
         $comment = Comment::where('g_id',$id)->get(); // 根据商品id获取数据
-        foreach($comment as $k=>$v){
-            $u_id[] = $v -> user_id;
+        // dd($comment[0]->user_id);
+        if(!empty($comment[0])){
+            foreach($comment as $k=>$v){
+                $u_id[] = $v -> user_id;
+            }
+
+            $user = Users::where('id',$u_id)->with('user_detail')->get();
+        }else{
+            $user = '';
         }
-        $user = Users::where('id',$u_id)->with('user_detail')->get();
+
         /*============ 上面魏远洋的代码 ==============*/
        $re=Goods_deetail::with('goods')->orderBy('number','desc')->paginate(6);
        $goods=Goods::where('id',$id)->with('detail')->first(); 

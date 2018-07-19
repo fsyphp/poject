@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>javascript实现QQ本地聊天程序-xw素材网</title>
+	<title>聊天页面</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="/lt/css/style.css" />
 </head>
