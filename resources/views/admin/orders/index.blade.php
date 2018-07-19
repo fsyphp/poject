@@ -57,13 +57,12 @@
                                 异常
                             @endif
                             </a>
-                            <form id="form" action="/admin/orders/{{$v->id}}" method="post" style="display:inline;">
-                                {{ csrf_field() }}
-                                 {{ method_field('DELETE') }}
-                                 @if(($v->static==2))
-                                <button class="btn btn-info remove btn-xs">删除</button>
-                                @endif
-                            </form>
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            @if(($v->static==2))
+                            <button oid="{{$v->id}}" class="btn btn-info remove btn-xs">删除</button>
+                            @endif
+                            
                         </td>
                     </tr>
                 @endforeach
@@ -90,12 +89,21 @@
 
         // 删除提示
         $('.remove').click(function(){
+            var oid = $(this);
             layer.open({
                 title: '删除操作',
                 content: '确认删除吗?',
                 btn: ['确认','取消'],
                 yes:function(index){
-                    $('#form').submit();
+                    var id = oid.attr('oid');
+                    $.post('/admin/ordersDel',{id:id},function(data){
+                        if(data=='00'){
+                            layer.msg('删除成功',{icon:6,time:3000});
+                            oid.parents('tr').remove();
+                        } else if(data=='01'){
+                            layer.msg('删除失败',{icon:5,time:3000});
+                        }
+                    });
                      layer.close(index);
                 },
                 closeBtn: 2,

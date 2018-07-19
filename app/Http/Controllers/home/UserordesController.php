@@ -220,6 +220,19 @@ class UserordesController extends Controller
         ]);
     }
 
+    public function lotfa(Request $req)
+    {
+        $id = $req->input('id');
+        $row = Change::where('id',$id)->update([
+            'static'=>2
+        ]);
+        if($row){
+            return '00';
+        } else {
+            return '01';
+        }
+    }
+
     // 待付款订单
     public function nocreate()
     {

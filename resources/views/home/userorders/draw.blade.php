@@ -81,10 +81,14 @@
                     <a href="#">
                         联系客服
                     </a>
-                    @if($v->static=='2')
-                        <a href="#">
-                            删除
+                    @if($v->static=='1')
+                        <a class="btn btns" lid="{{$v->id}}" style="width:60px;height:25px;line-height:25px;margin-left:30px;" href="#">
+                            确认收货
                         </a>
+                        @elseif($v->static=='2')
+                            <a class="btn" style="width:60px;height:25px;line-height:25px;margin-left:30px;" href="">删除</a>
+                        @else
+                            异常
                     @endif
                 </td>
             </tr>
@@ -120,6 +124,17 @@
                 });
                 layer.close(index);
             },
+        });
+        return false;
+    });
+    $('.btns').click(function(){
+        var id = $(this).attr('lid');
+        var dom = $(this);
+        $.post('/home/lotfa',{id:id},function(data){
+            if(data=='00'){
+                dom.html('<a href="">删除</a>');
+                dom.parents('tr').find('td').eq(5).html('<a class="btn btns" lid="{{$v->id}}" style="width:60px;height:25px;line-height:25px;margin-left:30px;" href="#">去评价</a>');
+            }
         });
         return false;
     });

@@ -168,6 +168,8 @@ Route::post('home/store','home\AddrController@addrstore');
 
 /* ======================= 后台常规订单管理 ================================= */
 Route::resource('admin/orders','admin\OrdersController');
+//删除订单 
+Route::post('admin/ordersDel','admin\OrdersController@ordersDel');
 // 订单详情
 Route::get('admin/ordersdetail/{id}','admin\OrdersController@ordersdetail');
 // 商品发货
@@ -188,6 +190,9 @@ Route::resource('home/userorders','home\UserordesController');
 // 抽奖商品订单
 Route::get('home/draw','home\UserordesController@draw');
 
+// 抽奖商品收货
+Route::post('home/lotfa','home\UserordesController@lotfa');
+
 // 兑换商品订单
 Route::get('home/exchange','home\UserordesController@exchange');
 
@@ -195,7 +200,7 @@ Route::get('home/exchange','home\UserordesController@exchange');
 Route::get('home/nocreate','home\UserordesController@nocreate');               
 
 // 删除未付款订单
-Route::post('home/del','home\UserordesController@del');
+Route::post('home/shanc','home\UserordesController@del');
 
 // 待发货订单
 Route::get('home/when','home\DeliveryController@when');

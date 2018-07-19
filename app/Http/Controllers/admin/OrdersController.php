@@ -21,6 +21,8 @@ class OrdersController extends Controller
     {
         // 查询订单信息
         $orders = Orders::get();
+        // dump($orders);
+        // exit;
         // 显示订单信息
         return view('admin/orders/index',[
             'orders' => $orders,   
@@ -104,6 +106,12 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
+        // 
+    }
+
+    public function ordersDel(Request $req)
+    {
+        $id =$req -> input('id');
         // 删除订单主表信息
         // 开启事务
         DB::beginTransaction();
@@ -113,10 +121,10 @@ class OrdersController extends Controller
         if($del && $detail_del){
             // 提交
             DB::commit();
-            return redirect('/admin/orders')->with('success','删除成功...');
+            return '00';
         } else {
             DB::rollBack();
-            return back()->with('error','删除失败...');
+            return '01';
         }
     }
 

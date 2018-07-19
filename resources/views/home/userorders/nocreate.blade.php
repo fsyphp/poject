@@ -73,7 +73,7 @@
                     <a href="#">
                         联系客服
                     </a>
-                    <a class="del" gid="{{$v->id}}" href="#">
+                    <a class="delss" gid="{{$v->id}}" href="#">
                         删除
                     </a>
                 </td>
@@ -89,7 +89,7 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('.del').click(function(){
+    $('.delss').click(function(){
         var tr = $(this).parents('tr');
         var trs = tr.prev();
         var gid = $(this).attr('gid');
@@ -100,7 +100,7 @@
             closeBtn: 2,
             btn: ['确定','取消'],
             yes:function(index){
-                $.post('/home/del',{id:gid},function(data){
+                $.post('/home/shanc',{id:gid},function(data){
                     if(data == '00' ){
                         tr.remove();
                         trs.remove();
