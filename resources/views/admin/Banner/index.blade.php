@@ -17,7 +17,7 @@
         <td>{{ $v->id }}</td>
         <td>{{ $v->name }}</td>
         <td>{{ $v->url }}</td>
-        <td><img src="{{ $v->pic }}" style="width:120px;height: 150px;"/></td> 
+        <td><img src="{{ $v->pic }}" style="width:300px;height: 100px;"/></td> 
         <td>
             <form action="/admin/banner/destroy/{{ $v->id }}" method='get' style='display:inline'>
                         

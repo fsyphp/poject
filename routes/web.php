@@ -20,7 +20,15 @@ Route::get('/404',function(){
 // Route::get('/home/t2','home\LtController@t2');
 // Route::any('/home/sub','home\LtController@sub');
 // Route::any('/home/pub','home\LtController@pub');
-
+//友情链接
+Route::group([],function(){
+	Route::get('admin/friendlink/index','admin\FriendLinkController@index');
+	Route::get('admin/friendlink/create','admin\FriendLinkController@create');
+	Route::post('admin/friendlink/store','admin\FriendLinkController@store');
+	Route::get('admin/friendlink/edit/{id}','admin\FriendLinkController@edit');
+	Route::post('admin/friendlink/update/{id}','admin\FriendLinkController@update');
+	Route::get('admin/friendlink/destroy/{id}','admin\FriendLinkController@destroy');
+});
 // 售后
 Route::any('home/after','home\AfterController@index');
 Route::any('home/after/shouhou','home\AfterController@shouhou');
@@ -45,8 +53,16 @@ Route::get('/','home\HomeController@index');
 Route::any('home/detail/{id}','home\DetailController@detail');
 // 秒杀商品列表页
 Route::any('home/miao','home\DetailController@miao_list');
+// 收藏
+Route::get('home/collect/index','home\CollectController@index');
+Route::get('home/collect/delete','home\CollectController@delete');
+// 用户个人信息
+Route::get('home/userinfo/index','home\UserinfoController@index');
+Route::get('home/userinfo/edit/{id}','home\UserinfoController@edit');
+Route::post('home/userinfo/update/{id}','home\UserinfoController@update');
 
-   
+
+
 // 后台
 Route::get('admin/indexs','admin\USerController@indexs');
 Route::get('admin/index','admin\USerController@index');

@@ -206,6 +206,17 @@
                             </li> 
                         </ul>
                     </li>
+                    <li>
+                        <a href="mailbox.html"><i class="fa fa-ambulance"></i> <span class="nav-label">友情链接管理 </span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="/admin/friendlink/index">浏览链接</a>
+                            </li> 
+                            <li>
+                                <a class="J_menuItem" href="/admin/friendlink/create">添加链接</a>
+                            </li> 
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>

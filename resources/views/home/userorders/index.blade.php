@@ -39,12 +39,10 @@
       <dt class="transaction_manage"><em class="icon_2"></em>会员管理</dt>
         <dd>
       <ul>
-        <li> <a href="#"> 用户信息</a></li>
-        <li> <a href="用户中心-我的收藏.html"> 我的收藏</a></li>
-        <li> <a href="#"> 我的留言</a></li>
-        <li> <a href="#">我的标签</a></li>
-        <li> <a href="#"> 我的推荐</a></li>
+        <li> <a href="/home/collect/index"> 我的收藏</a></li>
+        <li><a href="/home/userinfo/index"> 个人信息</a></li>
         <li><a href="#"> 我的评论</a></li>
+
       </ul>
     </dd>
     </dl>
@@ -160,7 +158,6 @@
                                             </tbody>
                                         </table>
                                     </td>
-                                    @endforeach
                                     <td class="split_line">
                                         {{$v['total']}}
                                         <span class="oid" oid="{{$v['id']}}"></span>
@@ -197,6 +194,7 @@
                                         @endif
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                             @endforeach 
                         </table>
