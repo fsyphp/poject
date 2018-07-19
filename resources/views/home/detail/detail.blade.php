@@ -275,7 +275,7 @@ document.getElementById(bg_div).style.display='none';
                     <ul>
                         <li class="cur">
                             <input name="RadioGroup1" type="radio" value="" checked="checked" id="RadioGroup1_0">
-                            全部（100）</li>   
+                            全部（100）</li>     
                         <li>
                             <input name="RadioGroup1" type="radio" value="" id="RadioGroup1_1">
                             好评（80）</li>
