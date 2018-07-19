@@ -67,24 +67,27 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="/admin/img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="@if(session('img') == '') \toux\checkend.gif @elseif(session('img') == true) {{session('img')}} @else @endif" 
+                            style="width:70px;height:70px;border-radius:50%;"/></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                               <span class="block m-t-xs"><strong class="font-bold">{{session('uname')}}</strong></span>
+                                <span class="text-muted text-xs block">
+                                @if(session('auth') == 0)
+                                超级管理员
+                                @elseif(session('auth') == 1)
+                                普通管理员
+                                @elseif(session('auth') == 2)
+                                普通用户
+                                @else
+                                @endif
+                                <b class="caret"></b></span>
                                 </span>
-                            </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
-                                </li>
-                                <li><a class="J_menuItem" href="profile.html">个人资料</a>
-                                </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
-                                </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                                <li><a class="J_menuItem" href="/admin/chat">后台客服服务</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">安全退出</a>
+                                <li><a href="/admin/loginout">安全退出</a>
                                 </li>
                             </ul>
                         </div>
@@ -106,20 +109,13 @@
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="/admin/indexs">浏览用户</a>
+                             <li>
+                                <a class="J_menuItem" href="/admin/user/index">浏览用户</a>
                                 <!-- <a class="J_menuItem" href="graph_echarts.html">浏览用户</a> -->
                             </li>
                             <li>
-                            <a class="J_menuItem" href="/admin/add">添加用户</a>
+                            <a class="J_menuItem" href="/admin/user/create">添加用户</a>
                             </li>
-                            <li>
-                                <a class="J_menuItem" href="graph_morris.html">修改用户</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="graph_rickshaw.html">删除用户</a>
-                            </li>
-
                         </ul>
                     </li>
 
@@ -157,6 +153,13 @@
                             </li>
                             <li><a class="J_menuItem" href="/admin/lottery/create">抽奖商品添加</a>
                             </li> 
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="mailbox.html"><i class="fa fa-shopping-cart"></i> <span class="nav-label">评价留言管理</span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a class="J_menuItem" href="/admin/comment/index">浏览评价</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

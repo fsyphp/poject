@@ -25,8 +25,14 @@
  <div id="header_top">
   <div id="top">
     <div class="Inside_pages">
-      <div class="Collection"><a href="#" class="green">请登录</a> <a href="#" class="green">免费注册</a></div>
-	<div class="hd_top_manu clearfix">
+      <div class="Collection">
+      @if(!session('unames'))
+      <a href="/home/login" class="green">请登录</a> 
+      @else
+      <b>欢迎:{{session('unames')}} <a href="/edit">退出</a></b>
+      @endif
+      <a href="/home/zhuce" class="green">免费注册</a></div>
+  <div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">首页</a></li> 
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">我的小充</a> </li>
@@ -205,16 +211,9 @@
         <div class="bjfffs"></div>
         <dl onclick="javascript:;">
 		    <dt><img src="/home/images/Service1.png"></dt>
-		       <dd><strong>QQ客服1</strong>
-		          <p class="p1">9:00-22:00</p>
-		           <p class="p2"><a href="">点击交谈</a></p>
-		          </dd>
-		        </dl>
-				<dl onclick="javascript:;">
-		          <dt><img src="/home/images/Service1.png"></dt>
-		          <dd> <strong>QQ客服1</strong>
-		            <p class="p1">9:00-22:00</p>
-		            <p class="p2"><a href="#">点击交谈</a></p>
+		       <dd><strong>商城客服</strong>
+		          <p class="p1">0:00-24:00</p>
+		           <p class="p2"><a href="/home/chat">点击交谈</a></p>
 		          </dd>
 		        </dl>
 	          </div>

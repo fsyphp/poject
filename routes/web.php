@@ -15,7 +15,7 @@ Route::get('/404',function(){
     abort(404);
 });
 
-// // 聊天
+// // 聊天  
 // Route::get('/home/t1','home\LtController@t1');
 // Route::get('/home/t2','home\LtController@t2');
 // Route::any('/home/sub','home\LtController@sub');
@@ -142,11 +142,11 @@ Route::get('home/succes','home\OrdersController@success');
 
 
 //前台用户注册
-Route::get('home/register','home\LoginController@register');
-Route::post('home/insert','home\LoginController@insert');
-Route::post('home/user','home\LoginController@user');
-Route::get('home/email','home\LoginController@email');
-Route::get('home/code','home\LoginController@code');
+// Route::get('home/register','home\LoginController@register');
+// Route::post('home/insert','home\LoginController@insert');
+// Route::post('home/user','home\LoginController@user');
+// Route::get('home/email','home\LoginController@email');
+// Route::get('home/code','home\LoginController@code');
 
 /* =================== 前台个人中心地址管理 ================================= */
 // 用户地址管理
@@ -228,3 +228,53 @@ Route::get('home/jiesuan/{id}','home\UserordesController@jiesuan');
 
 // 生成订单
 Route::post('home/chous','home\OrdersController@chous');
+
+/* ========================== 用户管理 ========================= */
+Route::group(['middleware'=>'login'],function(){
+	Route::get('/admin/user/indexs','admin\UserController@indexs');  // 父类模板
+	Route::get('/admin/user/create','admin\UserController@create')->middleware('logins');  // 添加页面
+	Route::post('/admin/user/insert','admin\UserController@insert')->middleware('logins');   // 添加操作
+	Route::get('/admin/user/index','admin\UserController@index'); // 显示用户
+	Route::delete('/admin/user/delete','admin\UserController@delete')->middleware('logins');  // 用户删除
+	Route::get('/admin/user/update','admin\UserController@update')->middleware('logins'); // 修改页面
+	Route::post('/admin/user/edit/{id}','admin\UserController@edit')->middleware('logins'); // 修改方法
+	Route::any('/admin/messaje','admin\UserController@messaje'); // 后台个人页面
+});
+
+/*================================ 后台登录============================ */
+Route::any('/admin/captcha','admin\LoginController@captcha'); // 验证码
+Route::any('/admin/loginout','admin\LoginController@loginout'); // 退出
+Route::get('/admin/login','admin\LoginController@login'); // 登录页面
+Route::post('/admin/dologin','admin\LoginController@dologin'); // 登录方法
+
+
+/* =============================== 前台登录注册 =============================== */
+Route::get('/home/login','home\LoginController@login'); // 前台登录
+Route::post('/home/dologin','home\LoginController@dologin'); // 前台登录方法
+Route::get('/home/zhuce','home\LoginController@zhuce'); // 前台注册
+Route::post('/home/zccz','home\LoginController@zccz');  // 注册方法
+Route::any('/home/jihuo','home\LoginController@jihuo');  // 用户激活
+Route::get('/home/mima','home\LoginController@mima');  // 忘记密码
+Route::get('/home/gpass','home\LoginController@gpass');  // 修改密码
+Route::get('/home/captcha','home\LoginController@captcha'); // 验证码
+Route::any('/home/gpass_cz','home\LoginController@gpass_cz'); // 修改密码操作
+Route::any('/home/pass','home\LoginController@pass');  // 密码重置
+Route::any('/edit','home\LoginController@edit'); // 退出登陆
+
+/* ============================== 评价管理 ================================ */
+Route::get('/admin/comment/index','admin\CommentController@index');  // 显示页面
+Route::any('/admin/comment/delete','admin\CommentController@delete')->middleware('login'); // 删除操作
+
+Route::get('/home/comment/create','admin\CommentController@create');  /// 添加评论页面
+Route::any('/home/comment/insert','admin\CommentController@insert');  /// 添加评论操作
+Route::any('/home/comment/comment_over','admin\CommentController@over'); // 评价结束页
+
+
+/* =============================== 聊天客服 ================================== */
+Route::group(['middleware'=>'login'],function(){
+	Route::any('/home/indexs','home\ChatController@indexs'); //  前后台聊天页面公共页面
+	Route::post('/admin/chat/create','admin\ChatController@create'); // ajax post 传值到前台页面
+	Route::any('/admin/chat','admin\ChatController@chat')->middleware('logins'); // 后台聊天页面
+});
+Route::any('/home/chat','home\ChatController@chat'); // 前台聊天页面
+Route::post('/home/chat/create','home\ChatController@create'); // ajax post 传值到后台页面

@@ -13,7 +13,7 @@
            
      <div class="left_style">
      <div class="menu_style">
-     <div class="user_title">用户中心</div>
+     <div class="user_title">用户中心</div>      
      <div class="user_Head">
      <div class="user_portrait">
       <a href="#" title="修改头像" class="btn_link"></a> <img src="images/people.png">
@@ -170,7 +170,7 @@
                                             @elseif($v['static']=='1')
                                                 已发货
                                             @elseif($v['static']=='2')
-                                                <a href="#" class="btn btn-info btn-xs" style="width:50px;margin-left:35px;">
+                                                <a href="/home/comment/create?g_id={{$x['goods_id']}}" class="btn btn-info btn-xs" style="width:50px;margin-left:35px;">
                                                     去评价
                                                 </a>
                                             @else

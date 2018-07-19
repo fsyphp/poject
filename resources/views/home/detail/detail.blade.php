@@ -272,10 +272,10 @@ document.getElementById(bg_div).style.display='none';
             </div> 
             <div class="conbox">
                 <div class="pro_judge">
-                    <ul>
+                    <ul>  
                         <li class="cur">
                             <input name="RadioGroup1" type="radio" value="" checked="checked" id="RadioGroup1_0">
-                            全部（100）</li>
+                            全部（100）</li>     
                         <li>
                             <input name="RadioGroup1" type="radio" value="" id="RadioGroup1_1">
                             好评（80）</li>
@@ -286,71 +286,31 @@ document.getElementById(bg_div).style.display='none';
                             <input name="RadioGroup1" type="radio" value="" id="RadioGroup1_3">
                             差评（10）</li>
                     </ul>
+                    @foreach($comment as $k=>$v)
+                    @foreach($user as $j => $g)
                     <table width="100%" border="0">
-                        <tbody><tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
+                        <tbody>
+                        <tr>
+                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="{{$g->user_detail['img']}}" style="width: 50px;height: 50px;"></a><b>{{$g->uname}}</b></td>
+                            <td> 
+                            @if($g->user_detail['sex'] == 'm')
+                            女
+                            @elseif($g->user_detail['sex'] == 'w')
+                            男
+                            @else
+                            保密
+                            @endif
+                            </td>
+                            <td>{{$v->content}}<br>
                                 <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
+                                <span class="pro_judge_time">{{$v->create_at}}</span></td>
+                            
                         </tr>
                         <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                        <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                        <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                        <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                        <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                        <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                        <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                        <tr>
-                            <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="/home/images/01_mid.jpg" width="60" height="60" class="border_gry"></a></td>
-                            <td>茶泡出来颜色很好！味道很清香！非常喜欢！包装也很精致，下次还来买！好评！<br>
-                                <br>
-                                <span class="pro_judge_time">2014.1.3</span></td>
-                            <td>张三</td>
-                        </tr>
-                    </tbody></table>
+                        </tbody>
+                    </table>
+                    @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>

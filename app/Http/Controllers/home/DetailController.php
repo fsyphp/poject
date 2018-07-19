@@ -8,15 +8,30 @@ use App\Model\Goods;
 use App\Model\Goods_deetail;
 use App\Model\Lottery;
 use App\Model\Integral;
-use App\Model\Cate;    
+use App\Model\Cate;  
+use App\Model\Admin\Comment;  
+use App\Model\Admin\Users;
 use DB; 
 class DetailController extends Controller
 {
     public function detail($id)
     {
+        $comment = Comment::where('g_id',$id)->get(); // 根据商品id获取数据
+        // dd($comment[0]->user_id);
+        if(!empty($comment[0])){
+            foreach($comment as $k=>$v){
+                $u_id[] = $v -> user_id;
+            }
+
+            $user = Users::where('id',$u_id)->with('user_detail')->get();
+        }else{
+            $user = '';
+        }
+
+        /*============ 上面魏远洋的代码 ==============*/
        $re=Goods_deetail::with('goods')->orderBy('number','desc')->paginate(6);
        $goods=Goods::where('id',$id)->with('detail')->first(); 
-       return view('home.detail.detail',['goods'=>$goods,'title'=>'商品详情页','re'=>$re]);
+       return view('home.detail.detail',['goods'=>$goods,'title'=>'商品详情页','re'=>$re,'comment'=>$comment,'user'=>$user]);
     }
     // 积分兑换列表页
     public function integral(){
