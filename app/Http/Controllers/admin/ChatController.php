@@ -16,7 +16,7 @@ class ChatController extends Controller
     {	
     	$content = $request -> input('content');
     	// $content = dump($content);
-    	// echo $content;die;
+    	// echo $content;die;  
     	session(['contentg'=>$content]);
     	// echo session('contentg');
     }

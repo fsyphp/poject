@@ -13,7 +13,7 @@ use App\Model\Admin\User_detail;
 use Session;
 use Mail;
 use DB;
-
+   
 class LoginController extends Controller
 {
     public function login()

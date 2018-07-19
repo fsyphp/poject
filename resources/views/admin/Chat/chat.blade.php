@@ -10,7 +10,7 @@
 					<div class="user-info">
 						<h3 class="name"><a href="#">{{session('uname')}}</a></h3>
 						<p style="margin-top: 5px; color: white;"><a href="#"><img src="/lt/images/xin.png"></a>&nbsp;快乐每一天</p>
-					</div>
+					</div>  
 				</div>
 				<div class="some">
 					<a href="#"><img src="/lt/images/4.png" /></a>

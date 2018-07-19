@@ -13,7 +13,7 @@
                         <option value="3" @if($request->num == 3)   selected="selected" @endif>3</option>
                         <option value="5" @if($request->num == 5)   selected="selected" @endif>5</option>
                         <option value="30" @if($request->num == 30)   selected="selected" @endif>30</option>
-                    </select> 条记录
+                    </select> 条记录  
                 </label>
                 </div>
                 <div id="DataTables_Table_0_filter" class="dataTables_filter">

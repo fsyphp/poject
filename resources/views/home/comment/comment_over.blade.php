@@ -10,7 +10,7 @@
 
 @section('layout')
 <div id="o-header-2013">
-    <div id="header-2013" style="display:none;">
+    <div id="header-2013" style="display:none;">    
     </div>
 </div>
 <!--shortcut end-->

@@ -10,7 +10,7 @@ use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder; 
 use Session;
 
-class LoginController extends Controller
+class LoginController extends Controller   
 {
     public function login()
     {

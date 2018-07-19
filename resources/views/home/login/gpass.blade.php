@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="ajax-hook"></div>
-<div class="wrap">
+<div class="wrap">  
     <div class="wpn">
     @if(session('error'))
                 <div class="alert alert-danger alert-dismissable tan" id='tan'>

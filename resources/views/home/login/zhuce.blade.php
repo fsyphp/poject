@@ -13,7 +13,7 @@
 </head>
 <body>
     <div id="ajax-hook"></div>
-    <div class="wrap">
+    <div class="wrap">  
         <div class="wpn">
          @if(count($errors) > 0)
                 <div class="alert alert-danger alert-dismissable" id='kong'>

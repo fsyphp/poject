@@ -20,7 +20,7 @@
                 @foreach ($user as $k=>$v)
                 <tr class='zong' id="tr_{{$v['id']}}">
                     <td class='yi'>{{ $v['id'] }}</td>
-                    <td>{{ $v['uname'] }}</td>
+                    <td>{{ $v['uname'] }}</td>    
                     <td><img src="{{ $v->user_detail->img }}" alt="" width="100"></td>
                     <td>{{ $v['user_detail']['integral'] }}</td>
                     <td>{{--$v->user_detail['sex']--}}

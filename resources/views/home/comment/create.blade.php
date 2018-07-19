@@ -29,8 +29,8 @@
 		  		<b id='3'><input name='' value='0' style='border:solid 0px red;display:none;'/>☆</b>
 		  		<b id='4'><input name='' value='0' style='border:solid 0px red;display:none;'/>☆</b>
 		  		<b id='5'><input name='' value='0' style='border:solid 0px red;display:none;'/>☆</b>
-  			</div>
-  		</div>
+  			</div>  
+  		</div>  
     	<label for="exampleInputFile"></label>
     	<textarea class="form-control" rows="4" name="content" clos="100" style="margin-top:80px;"></textarea>
     	<input type="text" name="g_id" value="{{$g_id}}" style="display:none;">

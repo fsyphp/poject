@@ -14,7 +14,7 @@
         @endif
         <form action='/admin/user/edit/{{$user->id}}' method='post' class="form-horizontal" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div class="form-group">
+        <div class="form-group">    
             <label for="inputEmail3" class="col-sm-2 control-label">权限</label>
             <div class="col-sm-6">
                 <select name='auth' class="form-control sel">

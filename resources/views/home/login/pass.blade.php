@@ -12,7 +12,7 @@
      <link href="/admin/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
 </head>
 <body>
-<div id="ajax-hook"></div>
+<div id="ajax-hook"></div>  
 <div class="wrap">
     <div class="wpn">
     @if(session('error'))

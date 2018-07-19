@@ -25,4 +25,4 @@ class User_detail extends Model
      * @var array
      */
     protected $fillable = ['tel','img','sex','money','integral','token','status'];
-}
+}  

@@ -13,7 +13,7 @@
            
      <div class="left_style">
      <div class="menu_style">
-     <div class="user_title">用户中心</div>
+     <div class="user_title">用户中心</div>      
      <div class="user_Head">
      <div class="user_portrait">
       <a href="#" title="修改头像" class="btn_link"></a> <img src="images/people.png">

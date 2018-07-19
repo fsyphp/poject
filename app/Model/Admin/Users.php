@@ -29,5 +29,5 @@ class Users extends Model
     public function user_detail()
     {
         return $this-> hasOne('App\Model\Admin\User_detail','user_id');
-    }
+    }  
 }

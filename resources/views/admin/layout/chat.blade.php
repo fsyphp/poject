@@ -11,7 +11,7 @@
 		<!--left-col-->
 		@section('chat')
 		{{--<div id="left-col">
-			<!--left-header-->
+			<!--left-header-->  
 			<div class="left-header">
 				<div class="head-image" style="margin: 12px 0 0 5px;">
 					<a href="#"><img src="/lt/images/head1.png"></a>

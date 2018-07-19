@@ -272,7 +272,7 @@ document.getElementById(bg_div).style.display='none';
             </div> 
             <div class="conbox">
                 <div class="pro_judge">
-                    <ul>
+                    <ul>  
                         <li class="cur">
                             <input name="RadioGroup1" type="radio" value="" checked="checked" id="RadioGroup1_0">
                             全部（100）</li>     

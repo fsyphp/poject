@@ -25,3 +25,4 @@ class Comment extends Model
      */
     protected $fillable = ['g_id','user_id','content','stars','create_at'];
 }
+  

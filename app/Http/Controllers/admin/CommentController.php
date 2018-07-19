@@ -11,8 +11,8 @@ use App\Model\Admin\Comment;
 class CommentController extends Controller
 {
 
-	// 后台显示
-    public function index(Request $request)
+	// 后台显示  
+    public function index(Request $request) 
     {   
         // $comment = Comment::paginate(2);
         // dd($request->input('num','g_id'));

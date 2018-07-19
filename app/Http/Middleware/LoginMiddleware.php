@@ -18,7 +18,7 @@ class LoginMiddleware
         if(session('uname') || session('auth') || session('img')){
             return $next($request);
         }else{
-            return redirect('/admin/login');
+            return redirect('/admin/login');  
         }
     }
 }

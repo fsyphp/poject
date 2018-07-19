@@ -21,7 +21,7 @@
                     <option id='op0' value='2'>普通用户</option>
                     <option id='op1' value='1'>普通管理员</option>
                     <option id='op2' value='0'>超级管理员</option>
-                </select>  
+                </select>    
             </div>
         </div>
         <div class="form-group">

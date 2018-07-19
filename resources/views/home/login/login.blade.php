@@ -12,7 +12,7 @@
 <body>
     <div id="ajax-hook"></div>
 <div class="wrap">
-    <div class="wpn">
+    <div class="wpn">  
     @if(count($errors) > 0)
                 <div class="alert alert-danger alert-dismissable" id='che'>
                         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>

@@ -16,7 +16,7 @@ class DetailController extends Controller
 {
     public function detail($id)
     {
-
+  
         $comment = Comment::where('g_id',$id)->get(); // 根据商品id获取数据
         foreach($comment as $k=>$v){
             $u_id[] = $v -> user_id;

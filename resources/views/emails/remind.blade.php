@@ -10,4 +10,4 @@
 	<b><a href="http://www.project.com/home/jihuo?id={{$id}}&token={{$token}}">http://www.project.com/home/jihuo?id={{$id}}&$token={{$token}}</a></b>
 	<script></script>
 </body>
-</html>
+</html>  

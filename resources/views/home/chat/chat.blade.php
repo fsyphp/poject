@@ -1,4 +1,4 @@
-@extends('home.layout.chat')
+@extends('home.layout.chat')       
 <meta name="csrf-token" content="{{ csrf_token() }}"> 
 @section('chat')
 <form action="">
