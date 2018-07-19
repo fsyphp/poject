@@ -16,7 +16,7 @@
             height:10px;
         }
         .wu{
-            height:5px;
+            height:5px;     
         }
         html,body{height:auto;}
         #province{margin-left:-30px;}
