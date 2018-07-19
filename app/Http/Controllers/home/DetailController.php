@@ -57,6 +57,20 @@ class DetailController extends Controller
             return 0;
         }
     }
+
+    // 用户收藏
+    public function cang($id)
+    {
+        $row = DB::table('collect')->insert(['gid'=>$id,'uid'=>session('user_id')]);
+        if($row){
+            return redirect('/home/collect/index')->with('success','收藏成功');
+        } else {
+            return back()->with('error','收藏失败');
+        }
+    }
+
+
+
 // 商品列表页
    public function goodlist(Request $request){    
         // $goods=Goods::where(function($query) use($request){  

@@ -41,6 +41,9 @@ Route::get('home/shop/detail/{id}','admin\ShopController@detail');
 //商品列表页
 Route::get('home/goods/list','home\DetailController@goodlist');
 
+// 用户收藏
+Route::get('home/cang/{id}','home\DetailController@cang');
+
 
 // 抽奖列表页
 Route::get('home/lottery','home\DetailController@lottery');

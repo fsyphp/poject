@@ -184,7 +184,7 @@
     <ul id="lists">
     @foreach($jius as $k=>$v)
         <li class="product_display"> 
-        <a href="" class="Collect"><em></em>收藏</a> 
+        <a href="/home/cang/{{$v->id}}" class="Collect"><em></em>收藏</a> 
             <a href="/home/detail/{{$v->id}}" class="img_link"><img src="{{\Config('app.gpic')}}{{$v->gpic}}"  width="140" height="140"/></a>
             <a href="/home/detail/{{$v->id}}" class="name">{{$v->gname}}</a>
             <h3><b>￥</b>{{$v->price}}</h3>
@@ -216,7 +216,7 @@
     <ul id="lists">
     @foreach($shipin as $k=>$v)
         <li class="product_display">
-        <a href="" class="Collect"><em></em>收藏</a>
+        <a href="/home/cang/{{$v->id}}" class="Collect"><em></em>收藏</a>
         <a href="/home/detail/{{$v->id}}" class="img_link"><img src="{{\Config('app.gpic')}}{{$v->gpic}}"  width="140" height="140"/></a>
         <a href="/home/detail/{{$v->id}}" class="name">{{$v->gname}}</a>
         <h3><b>￥</b>{{$v->price}}</h3>
@@ -311,7 +311,7 @@
     <ul id="lists">
     @foreach($fuzhuang as $k=>$v)
         <li class="product_display">
-        <a href="" class="Collect"><em></em>收藏</a>
+        <a href="/home/cang/{{$v->id}}" class="Collect"><em></em>收藏</a>
         <a href="/home/detail/{{$v->id}}" class="img_link"><img src="{{\Config('app.gpic')}}{{$v->gpic}}"  width="140" height="140"/></a>
         <a href="/home/detail/{{$v->id}}" class="name">{{$v->gname}}</a>
         <h3><b>￥</b>{{$v->price}}</h3>
