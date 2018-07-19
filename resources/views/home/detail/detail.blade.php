@@ -272,20 +272,6 @@ document.getElementById(bg_div).style.display='none';
             </div> 
             <div class="conbox">
                 <div class="pro_judge">
-                    <ul>  
-                        <li class="cur">
-                            <input name="RadioGroup1" type="radio" value="" checked="checked" id="RadioGroup1_0">
-                            全部（100）</li>     
-                        <li>
-                            <input name="RadioGroup1" type="radio" value="" id="RadioGroup1_1">
-                            好评（80）</li>
-                        <li>
-                            <input name="RadioGroup1" type="radio" value="" id="RadioGroup1_2">
-                            中评（10）</li>
-                        <li>
-                            <input name="RadioGroup1" type="radio" value="" id="RadioGroup1_3">
-                            差评（10）</li>
-                    </ul>
                     @foreach($comment as $k=>$v)
                     @foreach($user as $j => $g)
                     <table width="100%" border="0">
@@ -293,18 +279,26 @@ document.getElementById(bg_div).style.display='none';
                         <tr>
                             <td width="80" align="left"><a href="" rel="/home/images/01_mid.jpg" class="preview"><img src="{{$g->user_detail['img']}}" style="width: 50px;height: 50px;"></a><b>{{$g->uname}}</b></td>
                             <td> 
-                            @if($g->user_detail['sex'] == 'm')
+                            @if($g->user_detail['sex'] == 'w')
                             女
-                            @elseif($g->user_detail['sex'] == 'w')
+                            @elseif($g->user_detail['sex'] == 'm')
                             男
                             @else
                             保密
                             @endif
                             </td>
-                            <td>{{$v->content}}<br>
+                            <td style="font-size:18px;">{{$v->content}}<br>
                                 <br>
                                 <span class="pro_judge_time">{{$v->create_at}}</span></td>
-                            
+                                <span  class="pro_judge_time" style="color:red;" >
+                                    @if($v->stars >= 4)
+                                    好评
+                                    @elseif($v->stars < 4 && $v->stars > 2)
+                                    中评
+                                    @else
+                                    差评
+                                    @endif
+                                </span>
                         </tr>
                         <tr>
                         </tbody>

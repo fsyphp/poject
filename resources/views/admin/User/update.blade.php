@@ -33,7 +33,7 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
             <div class="col-sm-6 biao1">
-            <input type="test" class="form-control" name='email' id="input1" style='border-top-right-radius:8px;border-top-left-radius:8px;border-bottom-right-radius:8px;border-bottom-left-radius:8px;' value="{{$user->user_detail['email']}}" placeholder="请使用正常邮箱格式">
+            <input type="test" class="form-control" name='email' id="input1" style='border-top-right-radius:8px;border-top-left-radius:8px;border-bottom-right-radius:8px;border-bottom-left-radius:8px;' value="{{$user->email}}" placeholder="请使用正常邮箱格式">
             </div>
         </div>
         <div class="form-group">
