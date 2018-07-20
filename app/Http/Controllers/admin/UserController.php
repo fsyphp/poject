@@ -206,8 +206,17 @@ class UserController extends Controller
     }
 
     public function messaje()
-    {
-        return view('admin.user.messaje');
+    {   
+        $res['uname'] = session('uname');
+        if(!$res['uname']){
+            return redirect('/admin/login')->with('error','账号异常请重新登录');
+        }
+        $user = Users::where('uname',$res['uname'])->with('user_detail')->first();
+        if(!$user){
+            return redirect('/admin/login')->with('error','账号异常请重新登录');
+        }
+        // dd($user);
+        return view('admin.user.messaje',['user'=>$user]);
     }
 
 }

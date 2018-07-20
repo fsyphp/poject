@@ -288,6 +288,7 @@ Route::group(['middleware'=>'login'],function(){
 	Route::get('/home/comment/create','admin\CommentController@create');  /// 添加评论页面
 	Route::any('/home/comment/insert','admin\CommentController@insert');  /// 添加评论操作
 	Route::any('/home/comment/comment_over','admin\CommentController@over'); // 评价结束页
+	Route::any('/admin/messaje','admin\UserController@messaje'); // 后台个人页面
 });
 
 /* =============================== 聊天客服 ================================== */

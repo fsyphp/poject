@@ -86,6 +86,8 @@
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="J_menuItem" href="/admin/chat">后台客服服务</a>
                                 </li>
+                                <li><a class="J_menuItem" href="/admin/messaje">个人资料</a>
+                                </li>
                                 <li class="divider"></li>
                                 <li><a href="/admin/loginout">安全退出</a>
                                 </li>

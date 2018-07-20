@@ -4,7 +4,7 @@
  
  <!--分销店铺详细-->
    <div class="right_style">
-  <div class="title_style"><em></em>分销与佣金详情</div> 
+  <div class="title_style"><em></em>申请记录</div> 
   <div class="fenxiao_detailed_style">
    <!--分销店铺信息--> 
      <script type="text/javascript">
