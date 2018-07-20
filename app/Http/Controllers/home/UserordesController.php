@@ -220,6 +220,7 @@ class UserordesController extends Controller
         ]);
     }
 
+
     public function lotfa(Request $req)
     {
         $id = $req->input('id');

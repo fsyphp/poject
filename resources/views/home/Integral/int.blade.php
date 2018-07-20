@@ -78,12 +78,12 @@
                         联系客服
                     </a>
                     @if($v->static=='1')
-                    <a class="del" gid="" href="#">
+                    <a class="delD" gid="{{$v->id}}" href="#">
                         确认收货
                     </a>
                     @endif
                     @if($v->static=='2')
-                    <a class="del" gid="" href="#">
+                    <a class="dell" gid="{{$v->id}}" href="#">
                         删除
                     </a>
                     @endif
@@ -100,7 +100,17 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('.del').click(function(){
+    $('.delD').click(function(){
+        var id = $(this).attr('gid');
+        var dom = $(this);
+        $.post('/home/lotfa',{id:id},function(data){
+            if(data=='00'){
+                location.reload(true);
+            }
+        });
+        return false;
+    });
+    $('.dell').click(function(){
         var tr = $(this).parents('tr');
         var trs = tr.prev();
         var gid = $(this).attr('gid');
@@ -111,7 +121,7 @@
             closeBtn: 2,
             btn: ['确定','取消'],
             yes:function(index){
-                $.post('/home/del',{id:gid},function(data){
+                $.post('/home/delles',{id:gid},function(data){
                     if(data == '00' ){
                         tr.remove();
                         trs.remove();

@@ -117,6 +117,9 @@ Route::group(['middleware'=>'login'],function(){
 Route::post('home/shoppadd','home\ShoppingController@shoppadd');
 Route::get('home/show','home\ShoppingController@show')->middleware('hlogin'); //------------------
 Route::post('home/dels','home\ShoppingController@del');
+Route::post('home/del','home\ShoppingController@dell');
+Route::post('home/delles','home\ShoppingController@dells');
+
 
 // 添加购物车要登录
 Route::get('home/shop_login','home\ShoppingController@shop_login');
@@ -175,6 +178,9 @@ Route::group(['middleware'=>'login'],function(){
 	Route::resource('admin/orders','admin\OrdersController');
 	// 订单详情
 	Route::get('admin/ordersdetail/{id}','admin\OrdersController@ordersdetail');
+
+	// 删除订单
+	Route::post('admin/ordersDel','admin\OrdersController@ordersDel');
 	// 商品发货
 	Route::post('admin/sends','admin\OrdersController@sends');
 
@@ -204,6 +210,7 @@ Route::get('home/nocreate','home\UserordesController@nocreate');
 
 // 删除未付款订单
 Route::post('home/shanc','home\UserordesController@del');
+Route::post('home/deeel','home\UserordesController@delels');
 
 // 待发货订单
 Route::get('home/when','home\DeliveryController@when');

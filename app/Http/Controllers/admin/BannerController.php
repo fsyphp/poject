@@ -80,8 +80,8 @@ class BannerController extends Controller
             $res['pic'] = '/banner_img/'.$img_name.'.'.$hz;
 
         }
-
-        $row = DB::table('broadcast')->insert($res);
+        // dd(1);
+        $row = Banner::create($res);
 
         if($row){
             return redirect('/admin/banner/index')->with('success','添加成功');

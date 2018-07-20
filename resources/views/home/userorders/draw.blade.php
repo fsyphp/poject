@@ -86,9 +86,7 @@
                             确认收货
                         </a>
                         @elseif($v->static=='2')
-                            <a class="btn" style="width:60px;height:25px;line-height:25px;margin-left:30px;" href="">删除</a>
-                        @else
-                            异常
+                            <a class="btn" lid="{{$v->id}}" style="width:60px;height:25px;line-height:25px;margin-left:30px;" href="">删除</a>
                     @endif
                 </td>
             </tr>
@@ -104,10 +102,10 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('.del').click(function(){
+    $('.btn').eq(1).click(function(){
         var tr = $(this).parents('tr');
         var trs = tr.prev();
-        var gid = $(this).attr('gid');
+        var gid = $(this).attr('lid');
         layer.open({
             title: '删除操作...',
             content: '你确定要删除吗?',
@@ -132,8 +130,7 @@
         var dom = $(this);
         $.post('/home/lotfa',{id:id},function(data){
             if(data=='00'){
-                dom.html('<a href="">删除</a>');
-                dom.parents('tr').find('td').eq(5).html('<a class="btn btns" lid="{{$v->id}}" style="width:60px;height:25px;line-height:25px;margin-left:30px;" href="#">去评价</a>');
+                location.reload(true);
             }
         });
         return false;

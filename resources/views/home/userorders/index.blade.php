@@ -188,7 +188,7 @@
                                             联系客服
                                         </a>
                                         @if($v['static'] == '2')
-                                            <a class="del" href="#">
+                                            <a class="del" oid="{{$v['id']}}" href="#">
                                                 删除
                                             </a>
                                         @endif
@@ -242,7 +242,7 @@
                     icon: 3,
                     btn: ['确认','取消'],
                     yes:function(index){
-                        var id = $('.oid').attr('oid');
+                        var id = is.attr('oid');
                         $.post('/home/delete',{id:id},function(data){
                             if(data=='00'){
                                 is.parents('tbody').remove();

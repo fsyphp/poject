@@ -91,8 +91,8 @@ $(function() {
                                 <div class="Price"><b>¥{{$v->price}}</b><span>[¥{{$v->price}}/500g]</span></div>
                                 <div class="name"><a href="javascript:void(0)">{{$v->gname}}</a></div> 
                                 <div class="p-operate">
-                                <a href="javascript:void(0)" class="p-o-btn Collect"><em></em>收藏</a>
-                                <a href="javascript:void(0)" class="p-o-btn shop_cart"><em></em>加入购物车</a>
+                                <a href="/home/cang/{{$v->id}}" class="p-o-btn Collect"><em></em>收藏</a>
+                                <a href="javascript:void(0)" class="p-o-btn shop_cart" style="width:110px"><em></em>加入购物车</a>
                                 </div>
                                 </div>
                             </li>

@@ -9,7 +9,7 @@
 			<div class="bd">
 				<ul>
                 @foreach($lunbo as $k=>$v)
-					<li><a href="#" target="_blank">
+					<li><a href="javascript:void(0)" target="_blank">
                         <div style="background:url({{$v->pic}}) no-repeat; background-position:center; width:100%; height:450px;"></div>
                         </a>
                     </li>
@@ -190,7 +190,7 @@
             <h3><b>￥</b>{{$v->price}}</h3>
             <div class="Detailed">
             <div class="content">
-                <p class="center"><a href="#" class="Buy_btn">加入购物车</a></p>
+                <p class="center"><a href="#" class="Buy_btn">立即购买</a></p>
                 </div>
             </div>
         </li>

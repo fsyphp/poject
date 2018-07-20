@@ -24,5 +24,5 @@ class Banner extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','profile','url'];
+    protected $fillable = ['name','pic','profile','url'];
 }

@@ -9,6 +9,7 @@ use Sessionn;
 use Cookie;
 use App\Model\Goods;
 use App\Model\User;
+use App\Model\Change;
 use Hash;
 
 class ShoppingController extends Controller
@@ -121,6 +122,17 @@ class ShoppingController extends Controller
         // exit; */
     }
 
+    public function dells(Request $req)
+    {
+        $id = $req->all('id');
+        $row = Change::where('id',$id)->delete();
+        if($row){
+            return '00';
+        } else {
+            return '01';
+        }
+    }
+
     //通过 ajax 移除购物车中的商品
     public function del(Request $req)
     {
@@ -183,7 +195,18 @@ class ShoppingController extends Controller
     {
         return view('home/shopping/shop_login');
     }
-   
+    
+    public function dell(Request $req)
+    {
+        $id = $req->input('id');
+        $row = Change::where('id',$id)->delete();
+        if($row){
+            return '00';
+        } else {
+            return '01';
+        }
+    }
+
     // ajax 验证账号密码
     public function shoplogin(Request $req)
     {
