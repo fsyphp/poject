@@ -287,19 +287,22 @@
                 </nav>
             </div>
             
-            <div id="content-main" style="overflow-y:auto" id="divs">
-               
+            <div id="content-main" style="overflow-y:auto" id="divs"> 
             @if(session('success'))
-                <div class="mws-form-message info" id="dvs">
-                   <li class="alert alert-success">{{session('success')}}</li>
+                <div class="mws-form-message info" id="dvs"> 
+                   <li class="alert alert-success">{{session('success')}}</li> 
                 </div>
             @endif
 
-            @if(session('error'))
+            @if(session('errors'))
                 <div class="mws-form-message warning" id="dvs">
-                    <li class="alert alert-danger">{{session('error')}}</li>
+                 @foreach ($errors->all() as $error)
+                    <li class="alert alert-danger">{{$error}}</li>
+                    @endforeach
                 </div>
             @endif
+
+          
 
             <script>
                 setTimeout(function(){

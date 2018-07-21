@@ -151,9 +151,9 @@ class LotteryController extends Controller
         }
         $row = Lottery::where('id',$id)->update($lottery);
         if($row){
-            return redirect('/admin/lottery')->with('seccess','修改成功');
+            return redirect('/admin/lottery')->with('success','修改成功');
         } else {
-            return back()->with('error','修改失败');
+            return back()->with('errors','修改失败');
         }
     }
 

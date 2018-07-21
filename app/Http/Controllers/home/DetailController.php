@@ -11,6 +11,7 @@ use App\Model\Integral;
 use App\Model\Cate;  
 use App\Model\Admin\Comment;  
 use App\Model\Admin\Users;
+use App\Model\Collect;
 use DB; 
 class DetailController extends Controller
 {
@@ -40,12 +41,13 @@ class DetailController extends Controller
     }
 
     // 抽奖商品列表页
-    public function lottery(){
+    public function lottery(){ 
         $lottery=DB::table('user_detail')->where('user_id',session('user_id'))->select('integral')->first();  
-        $goods=json_encode(Lottery::get());
+        $goods=json_encode(Lottery::where('static','0')->get());
         return view('home.lottery.list',['goods'=>$goods,'title'=>'抽奖商品列表页','lottery'=>$lottery]);
     }
     public function chou(Request $request){
+        
         $lottery=DB::table('user_detail')->where('user_id',$request->input('id'))->select('integral')->first();
         $num=$lottery->integral-1000;
         $res['integral']=$num;
@@ -61,7 +63,13 @@ class DetailController extends Controller
     // 用户收藏
     public function cang($id)
     {
-        $row = DB::table('collect')->insert(['gid'=>$id,'uid'=>session('user_id')]);
+        // $row = DB::table('collect')->insert(['gid'=>$id,'uid'=>session('user_id')]);
+
+        $data['gid'] = $id;
+        $data['uid'] = session('user_id');
+        $model = new Collect();
+        $row = $model->addCollect($data);
+
         if($row){
             return redirect('/home/collect/index')->with('success','收藏成功');
         } else {
@@ -103,13 +111,13 @@ class DetailController extends Controller
                                 foreach($cate_id as $k=>$v){
                                     $category_id[]=$v->id;
                                 }
-                                $goods=Goods::whereIn('category_id',$category_id)->paginate(12)->appends($request->all()); 
+                                $goods=Goods::whereIn('category_id',$category_id)->where('g_static','!=','3')->paginate(12)->appends($request->all()); 
                         } 
            }else{
                 $goods=Goods::where(function($query) use($request){
                         $gname=$request->input('gname');
                         if(!empty($gname)){
-                            $query->where('gname','like','%'.$gname.'%');
+                            $query->where('gname','like','%'.$gname.'%')->where('g_static','!=','3');
                         }
                 })->paginate(12)->appends($request->all()); 
            }

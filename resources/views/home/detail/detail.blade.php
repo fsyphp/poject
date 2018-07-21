@@ -291,12 +291,18 @@ document.getElementById(bg_div).style.display='none';
                                 <br>
                                 <span class="pro_judge_time">{{$v->create_at}}</span></td>
                                 <span  class="pro_judge_time" style="color:red;" >
-                                    @if($v->stars >= 4)
-                                    好评
-                                    @elseif($v->stars < 4 && $v->stars > 2)
-                                    中评
+                                    @if($v->stars == 5)
+                                    ★★★★★
+                                    @elseif($v->stars == 4)
+                                    ★★★★
+                                    @elseif($v->stars == 3)
+                                    ★★★
+                                    @elseif($v->stars == 2)
+                                    ★★
+                                    @elseif($v->stars == 1)
+                                    ★
                                     @else
-                                    差评
+                                    o(╥﹏╥)o
                                     @endif
                                 </span>
                         </tr>

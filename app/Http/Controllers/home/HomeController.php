@@ -34,7 +34,7 @@ class HomeController extends Controller
         foreach($jiu as $k=>$v){
             $j[]=$v->id;
         } 
-        $jius=Goods::whereIn('category_id',$j)->paginate(4);
+        $jius=Goods::whereIn('category_id',$j)->where('g_static','!=','3')->paginate(4);
         // 食品
         $ship=[];
         $shi=Cate::where('path','like','%,7,%')->select('id')->get();
@@ -42,7 +42,7 @@ class HomeController extends Controller
         foreach($shi as $k=>$v){
             $ship[]=$v->id;
         }
-        $shipin=Goods::whereIn('category_id',$ship)->paginate(4);
+        $shipin=Goods::whereIn('category_id',$ship)->where('g_static','!=','3')->paginate(4);
         // 服装
         $fuz=[];
         $fu=Cate::where('path','like','%,132,%')->select('id')->get();
@@ -50,7 +50,7 @@ class HomeController extends Controller
         foreach($fu as $k=>$v){
             $fuz[]=$v->id;
         }
-        $fuzhuang=Goods::whereIn('category_id',$fuz)->paginate(4); 
+        $fuzhuang=Goods::whereIn('category_id',$fuz)->where('g_static','!=','3')->paginate(4); 
         return view('welcome',['maio'=>$maio,'xin'=>$xin,'chou'=>$chou,'dui'=>$dui,'re'=>$re,'fuzhuang'=>$fuzhuang,'jius'=>$jius,'shipin'=>$shipin,'lunbo'=>$lunbo,'shopping'=>$shopping,'title'=>'超市首页']);
     } 
 

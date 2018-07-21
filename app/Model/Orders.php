@@ -33,9 +33,11 @@ class Orders extends Model
      public function orders_detail()
     {  
         return $this -> hasMany('App\Model\Orders_detail','orders_id');
+        // return $this->belongsToMany('App\Model\Goods','App\Model\Orders_detail','orders_id','goods_id')->withPivot('orders_id','goods_id');
     }
     
      public  function demo(){
+        //  $data = $this->with(['orders_detail:title,price,id'])->select(['id'])->get();
         $data = $this -> with(['orders_detail.goods_orders:id,gname,gpic','orders_detail:id,orders_id,goods_id,cnt,price']) -> where ('user_id',session('user_id')) -> get();
         if(count($data) > 0){
             return $data -> toArray();
