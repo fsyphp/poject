@@ -68,7 +68,7 @@
 				dataType:'json',
 				success:function(mes){
 					$('#jifen').text(mes);
-					if(mes==0){
+					if(mes<=1000){
 						$("#stop").css('display','block');
 					}
 				},
